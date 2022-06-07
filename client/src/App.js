@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Countries from "./components/Countries";
 import CountryPage from './components/CountryPage';
 import GlobalStyles from './components/GlobalStyles';
@@ -8,7 +8,7 @@ import Home from "./components/Home";
 
 const App = () => {
   return (
-    <Router>
+    <>
       <GlobalStyles />
       <Header />
       
@@ -19,8 +19,8 @@ const App = () => {
       
       <Route path="/countries/:country" element={<CountryPage />}  />
         </Routes>
-      
-    </Router>
+        </>
+   
   );
 };
 

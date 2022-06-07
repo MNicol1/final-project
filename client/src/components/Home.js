@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { RadioBrowserApi } from "radio-browser-api";
 import ReactAudioPlayer from "react-audio-player";
 import useRadio from "../hooks/useRadio";
+import { useAuth0 } from '@auth0/auth0-react';
 
 //stationFilter is passed in tag: and in ( ) below
 // const setupApi = async () => {
@@ -28,8 +29,9 @@ import useRadio from "../hooks/useRadio";
 const Home = () => {
   // const [stations, setStations] = useState();
 //   const [stationFilter, setStationFilter] = useState("classical");
-
-const stations = useRadio({country: "Canada", limit: 20});
+const {user} = useAuth0()
+console.log(user);
+const stations = useRadio({country: "Canada", limit: 5});
 
 //add stationFilter in setupApi(stationFilter) and in dep array : }, [stationFilter]);
 
@@ -75,7 +77,7 @@ const stations = useRadio({country: "Canada", limit: 20});
         <div>
           {stations.map((item) => {
             return (
-              <div>
+              <div key={item.id}>
                 {/* <ReactAudioPlayer
                   src={item.urlResolved}
                   style={{ width: "200px", border: "none" }}

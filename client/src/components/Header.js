@@ -2,11 +2,13 @@ import { NavLink, Link } from "react-router-dom";
 import { FaAngleDown } from "react-icons/fa";
 import styled from "styled-components";
 import "./Header.css";
+import AuthenticationButton from "./authentication-button"
 
 const Header = () => {
   return (
     <>
       <HeaderContainer>
+        <AuthenticationButton/>
         <Logo>&#5615; &#5615; &#5511;</Logo>
         <NavLink to="/">Home</NavLink>
         <NavLink to="/countries">Countries</NavLink>

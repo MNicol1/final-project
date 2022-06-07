@@ -24,15 +24,6 @@ const Countries = () => {
         fetchData()
           }, [])
         
-// console.log(countries);
-
-
-// const pickCountry = (country) => {
-//     setSelectedCountry(country);
-// }
-
-// console.log(selectedCountry);
-
 
 
 if (countries) {
