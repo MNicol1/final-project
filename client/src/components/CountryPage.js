@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom"
 import useRadio from "../hooks/useRadio"
+import ReactAudioPlayer from "react-audio-player";
 
 
 
@@ -19,6 +20,11 @@ const stations = useRadio({country: country});
       return (
         // place Radio componet here
         <div>
+          {/* <ReactAudioPlayer
+                  src={item.urlResolved}
+                  style={{ width: "220px", border: "none" }}
+                  controls
+                /> */}
           <div>{item.name}</div>
         </div>
       );
