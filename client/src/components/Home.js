@@ -1,15 +1,36 @@
 import React, { useEffect, useState } from "react";
-import { RadioBrowserApi } from "radio-browser-api";
 import ReactAudioPlayer from "react-audio-player";
 import useRadio from "../hooks/useRadio";
 import { useAuth0 } from "@auth0/auth0-react";
+// import {BsMusicNoteList, AiOutlineLike} from "react-icons"
 
 const Home = () => {
-  // const {user} = useAuth0()
+  const {isAuthenticated} = useAuth0()
   // console.log(user);
   const stations = useRadio({ country: "Canada", limit: 5 });
+  const [isLiked, setIsLiked] = useState(false);
 
-  console.log(stations);
+
+
+  const handleLike = (id) => {
+    console.log("test");
+    fetch("/post-liked-stations", {
+      method: "POST",
+      body: JSON.stringify({ id }),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === 200) {
+          setIsLiked(!isLiked);
+        }
+      });
+  };
+
+  // console.log(stations);
 
   if (stations) {
     return (
@@ -27,6 +48,13 @@ const Home = () => {
                 /> */}
 
                 <div>{item.name}</div>
+
+                <button
+                  onClick={() => {handleLike(item.id)}}
+                  disabled={isAuthenticated}
+                >
+                  like
+                </button>
               </div>
             );
           })}

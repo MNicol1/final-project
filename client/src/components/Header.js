@@ -12,6 +12,7 @@ const Header = () => {
         <Logo>&#5615; &#5615; &#5511;</Logo>
         <NavLink to="/">Home</NavLink>
         <NavLink to="/countries">Countries</NavLink>
+        <NavLink to="/about">About</NavLink>
 
         <div className="dropdown">
           <button className="dropbtn">

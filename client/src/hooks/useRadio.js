@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { RadioBrowserApi } from "radio-browser-api";
-import ReactAudioPlayer from "react-audio-player";
+
 import { useSearchParams } from "react-router-dom";
 
 const browserRadioApi = new RadioBrowserApi("My Radio App");
@@ -11,7 +11,7 @@ const useRadio = ({country, limit=5}) => {
     // console.log(params.get("genre"));
 
     const genre = params.get("genre") ? [params.get("genre")] : [];
-    console.log(genre);
+   
 
     const [stations, setStations] = useState([]);
     const setupApi = async () => {
