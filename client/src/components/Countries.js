@@ -39,9 +39,10 @@ const Countries = () => {
       <>
         <div>Browse by country</div>
         <div>
-          {countries.map((country) => {
+          {countries.map((country, item) => {
             return (
               <NavLink
+              key={item}
                 to={`/countries/${country.name}`}
                 onClick={() => setSelectedCountry()}
               >

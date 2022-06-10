@@ -43,6 +43,18 @@ const Header = () => {
   );
 };
 
+const HeaderContainer = styled.header`
+  border-bottom: 2px solid black;
+  padding: 20px 40px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-between;
+  width: 100vw;
+  display: flex;
+  /* position: fixed; */
+  z-index: 3;
+`;
+
 const Head = styled(NavLink)`
   text-decoration: none;
   color: inherit;
@@ -54,19 +66,7 @@ const Title = styled.span`
 `;
 const Logo = styled.div`
   font-size: 2.3em;
-  margin-bottom: 15px;
-`;
-
-const HeaderContainer = styled.header`
-  border-bottom: 2px solid black;
-  padding: 20px 40px;
-  box-sizing: border-box;
-  align-items: center;
-  justify-content: space-between;
-  width: 100vw;
-  display: flex;
-  /* position: fixed; */
-  z-index: 3;
+  margin-bottom: 16px;
 `;
 
 const Links = styled.div`

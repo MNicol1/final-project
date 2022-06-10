@@ -5,7 +5,7 @@ import { useSearchParams } from "react-router-dom";
 
 const browserRadioApi = new RadioBrowserApi("My Radio App");
 
-const useRadio = ({country, limit=5}) => {
+const useRadio = ({country, limit=4}) => {
 
     const [params] = useSearchParams();
     // console.log(params.get("genre"));
