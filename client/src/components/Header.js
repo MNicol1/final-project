@@ -2,39 +2,60 @@ import { NavLink, Link } from "react-router-dom";
 import { FaAngleDown } from "react-icons/fa";
 import styled from "styled-components";
 import "./Header.css";
-import AuthenticationButton from "./authentication-button"
+import AuthenticationButton from "./authentication-button";
 
 const Header = () => {
   return (
     <>
       <HeaderContainer>
-        <AuthenticationButton/>
-        <Logo>&#5615; &#5615; &#5511;</Logo>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/countries">Countries</NavLink>
-        <NavLink to="/about">About</NavLink>
+        <Head to="/">
+          <Logo>
+            &#5615; &#5615; &#5511;<Title> World.Wave.Radio</Title>
+          </Logo>
+        </Head>
 
-        <div className="dropdown">
-          <button className="dropbtn">
-            By Genre <span><FaAngleDown /></span></button>
-          <div className="dropdown-content">
-            <Link to="?genre=classical">Classical</Link>
-            <a href="#">Link 2</a>
-            <a href="#">Link 3</a>
-            <a href="#">Link 3</a>
-            <a href="#">Link 3</a>
-            <a href="#">Link 3</a>
-            <a href="#">Link 3</a>
+        <Links>
+          <Linked to="/countries">Countries</Linked>
+
+          <div className="dropdown">
+            <button className="dropbtn">
+              By Genre{" "}
+              <span>
+                <FaAngleDown />
+              </span>
+            </button>
+            <div className="dropdown-content">
+              <Link to="?genre=classical">Classical</Link>
+              <a href="#">Link 2</a>
+              <a href="#">Link 3</a>
+              <a href="#">Link 3</a>
+              <a href="#">Link 3</a>
+              <a href="#">Link 3</a>
+              <a href="#">Link 3</a>
+            </div>
           </div>
-        </div>
+          <Linked to="/about">About</Linked>
+
+          <AuthenticationButton />
+        </Links>
       </HeaderContainer>
     </>
   );
 };
 
-const Logo = styled.p`
-font-size: 1.2em;
-`
+const Head = styled(NavLink)`
+  text-decoration: none;
+  color: inherit;
+`;
+
+const Title = styled.span`
+  font-family: inherit;
+  font-size: 0.4em;
+`;
+const Logo = styled.div`
+  font-size: 2.3em;
+  margin-bottom: 15px;
+`;
 
 const HeaderContainer = styled.header`
   border-bottom: 2px solid black;
@@ -46,6 +67,18 @@ const HeaderContainer = styled.header`
   display: flex;
   /* position: fixed; */
   z-index: 3;
+`;
+
+const Links = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const Linked = styled(NavLink)`
+  margin: 30px;
+  text-decoration: none;
+  font-size: inherit;
+  color: inherit;
 `;
 
 export default Header;

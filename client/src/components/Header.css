@@ -16,6 +16,7 @@ span {
 .dropdown {
   position: relative;
   display: inline-block;
+  margin: 14px;
 }
 
 .dropdown-content {

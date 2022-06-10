@@ -1,5 +1,5 @@
 const express = require('express');
-const { postUsers, postStationLiked, getLikedStations} = require("./handlers")
+const { postUsers, postStationLiked, getLikedStations, getUser} = require("./handlers")
 const app = express();
 
 app.use(express.json())
@@ -12,11 +12,11 @@ app.post("/post-users", postUsers)
 
 app.post("/post-liked-stations", postStationLiked)
 app.get("/get-liked-stations", getLikedStations)
+app.get("/get-user/:email", getUser)
 
 
 
 // app.patch("/add-like", postLike )
-// app.get("/get-user/:email", getUser)
 
 
 

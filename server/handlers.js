@@ -75,7 +75,7 @@ const postStationLiked = async (req, res) => {
 };
 
 
-// POST USER
+// POST USER  ok 
 
 const postUsers = async (req, res) => {
   try {
@@ -99,32 +99,32 @@ const postUsers = async (req, res) => {
 
 // GET USER Not being used :
 
-// const getUser = async (req, res) => {
-//   const email = req.params.email;
+const getUser = async (req, res) => {
+  const email = req.params.email;
 
   
-//   const client = new MongoClient(MONGO_URI, options);
+  const client = new MongoClient(MONGO_URI, options);
 
-//   try {
-//     await client.connect();
+  try {
+    await client.connect();
 
-//     const db = client.db("db-name");
-//     const user = await db.collection("appUsers").findOne({ email: email });
+    const db = client.db("db-name");
+    const user = await db.collection("appUsers").findOne({ email: email });
 
   
-//     if (user) {
-//       return res
-//         .status(200)
-//         .json({ status: 200, message: "hello user found", data: user });
-//     } else {
-//       return res.status(400).json({ status: 400, message: "user not found" });
-//     }
-//   } catch (err) {
-//     console.log(err);
-//   }
+    if (user) {
+      return res
+        .status(200)
+        .json({ status: 200, message: "hello user found", data: user });
+    } else {
+      return res.status(400).json({ status: 400, message: "user not found" });
+    }
+  } catch (err) {
+    console.log(err);
+  }
 
  
-// };
+};
 
 
 
@@ -157,4 +157,4 @@ const postUsers = async (req, res) => {
 //   }
 // };
 
-module.exports = { postUsers, postStationLiked, getLikedStations };
+module.exports = { postUsers, postStationLiked, getLikedStations, getUser };
