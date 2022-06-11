@@ -7,12 +7,11 @@ const options = {
   useUnifiedTopology: true,
 };
 
+//Handlers
 
-//Handlers  
+// GET ALL LIKED STATIONS
 
-
-// GET ALL LIKED STATIONS 
-
+// to render the number of likes ...
 
 const getLikedStations = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
@@ -23,59 +22,71 @@ const getLikedStations = async (req, res) => {
 
     const db = client.db("db-name");
 
-    const stations = await db.collection("likedStations").find({station})
+    const stations = await db.collection("likedStations").find().toArray();
     // toArray():  ??
 
     // console.log(users);
 
     if (stations) {
-      res.status(200).json({ status: 200, stations, message: "liked stations" });
+      res
+        .status(200)
+        .json({ status: 200, stations, message: "liked stations" });
     } else {
-      res.status(400).json({ status: 400, message: "can't find liked stations" });
+      res
+        .status(400)
+        .json({ status: 400, message: "can't find liked stations" });
     }
   } catch (err) {
     console.log(err.stack);
   }
-
-  client.close();
 };
 
+// POST STATION  being used
 
-// POST STATION  being used 
+// [email, email, email]  add this to collection.
+// - postStationLiked  need to push user into line 61 updateOne.
+// - line 66 include likeList
+// - push users email into array.
 
 const postStationLiked = async (req, res) => {
-  const { id } = req.body;
+// console.log("test error");
+
+  const { id, email } = req.body;
 
   const client = new MongoClient(MONGO_URI, options);
   try {
     await client.connect();
-
+    console.log(req.body);
     const db = client.db("db-name");
     const likedStation = await db
       .collection("likedStations")
       .findOne({ stationId: id });
+
     if (likedStation) {
+      console.log(likedStation);
       const numberOfLikes = likedStation.numLikes;
-      const updatedLikes = { $set: { numLikes: numberOfLikes + 1 } };
+      const userList = [...likedStation.users, email];
+      const updatedLikes = { $set: { numLikes: numberOfLikes + 1, users: userList} };
+      // const updatedUserList = { $set: { users: userList } };
       await db
         .collection("likedStations")
         .updateOne({ stationId: id }, updatedLikes);
+      // await db
+      //   .collection("likedStations")
+      //   .updateOne({ stationId: id }, updatedUserList);
     } else {
       await db
         .collection("likedStations")
-        .insertOne({ stationId: id, numLikes: 1 });
+        .insertOne({ stationId: id, numLikes: 1, users: [email] });
     }
-  res.status(200).json({ status: 200, message: "station liked"});
-
+    res.status(200).json({ status: 200, message: "station liked" });
   } catch (error) {
-
+    console.log(error);
     res.status(400).json({ status: 400, message: "couldn't like station" });
   }
-
 };
 
-
-// POST USER  ok 
+// POST USER  ok
 
 const postUsers = async (req, res) => {
   try {
@@ -102,7 +113,6 @@ const postUsers = async (req, res) => {
 const getUser = async (req, res) => {
   const email = req.params.email;
 
-  
   const client = new MongoClient(MONGO_URI, options);
 
   try {
@@ -111,7 +121,6 @@ const getUser = async (req, res) => {
     const db = client.db("db-name");
     const user = await db.collection("appUsers").findOne({ email: email });
 
-  
     if (user) {
       return res
         .status(200)
@@ -122,12 +131,7 @@ const getUser = async (req, res) => {
   } catch (err) {
     console.log(err);
   }
-
- 
 };
-
-
-
 
 // POST LIKE :
 

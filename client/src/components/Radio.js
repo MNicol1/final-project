@@ -6,14 +6,14 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const Radio = ({ item }) => {
 
-  // const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
   const [isLiked, setIsLiked] = useState(false);
 
   const handleLike = (id) => {
     console.log("test");
     fetch("/post-liked-stations", {
       method: "POST",
-      body: JSON.stringify({ id }),
+      body: JSON.stringify({ id, email: user.email }),
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -31,17 +31,17 @@ const Radio = ({ item }) => {
     <Container>
       <div>{item.name}</div>
       <div>{item.country}</div>
-
+{/* 
       <ReactAudioPlayer
         src={item.urlResolved}
         style={{ width: "220px", border: "none" }}
         controls
-      />
+      /> */}
       <LikeButton
         onClick={() => {
           handleLike(item.id);
         }}
-        // disabled={isAuthenticated}
+        disabled={!isAuthenticated}
       >
         <AiOutlineLike size={22}/>
       </LikeButton>
@@ -51,7 +51,7 @@ const Radio = ({ item }) => {
 
 const Container = styled.div`
   border: 1px solid black;
-  max-width: 1200px;
+  /* max-width: 1200px; */
 `;
 
 const LikeButton = styled.button`
@@ -62,6 +62,10 @@ background: none;
 	font: inherit;
 	cursor: pointer;
 	outline: inherit;
+   :disabled {
+     cursor: not-allowed;
+     background-color: blue;
+   }
 
 `
 

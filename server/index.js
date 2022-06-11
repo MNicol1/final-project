@@ -25,8 +25,6 @@ app.get('/', (req, res) => {
    res.send('Hello World');
 })
 
-
-
 // This is a catch all endpoint
 
 app.get("*", (req, res) => {
@@ -41,6 +39,7 @@ app.listen(8000, () => console.log("Listening on port 8000"));
 
 // GUIDELINES 
 
+
 // get a user - usually by id  but just email is fine.  
 // get all likes -> on load, people on home page can see likes a given staion / see most liked stations
 // post a like (posts a like from a user)
@@ -53,10 +52,17 @@ app.listen(8000, () => console.log("Listening on port 8000"));
 
 // collection of likes and example of a like object:
 
+
 // {
 //      id : of the radio station,
 //      like-list: [
 //              {userEmail : }
 //      ]
 // }
+
+
+//  getall liked stations -  What's wrong with my code ?? 
+//  Does postLikeStations work ?? need to be adapted to have user like it ?? 
+//      Need to coonect a user to the likedstations collection
+// why is 
 
