@@ -7,6 +7,10 @@ const options = {
   useUnifiedTopology: true,
 };
 
+// Local Utility Functions
+const { isLikedByUser } = require("./utils/validateIsLikedByUser");
+const { getUserFromDb } = require("./utils/getUserFromDb");
+
 //Handlers
 
 // GET ALL LIKED STATIONS
@@ -49,24 +53,49 @@ const getLikedStations = async (req, res) => {
 // - push users email into array.
 
 const postStationLiked = async (req, res) => {
-// console.log("test error");
+  // console.log("test error");
 
   const { id, email } = req.body;
 
   const client = new MongoClient(MONGO_URI, options);
   try {
     await client.connect();
-    console.log(req.body);
     const db = client.db("db-name");
     const likedStation = await db
       .collection("likedStations")
       .findOne({ stationId: id });
 
-    if (likedStation) {
-      console.log(likedStation);
+    const userFromDb = await getUserFromDb({
+      db,
+      collection: "appUsers",
+      email,
+    });
+
+    const isLiked = await isLikedByUser({
+      userFromDb,
+      id,
+    });
+
+    if (isLiked) {
+      return res.status(400).json({
+        status: 400,
+        message: "Station already liked by this user.",
+        error: true,
+      });
+    } else if (likedStation) {
       const numberOfLikes = likedStation.numLikes;
       const userList = [...likedStation.users, email];
-      const updatedLikes = { $set: { numLikes: numberOfLikes + 1, users: userList} };
+
+      // Update user to include stationId in likedStation array
+      userFromDb.likedStations.push(id);
+      const userQueryObj = { email };
+      const updateUserObj = { $set: { ...userFromDb } };
+      await db.collection("appUsers").updateOne(userQueryObj, updateUserObj);
+
+      // Update station's number of likes and array of liked users
+      const updatedLikes = {
+        $set: { numLikes: numberOfLikes + 1, users: userList },
+      };
       // const updatedUserList = { $set: { users: userList } };
       await db
         .collection("likedStations")
@@ -75,6 +104,10 @@ const postStationLiked = async (req, res) => {
       //   .collection("likedStations")
       //   .updateOne({ stationId: id }, updatedUserList);
     } else {
+      userFromDb.likedStations.push(id);
+      const updateUserObj = { $set: { ...userFromDb } };
+      await db.collection("appUsers").updateOne(userQueryObj, updateUserObj);
+
       await db
         .collection("likedStations")
         .insertOne({ stationId: id, numLikes: 1, users: [email] });
@@ -161,4 +194,14 @@ const getUser = async (req, res) => {
 //   }
 // };
 
-module.exports = { postUsers, postStationLiked, getLikedStations, getUser };
+const removeLikeFromStation = async (req, res) => {
+  res.send(200);
+};
+
+module.exports = {
+  postUsers,
+  postStationLiked,
+  getLikedStations,
+  getUser,
+  removeLikeFromStation,
+};
