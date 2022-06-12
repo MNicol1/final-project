@@ -72,6 +72,7 @@ const Logo = styled.div`
 const Links = styled.div`
   display: flex;
   align-items: center;
+ 
 `;
 
 const Linked = styled(NavLink)`
@@ -79,6 +80,7 @@ const Linked = styled(NavLink)`
   text-decoration: none;
   font-size: inherit;
   color: inherit;
+  font-family: inherit;
 `;
 
 export default Header;

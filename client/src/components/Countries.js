@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import styled from "styled-components";
+
+
 
 const Countries = () => {
   // return <div>Countries</div>
@@ -36,27 +39,45 @@ const Countries = () => {
     });
 
     return (
-      <>
-        <div>Browse by country</div>
+      <Container>
+        <h2>Browse by country:</h2>
+        <hr style={{backgroundColor: "white"}}/>
         <div>
           {countries.map((country, item) => {
             return (
-              <NavLink
+              <Country
               key={item}
                 to={`/countries/${country.name}`}
                 onClick={() => setSelectedCountry()}
               >
-                <div>{country.name}</div>
-              </NavLink>
+                <CountryName>{country.name}</CountryName>
+              </Country>
             );
           })}
         </div>
-      </>
+      </Container>
     );
   } else {
     return null;
   }
 };
+
+
+const Container = styled.div`
+padding: 40px;
+`
+
+const Country = styled(NavLink)`
+text-decoration: none;
+color: inherit;
+font-family: inherit;
+font-size: 1.2em;
+
+`
+const CountryName = styled.div`
+padding: 1px 0px; 
+`
+
 export default Countries;
 
 // console.log(sortedCountries)

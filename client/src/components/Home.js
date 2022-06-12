@@ -12,58 +12,16 @@ const Home = () => {
   // const { isAuthenticated } = useAuth0();
 
   const stations = useRadio({ country: "Canada", limit: 5 });
-  // const [isLiked, setIsLiked] = useState(false);
-
-  // const handleLike = (id) => {
-  //   // console.log("test");
-  //   fetch("/post-liked-stations", {
-  //     method: "POST",
-  //     body: JSON.stringify({ id }),
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       if (data.status === 200) {
-  //         setIsLiked(!isLiked);
-  //       }
-  //     });
-  // };
 
   // console.log(stations);
 
   if (stations) {
     return (
       <>
-        <div>HOME</div>
-
         <RadioContainer>
           <RadioList>
             {stations.map((item) => {
-              return (
-                <Radio item={item}
-                key={item.id}/>
-                // <div key={item.id}>
-                //   <ReactAudioPlayer
-                //     src={item.urlResolved}
-                //     style={{ width: "220px", border: "none" }}
-                //     controls
-                //   />
-
-                //   <div>{item.name}</div>
-
-                //   <button
-                //     onClick={() => {
-                //       handleLike(item.id);
-                //     }}
-                //     disabled={isAuthenticated}
-                //   >
-                //     like
-                //   </button>
-                // </div>
-              );
+              return <Radio item={item} key={item.id} />;
             })}
           </RadioList>
         </RadioContainer>

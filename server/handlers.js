@@ -13,44 +13,8 @@ const { getUserFromDb } = require("./utils/getUserFromDb");
 
 //Handlers
 
-// GET ALL LIKED STATIONS
-
-// to render the number of likes ...
-
-const getLikedStations = async (req, res) => {
-  const client = new MongoClient(MONGO_URI, options);
-
-  try {
-    const station = req.params.id;
-    await client.connect();
-
-    const db = client.db("db-name");
-
-    const stations = await db.collection("likedStations").find().toArray();
-    // toArray():  ??
-
-    // console.log(users);
-
-    if (stations) {
-      res
-        .status(200)
-        .json({ status: 200, stations, message: "liked stations" });
-    } else {
-      res
-        .status(400)
-        .json({ status: 400, message: "can't find liked stations" });
-    }
-  } catch (err) {
-    console.log(err.stack);
-  }
-};
 
 // POST STATION  being used
-
-// [email, email, email]  add this to collection.
-// - postStationLiked  need to push user into line 61 updateOne.
-// - line 66 include likeList
-// - push users email into array.
 
 const postStationLiked = async (req, res) => {
   // console.log("test error");
@@ -119,18 +83,25 @@ const postStationLiked = async (req, res) => {
   }
 };
 
+
+
+
+
 // POST USER  ok
 
 const postUsers = async (req, res) => {
   try {
     const client = await new MongoClient(MONGO_URI, options);
+
+    // const likedStations = {likedStations : []}
+
     await client.connect();
     const db = client.db("db-name");
     const exsistingUser = await db
       .collection("appUsers")
       .findOne({ email: req.body.email });
     if (!exsistingUser) {
-      await db.collection("appUsers").insertOne(req.body);
+      await db.collection("appUsers").insertOne({...req.body, likedStations: []});
     }
 
     res.status(200).json({ status: 200, message: "user added to database" });
@@ -141,30 +112,75 @@ const postUsers = async (req, res) => {
   }
 };
 
+//  remove like from station
+
+const removeLikeFromStation = async (req, res) => {
+  res.send(200);
+};
+
+
+//HANDLERS NOT BEING USED 
+
+
+// GET ALL LIKED STATIONS
+
+// to render the number of likes ?
+
+// const getLikedStations = async (req, res) => {
+//   const client = new MongoClient(MONGO_URI, options);
+
+//   try {
+//     const station = req.params.id;
+//     await client.connect();
+
+//     const db = client.db("db-name");
+
+//     const stations = await db.collection("likedStations").find().toArray();
+
+//     if (stations) {
+//       res
+//         .status(200)
+//         .json({ status: 200, stations, message: "liked stations" });
+//     } else {
+//       res
+//         .status(400)
+//         .json({ status: 400, message: "can't find liked stations" });
+//     }
+//   } catch (err) {
+//     console.log(err.stack);
+//   }
+// };
+
+
+
+
+
+
+
 // GET USER Not being used :
 
-const getUser = async (req, res) => {
-  const email = req.params.email;
+// const getUser = async (req, res) => {
+//   const email = req.params.email;
 
-  const client = new MongoClient(MONGO_URI, options);
+//   const client = new MongoClient(MONGO_URI, options);
 
-  try {
-    await client.connect();
+//   try {
+//     await client.connect();
 
-    const db = client.db("db-name");
-    const user = await db.collection("appUsers").findOne({ email: email });
+//     const db = client.db("db-name");
+//     const user = await db.collection("appUsers").findOne({ email: email });
 
-    if (user) {
-      return res
-        .status(200)
-        .json({ status: 200, message: "hello user found", data: user });
-    } else {
-      return res.status(400).json({ status: 400, message: "user not found" });
-    }
-  } catch (err) {
-    console.log(err);
-  }
-};
+//     if (user) {
+//       return res
+//         .status(200)
+//         .json({ status: 200, message: "hello user found", data: user });
+//     } else {
+//       return res.status(400).json({ status: 400, message: "user not found" });
+//     }
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
 
 // POST LIKE :
 
@@ -194,14 +210,8 @@ const getUser = async (req, res) => {
 //   }
 // };
 
-const removeLikeFromStation = async (req, res) => {
-  res.send(200);
-};
-
 module.exports = {
   postUsers,
   postStationLiked,
-  getLikedStations,
-  getUser,
   removeLikeFromStation,
 };

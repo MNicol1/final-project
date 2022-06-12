@@ -14,5 +14,5 @@ grid-column-gap: 10px;
 grid-row-gap: 10px;
 margin-top: 40px; 
 max-width: 1200px;
-border: 1px solid black;
+/* border: 1px solid black; */
 `

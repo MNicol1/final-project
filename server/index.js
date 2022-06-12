@@ -1,5 +1,5 @@
 const express = require('express');
-const { postUsers, postStationLiked, getLikedStations, getUser, removeLikeFromStation} = require("./handlers")
+const { postUsers, postStationLiked, removeLikeFromStation} = require("./handlers")
 const app = express();
 
 app.use(express.json())
@@ -9,7 +9,7 @@ app.use(express.static("public"))
 
 // user endpoints 
 app.post("/post-users", postUsers)
-app.get("/get-user/:email", getUser)
+// app.get("/get-user/:email", getUser)
 // TODO: add update user endpoint
 // TODO: add delete user endpoint
 
@@ -20,7 +20,7 @@ app.post("/post-liked-stations", postStationLiked)
 app.put("/remove-like-from-station/:stationId", removeLikeFromStation)
 
 // Get all liked stations
-app.get("/get-liked-stations", getLikedStations)
+// app.get("/get-liked-stations", getLikedStations)
 
 
 

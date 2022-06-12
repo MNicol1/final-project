@@ -10,7 +10,7 @@ body {
    color: white; */
 } 
 
-h1, button, li, a, ul, span, p, nav {
+h2, button, li, a, ul, span, p, nav {
     /* text-decoration: none; */
     /* color: white; */
 
