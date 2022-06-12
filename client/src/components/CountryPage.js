@@ -8,7 +8,7 @@ const CountryPage = () => {
   const { country } = useParams();
   console.log(country);
 
-  const stations = useRadio({ country: country });
+  const stations = useRadio({ country: country, limit: 20 });
 
   if (stations.length === 0) {
     return <p>LOADING</p>;

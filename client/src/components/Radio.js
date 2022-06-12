@@ -36,6 +36,7 @@ const Radio = ({ item }) => {
       </div>
       <hr/>
       <CountryName>{item.country} <State>{item.state}</State></CountryName>
+      <div>{item.tags}</div>
 
       <ReactAudioPlayer
         src={item.urlResolved}
@@ -58,7 +59,7 @@ const Radio = ({ item }) => {
 
 const Container = styled.div`
   border: 1px solid black;
-  padding: 20px;
+  padding: 20px 20px;
   /* max-width: 1200px; */
 `;
 
@@ -73,6 +74,7 @@ font-style: italic;
 
 const Likes = styled.div`
 padding: 5px;
+margin-top: 30px;
 `
 const LikeButton = styled.button`
   background: none;

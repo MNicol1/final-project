@@ -42,19 +42,21 @@ const Countries = () => {
       <Container>
         <h2>Browse by country:</h2>
         <hr style={{backgroundColor: "white"}}/>
-        <div>
+     
           {countries.map((country, item) => {
             return (
+              <Main key={item}>
               <Country
-              key={item}
+              
                 to={`/countries/${country.name}`}
                 onClick={() => setSelectedCountry()}
               >
-                <CountryName>{country.name}</CountryName>
+                {country.name}
               </Country>
+              </Main>
             );
           })}
-        </div>
+       
       </Container>
     );
   } else {
@@ -67,6 +69,10 @@ const Container = styled.div`
 padding: 40px;
 `
 
+const Main = styled.div`
+padding: 1px 0px; 
+
+`
 const Country = styled(NavLink)`
 text-decoration: none;
 color: inherit;
@@ -74,9 +80,7 @@ font-family: inherit;
 font-size: 1.2em;
 
 `
-const CountryName = styled.div`
-padding: 1px 0px; 
-`
+
 
 export default Countries;
 
