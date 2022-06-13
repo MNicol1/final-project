@@ -36,7 +36,7 @@ const useRadio = ({ country, limit = 4 }) => {
       setStations(data);
       console.log(data);
     });
-  }, [country, genre.length]);
+  }, [country, params]);
 
   return stations;
 };

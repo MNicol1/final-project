@@ -14,7 +14,32 @@ const { getUserFromDb } = require("./utils/getUserFromDb");
 //Handlers
 
 
-// POST STATION  being used
+// getNumOfLikes
+
+const getNumOfLikes = async (req,res) => {
+  try {
+    const client = new MongoClient(MONGO_URI, options);
+    await client.connect();
+    const db = client.db("db-name");
+
+    const numLikes = await db
+      .collection("likedStations")
+      .findOne()
+      .toArray();
+    res.status(200).json({ status: 200, data: numLikes });
+
+    client.close();
+  } catch (err) {
+    console.log(err);
+  }
+
+}
+
+// get statio
+
+
+
+// POST STATION  : OK
 
 const postStationLiked = async (req, res) => {
   // console.log("test error");
@@ -28,6 +53,8 @@ const postStationLiked = async (req, res) => {
     const likedStation = await db
       .collection("likedStations")
       .findOne({ stationId: id });
+console.log(likedStation);
+
 
     const userFromDb = await getUserFromDb({
       db,
@@ -49,12 +76,17 @@ const postStationLiked = async (req, res) => {
     } else if (likedStation) {
       const numberOfLikes = likedStation.numLikes;
       const userList = [...likedStation.users, email];
+     
 
       // Update user to include stationId in likedStation array
+      // stretch goal only 
       userFromDb.likedStations.push(id);
-      const userQueryObj = { email };
+      const userQueryObj = { email};
+     
       const updateUserObj = { $set: { ...userFromDb } };
       await db.collection("appUsers").updateOne(userQueryObj, updateUserObj);
+
+
 
       // Update station's number of likes and array of liked users
       const updatedLikes = {
@@ -70,6 +102,7 @@ const postStationLiked = async (req, res) => {
     } else {
       userFromDb.likedStations.push(id);
       const updateUserObj = { $set: { ...userFromDb } };
+      const userQueryObj = { email};
       await db.collection("appUsers").updateOne(userQueryObj, updateUserObj);
 
       await db
@@ -87,7 +120,7 @@ const postStationLiked = async (req, res) => {
 
 
 
-// POST USER  ok
+// POST USER  : OK 
 
 const postUsers = async (req, res) => {
   try {
@@ -126,30 +159,37 @@ const removeLikeFromStation = async (req, res) => {
 
 // to render the number of likes ?
 
-// const getLikedStations = async (req, res) => {
-//   const client = new MongoClient(MONGO_URI, options);
+const getLikedStations = async (req, res) => {
+  const client = new MongoClient(MONGO_URI, options);
 
-//   try {
-//     const station = req.params.id;
-//     await client.connect();
+  try {
+    const station = { stationId: req.params.id };
+    
+    // const isLiked = await isLikedByUser({
+    //   userFromDb,
+    //   id,
+    // });
 
-//     const db = client.db("db-name");
+    console.log(station);
+    await client.connect();
 
-//     const stations = await db.collection("likedStations").find().toArray();
+    const db = client.db("db-name");
 
-//     if (stations) {
-//       res
-//         .status(200)
-//         .json({ status: 200, stations, message: "liked stations" });
-//     } else {
-//       res
-//         .status(400)
-//         .json({ status: 400, message: "can't find liked stations" });
-//     }
-//   } catch (err) {
-//     console.log(err.stack);
-//   }
-// };
+    const stations = await db.collection("likedStations").findOne(station);
+console.log(stations);
+    if (stations) {
+      res
+        .status(200)
+        .json({ status: 200, stations, message: "liked stations" });
+    } else {
+      res
+        .status(400)
+        .json({ status: 400, message: "can't find liked stations" });
+    }
+  } catch (err) {
+    console.log(err.stack);
+  }
+};
 
 
 
@@ -159,28 +199,54 @@ const removeLikeFromStation = async (req, res) => {
 
 // GET USER Not being used :
 
-// const getUser = async (req, res) => {
-//   const email = req.params.email;
+const getUser = async (req, res) => {
+  const email = req.params.email;
 
-//   const client = new MongoClient(MONGO_URI, options);
+  const client = new MongoClient(MONGO_URI, options);
 
-//   try {
-//     await client.connect();
+  try {
+    await client.connect();
 
-//     const db = client.db("db-name");
-//     const user = await db.collection("appUsers").findOne({ email: email });
+    const db = client.db("db-name");
+    const user = await db.collection("appUsers").findOne({ email: email });
 
-//     if (user) {
-//       return res
-//         .status(200)
-//         .json({ status: 200, message: "hello user found", data: user });
-//     } else {
-//       return res.status(400).json({ status: 400, message: "user not found" });
-//     }
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
+    if (user) {
+      return res
+        .status(200)
+        .json({ status: 200, message: "hello user found", data: user });
+    } else {
+      return res.status(400).json({ status: 400, message: "user not found" });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
+// Get Favorites - likes 
+
+
+const getLikes = async (req,res) => {
+  try {
+    const client = new MongoClient(MONGO_URI, options);
+    await client.connect();
+    const db = client.db("db-name");
+    const userLikes = await db
+      .collection("appUsers")
+      .find()
+      .toArray();
+    res.status(200).json({ status: 200, data: userLikes });
+
+    client.close();
+  } catch (err) {
+    console.log(err);
+  }
+
+}
+
+
+
+
 
 // POST LIKE :
 
@@ -214,4 +280,8 @@ module.exports = {
   postUsers,
   postStationLiked,
   removeLikeFromStation,
+  getUser, 
+  getLikes,
+  getNumOfLikes,
+  getLikedStations
 };
