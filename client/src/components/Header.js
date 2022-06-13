@@ -51,8 +51,7 @@ const HeaderContainer = styled.header`
   justify-content: space-between;
   width: 100vw;
   display: flex;
-  /* position: fixed; */
-  z-index: 3;
+  /* z-index: 3; */
 `;
 
 const Head = styled(NavLink)`
@@ -72,7 +71,6 @@ const Logo = styled.div`
 const Links = styled.div`
   display: flex;
   align-items: center;
- 
 `;
 
 const Linked = styled(NavLink)`

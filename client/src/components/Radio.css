@@ -1,0 +1,37 @@
+audio::-webkit-media-controls-panel {
+    background-color: rgb(223, 246, 247);
+  }
+
+  audio::-webkit-media-controls-current-time-display {
+    display: none;
+  }
+
+  audio::-webkit-media-controls-time-remaining-display {
+      display: none;
+  }
+
+  audio::-webkit-media-controls-timeline-container { 
+      display: none;
+  }
+
+  audio::-webkit-media-controls-timeline { 
+    display: none;
+}
+
+audio::-webkit-media-controls-play-button { 
+    margin-right: 60px;
+
+    
+
+ }
+  audio::-webkit-media-controls-play-button:hover { 
+     background-color: pink;
+     border-radius: 50%;
+     
+
+  }
+
+  audio::-webkit-media-controls-volume-slider-container {
+      background-color: red;
+  }
+
