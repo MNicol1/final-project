@@ -22,6 +22,11 @@ const LoginBtn = styled.button`
 	cursor: pointer;
 	outline: inherit;
   margin: 30px;
+  &:hover {
+    transition: background-color 0.8s ease-in;
+  background-color: pink;
+ 
+  }
 
 `
 

@@ -25,13 +25,22 @@ const Header = () => {
               </span>
             </button>
             <div className="dropdown-content">
+              <Link to="?genre=pop">Pop</Link>
               <Link to="?genre=classical">Classical</Link>
-              <a href="#">Link 2</a>
-              <a href="#">Link 3</a>
-              <a href="#">Link 3</a>
-              <a href="#">Link 3</a>
-              <a href="#">Link 3</a>
-              <a href="#">Link 3</a>
+              <Link to="?genre=jazz">Jazz</Link>
+              <Link to="?genre=rock">Rock</Link>
+              <Link to="?genre=hiphop">Hiphop</Link>
+              <Link to="?genre=danse">Danse</Link>
+              <Link to="?genre=house">House</Link>
+              <Link to="?genre=folk">Folk</Link>
+              <Link to="?genre=country">Country</Link>
+              <Link to="?genre=electronic">Electronic</Link>
+              <Link to="?genre=chillout">Chillout</Link>
+              <Link to="?genre=indie">Indie</Link>
+              <Link to="?genre=80s">80s</Link>
+              <Link to="?genre=90s">90s</Link>
+              
+             
             </div>
           </div>
           <Linked to="/about">About</Linked>

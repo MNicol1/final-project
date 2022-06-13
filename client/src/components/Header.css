@@ -23,18 +23,20 @@ span {
   display: none;
   position: absolute;
   width: 100%;
+  
 
   /* min-width: 160px; */
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  overflow: auto;
+  /* overflow-y: scroll; */
 }
 
 .dropdown-content a {
-  padding: 12px 16px;
+  padding: 7px 16px;
   text-decoration: none;
   display: block;
   background-color: white;
+  color: inherit;
   
 }
 

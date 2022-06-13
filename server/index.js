@@ -7,13 +7,13 @@ app.use(express.static("public"))
 
 // List of endpoints here : 
 
-// user endpoints 
+// USER endpoints 
 app.post("/post-users", postUsers)
 // app.get("/get-user/:email", getUser)
 // TODO: add update user endpoint
 // TODO: add delete user endpoint
 
-// station endpoints 
+// Station endpoints 
 // Add a like to a station, if the station doesn't exist in the likedStation collection, add it in there
 app.post("/post-liked-stations", postStationLiked)
 

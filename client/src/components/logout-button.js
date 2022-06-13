@@ -26,6 +26,10 @@ const LogoutBtn = styled.button`
 	cursor: pointer;
 	outline: inherit;
   margin: 30px;
+  &:hover {
+    transition: background-color 0.8s ease-in;
+  background-color: greenyellow;
+  }
 `
 
 export default LogoutButton;

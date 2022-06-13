@@ -11,6 +11,8 @@ const Radio = ({ item }) => {
   const { isAuthenticated, user } = useAuth0();
   const [isLiked, setIsLiked] = useState(false);
 
+
+
   const handleLike = (id) => {
     console.log("test");
     fetch("/post-liked-stations", {
@@ -23,11 +25,14 @@ const Radio = ({ item }) => {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         if (data.status === 200) {
           setIsLiked(!isLiked);
         }
       });
   };
+
+
 
   return (
     <Container>
@@ -38,12 +43,12 @@ const Radio = ({ item }) => {
       <CountryName>{item.country} <State>{item.state}</State></CountryName>
       {/* <div>{item.tags}</div> */}
       <Audio>
-      <ReactAudioPlayer
+      {/* <ReactAudioPlayer
       class="audio"
         src={item.urlResolved}
-        style={{ width: "220px", border: "none", color: "white"}}
+        style={{ width: "220px"}}
         controls controlsList="nodownload noplaybackrate"
-      />
+      /> */}
       </Audio>
       <Likes>
       <LikeButton
@@ -63,16 +68,20 @@ const Container = styled.div`
   border: 1px solid black;
   padding: 20px 20px;
   /* max-width: 1200px; */
+  /* position: relative; */
+  
+  
 
 `;
 
 const StationName = styled.div`
-
+height: 52px;
 
 `
 const CountryName = styled.div`
 margin: 10px 0px;
-padding-bottom: 10px;
+height: 30px;
+
 
 `
 
@@ -106,6 +115,9 @@ const LikeButton = styled.button`
     cursor: not-allowed;
     /* background-color: red; */
   }
+
+  
+
 `;
 
 export default Radio;
