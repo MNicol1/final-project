@@ -14,28 +14,50 @@ const { getUserFromDb } = require("./utils/getUserFromDb");
 //Handlers
 
 
-// getNumOfLikes
 
-const getNumOfLikes = async (req,res) => {
+// GET ALL LIKED STATIONS
+
+// to render the number of likes ?
+
+
+
+
+const getLikedStations = async (req, res) => {
+  const client = new MongoClient(MONGO_URI, options);
+
   try {
-    const client = new MongoClient(MONGO_URI, options);
+    const station = { stationId: req.params.id };
+    
+  
     await client.connect();
+
     const db = client.db("db-name");
 
-    const numLikes = await db
-      .collection("likedStations")
-      .findOne()
-      .toArray();
-    res.status(200).json({ status: 200, data: numLikes });
+    const stations = await db.collection("likedStations").findOne(station);
 
-    client.close();
+    if (stations) {
+      res
+        .status(200)
+        .json({ status: 200, stations, message: "liked stations" });
+    } else {
+      res
+        .status(204)
+        .json({ status: 404, message: "can't find liked stations" });
+    }
+
+    
+
   } catch (err) {
-    console.log(err);
+    res
+    .status(204)
+    .json({ status: 400, message: "error finding stations" });
+  
+    console.log(err.stack);
   }
 
-}
+  client.close();
 
-// get statio
+};
 
 
 
@@ -47,6 +69,7 @@ const postStationLiked = async (req, res) => {
   const { id, email } = req.body;
 
   const client = new MongoClient(MONGO_URI, options);
+  let numberOfLikes = 0;
   try {
     await client.connect();
     const db = client.db("db-name");
@@ -74,7 +97,7 @@ console.log(likedStation);
         error: true,
       });
     } else if (likedStation) {
-      const numberOfLikes = likedStation.numLikes;
+      numberOfLikes = likedStation.numLikes;
       const userList = [...likedStation.users, email];
      
 
@@ -109,11 +132,13 @@ console.log(likedStation);
         .collection("likedStations")
         .insertOne({ stationId: id, numLikes: 1, users: [email] });
     }
-    res.status(200).json({ status: 200, message: "station liked" });
+    res.status(200).json({ status: 200, message: "station liked", numLikes: numberOfLikes + 1 });
   } catch (error) {
     console.log(error);
     res.status(400).json({ status: 400, message: "couldn't like station" });
   }
+
+  client.close();
 };
 
 
@@ -155,45 +180,28 @@ const removeLikeFromStation = async (req, res) => {
 //HANDLERS NOT BEING USED 
 
 
-// GET ALL LIKED STATIONS
 
-// to render the number of likes ?
 
-const getLikedStations = async (req, res) => {
-  const client = new MongoClient(MONGO_URI, options);
+// getNumOfLikes - NOT being used 
 
+const getNumOfLikes = async (req,res) => {
   try {
-    const station = { stationId: req.params.id };
-    
-    // const isLiked = await isLikedByUser({
-    //   userFromDb,
-    //   id,
-    // });
-
-    console.log(station);
+    const client = new MongoClient(MONGO_URI, options);
     await client.connect();
-
     const db = client.db("db-name");
 
-    const stations = await db.collection("likedStations").findOne(station);
-console.log(stations);
-    if (stations) {
-      res
-        .status(200)
-        .json({ status: 200, stations, message: "liked stations" });
-    } else {
-      res
-        .status(400)
-        .json({ status: 400, message: "can't find liked stations" });
-    }
+    const numLikes = await db
+      .collection("likedStations")
+      .findOne()
+      .toArray();
+    res.status(200).json({ status: 200, data: numLikes });
+
+    client.close();
   } catch (err) {
-    console.log(err.stack);
+    console.log(err);
   }
-};
 
-
-
-
+}
 
 
 
@@ -226,23 +234,23 @@ const getUser = async (req, res) => {
 // Get Favorites - likes 
 
 
-const getLikes = async (req,res) => {
-  try {
-    const client = new MongoClient(MONGO_URI, options);
-    await client.connect();
-    const db = client.db("db-name");
-    const userLikes = await db
-      .collection("appUsers")
-      .find()
-      .toArray();
-    res.status(200).json({ status: 200, data: userLikes });
+// const getLikes = async (req,res) => {
+//   try {
+//     const client = new MongoClient(MONGO_URI, options);
+//     await client.connect();
+//     const db = client.db("db-name");
+//     const userLikes = await db
+//       .collection("appUsers")
+//       .find()
+//       .toArray();
+//     res.status(200).json({ status: 200, data: userLikes });
 
-    client.close();
-  } catch (err) {
-    console.log(err);
-  }
+//     client.close();
+//   } catch (err) {
+//     console.log(err);
+//   }
 
-}
+// }
 
 
 
@@ -280,8 +288,7 @@ module.exports = {
   postUsers,
   postStationLiked,
   removeLikeFromStation,
-  getUser, 
-  getLikes,
+  getUser,
   getNumOfLikes,
   getLikedStations
 };

@@ -1,5 +1,5 @@
 const express = require('express');
-const { postUsers, postStationLiked, removeLikeFromStation, getUser, getLikes, getNumOfLikes, getLikedStations} = require("./handlers");
+const { postUsers, postStationLiked, removeLikeFromStation, getUser, getNumOfLikes, getLikedStations} = require("./handlers");
 
 const app = express();
 
@@ -10,21 +10,25 @@ app.use(express.static("public"))
 
 // USER endpoints 
 app.post("/post-users", postUsers)
-app.get("/get-user/:email", getUser)
-app.get("/get-likes", getLikes)
-app.get("/get-num-of-likes", getNumOfLikes)
 
+
+//not being used ****
+app.get("/get-num-of-likes", getNumOfLikes)
+app.get("/get-user/:email", getUser)
 
 
 
 // Station endpoints 
 // Add a like to a station, if the station doesn't exist in the likedStation collection, add it in there
 app.post("/post-liked-stations", postStationLiked)
-
-app.put("/remove-like-from-station/:stationId", removeLikeFromStation)
-
 // Get all liked stations
 app.get("/get-liked-stations/:id", getLikedStations)
+
+
+// not being used 
+app.put("/remove-like-from-station/:stationId", removeLikeFromStation)
+
+
 
 
 

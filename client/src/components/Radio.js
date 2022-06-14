@@ -12,13 +12,16 @@ const Radio = ({ item }) => {
 
   const [numLikes, setNumLikes] = useState(0);
 
-
-
   // get number of likes here - create a fetch (useEffect is recommended) who sole purpose is to return numLikes find with item.id  station ...
 
-  // create new
-
   // console.log(item);
+
+  //  here create a endpoint for remove / unlike  ;
+  const handleUnlike = (id) => {
+
+
+
+  };
 
   const handleLike = (id) => {
     console.log("test");
@@ -32,23 +35,40 @@ const Radio = ({ item }) => {
       },
     })
       .then((res) => res.json())
+
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.status === 200) {
           setIsLiked(!isLiked);
+          setNumLikes(data.numLikes);
         }
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
-  // useEffect(() => {
-  //   fetch(`/get-liked-stations/${item.id}`)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       if (data.stations) {
-  //       setNumLikes(data.stations.numLikes);
-  //       }
-  //     });
-  // }, [handleLike]);
+  useEffect(() => {
+    // console.log("fetching liked stations");
+    fetch(`/get-liked-stations/${item.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data);
+        if (data.stations) {
+          setNumLikes(data.stations.numLikes);
+          if (user) {
+            // console.log(user.email);
+            // console.log(data.stations.users);
+            setIsLiked(data.stations.users.includes(user.email));
+          } else {
+            setIsLiked(false);
+          }
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [user]);
 
   return (
     <Container>
@@ -71,13 +91,18 @@ const Radio = ({ item }) => {
       <Likes>
         <LikeButton
           onClick={() => {
-            handleLike(item.id);
+            if (isLiked) {
+              handleUnlike(item.id);
+            } else {
+              handleLike(item.id);
+            }
           }}
           disabled={!isAuthenticated}
+          isLiked={isLiked}
         >
-          <AiOutlineLike size={22} />
-          <p>{numLikes}</p>
+          <AiOutlineLike size={24} />
         </LikeButton>
+        <span> {numLikes}</span>
       </Likes>
     </Container>
   );
@@ -88,6 +113,10 @@ const Container = styled.div`
   padding: 20px 20px;
   /* max-width: 1200px; */
   /* position: relative; */
+  /* transition: 400ms linear; 
+  :hover {
+    transform: scale(1.1);
+  } */
 `;
 
 const StationName = styled.div`
@@ -114,9 +143,10 @@ const Audio = styled.div`
 const LikeButton = styled.button`
   background: none;
 
-  color: inherit;
+  color: ${(p) => (p.isLiked ? "blue" : "inherit")};
+
   border: none;
-  padding: 0;
+  padding-right: 2px;
   font: inherit;
   cursor: pointer;
   outline: inherit;

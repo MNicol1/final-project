@@ -11,7 +11,7 @@ export const RadioContainer = styled.div`
 export const RadioList = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-column-gap: 10px;
+  grid-column-gap: 20px;
   grid-row-gap: 30px;
   margin-top: 40px;
   /* max-width: 1200px; */

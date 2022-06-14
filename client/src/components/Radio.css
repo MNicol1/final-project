@@ -24,11 +24,11 @@ audio::-webkit-media-controls-play-button {
 }
 
 audio::-webkit-media-controls-play-button:hover {
-  transition: background-color 0.5s ease-in;
+  transition: background-color 0.8s ease-in;
   background-color: pink;
   border-radius: 50%;
 }
 
-audio::-webkit-media-controls-volume-slider-container {
+/* audio::-webkit-media-controls-volume-slider-container {
   background-color: red;
-}
+} */
