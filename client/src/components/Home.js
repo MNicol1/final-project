@@ -9,7 +9,7 @@ const Home = () => {
     return (
       <>
         <RadioContainer>
-          <div>Welcome!</div>
+          <h3>Welcome!</h3>
           <RadioList>
             {stations.map((item) => {
               return <Radio item={item} key={item.id} />;

@@ -10,7 +10,7 @@ const About = () => {
       <p>
         WWR was created by Mark Nicol, student of the Concordia University Web
         Development Bootcamp. WWR is powered by the open source
-        community-drivern Radio-Browser.
+        community driven radio-browser.
       </p>
       <p>
         This site allows users to experience the myriad radio waves that

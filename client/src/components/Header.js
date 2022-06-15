@@ -34,7 +34,6 @@ const Header = () => {
               <Link to="?genre=jazz">Jazz</Link>
               <Link to="?genre=rock">Rock</Link>
               <Link to="?genre=hiphop">Hiphop</Link>
-              <Link to="?genre=danse">Danse</Link>
               <Link to="?genre=house">House</Link>
               <Link to="?genre=folk">Folk</Link>
               <Link to="?genre=country">Country</Link>
