@@ -8,7 +8,6 @@ import styled from "styled-components";
 
 const CountryPage = () => {
   const { country } = useParams();
-  console.log(country);
 
   const stations = useRadio({ country: country, limit: 20 });
 
@@ -16,7 +15,7 @@ const CountryPage = () => {
     return (
       <Main>
         <Msg>
-        <GiMusicalNotes size={22} />  Loading...sorry, no stations found 
+          <GiMusicalNotes size={22} /> Loading...sorry, no stations found
         </Msg>
       </Main>
     );

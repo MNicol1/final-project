@@ -8,6 +8,7 @@ import About from "./components/About";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
 
+
 const App = () => {
   const { isAuthenticated, user } = useAuth0();
 
@@ -38,6 +39,7 @@ const App = () => {
 
         <Route path="/countries/:country" element={<CountryPage />} />
       </Routes>
+    
     </>
   );
 };

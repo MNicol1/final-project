@@ -19,7 +19,6 @@ audio::-webkit-media-controls-timeline-container {
 } */
 
 audio::-webkit-media-controls-play-button {
-  /* margin-right: 60px; */
   border-radius: 50%;
 }
 
@@ -28,7 +27,3 @@ audio::-webkit-media-controls-play-button:hover {
   background-color: pink;
   border-radius: 50%;
 }
-
-/* audio::-webkit-media-controls-volume-slider-container {
-  background-color: red;
-} */

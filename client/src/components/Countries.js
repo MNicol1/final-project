@@ -3,8 +3,6 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const Countries = () => {
-  // return <div>Countries</div>
-
   const [countries, setCountries] = useState();
   const [selectedCountry, setSelectedCountry] = useState(null);
 
@@ -12,11 +10,9 @@ const Countries = () => {
     const fetchData = () => {
       fetch("https://de1.api.radio-browser.info/json/countries")
         .then((response) => {
-          // console.log(response)
           return response.json();
         })
         .then((countries) => {
-          // console.log(countries)
           return setCountries(countries);
         });
     };
@@ -38,7 +34,7 @@ const Countries = () => {
 
     return (
       <Container>
-        <h2>Browse by country:</h2>
+        <Heading>Browse by country:</Heading>
         <hr style={{ backgroundColor: "white" }} />
 
         {countries.map((country, item) => {
@@ -73,11 +69,15 @@ const Main = styled.div`
     transform: scale(1.3);
   }
 `;
+
+const Heading = styled.h2`
+  font-size: 1.8em;
+`;
 const Country = styled(NavLink)`
   text-decoration: none;
   color: inherit;
   font-family: inherit;
-  font-size: 1.2em;
+  font-size: 1.4em;
 `;
 
 export default Countries;

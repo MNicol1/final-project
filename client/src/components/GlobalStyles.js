@@ -11,11 +11,4 @@ body {
    color: white;
 } 
 
-h2, button, li, a, ul, span, p, nav {
-    /* text-decoration: none; */
-    /* color: white; */
-
-}
-
-
 `;

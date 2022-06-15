@@ -7,7 +7,6 @@ export const RadioContainer = styled.div`
   max-height: 100vh;
   max-width: 100vw;
   overflow-y: auto;
-  /* background-color: black; */
 `;
 export const RadioList = styled.div`
   display: grid;
@@ -15,6 +14,4 @@ export const RadioList = styled.div`
   grid-column-gap: 20px;
   grid-row-gap: 30px;
   margin-top: 40px;
-  /* max-width: 1200px; */
-  /* border: 1px solid black; */
 `;

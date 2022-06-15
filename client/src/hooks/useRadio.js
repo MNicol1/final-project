@@ -32,7 +32,7 @@ const useRadio = ({ country, limit = 4 }) => {
   useEffect(() => {
     setupApi().then((data) => {
       setStations(data);
-      console.log(data);
+      // console.log(data);
     });
   }, [country, params]);
 

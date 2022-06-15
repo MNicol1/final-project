@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import {GoRadioTower} from "react-icons/go"
 import {GiMusicalNotes} from "react-icons/gi"
 import { ImEarth} from "react-icons/im"
 
@@ -16,10 +15,10 @@ const About = () => {
       <p>
         This site allows users to experience the myriad radio waves that
         surround the world. Freely browse radio stations by country, filter by
-        genre, and sign up to like your favorites.
+        genre, and sign up to like and save your favorites.
       </p>
       <Icons>
-       <GiMusicalNotes size={28} color=""/> <ImEarth size={28} color=""/>
+       <GiMusicalNotes size={28} /> <ImEarth size={28} />
       </Icons>
       </Main>
     </Container>

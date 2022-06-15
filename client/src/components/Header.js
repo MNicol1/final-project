@@ -3,18 +3,18 @@ import { FaAngleDown } from "react-icons/fa";
 import styled from "styled-components";
 import "./Header.css";
 import AuthenticationButton from "./authentication-button";
-import {TbWorld} from "react-icons/tb"
-
+import { TbWorld } from "react-icons/tb";
 
 const Header = () => {
   return (
     <>
       <HeaderContainer>
-       
         <Head to="/">
-          
           <Logo>
-          <span><TbWorld color=""/></span> &#5615; &#5615; &#5511;<Title> World.Wave.Radio</Title>
+            <span>
+              <TbWorld />
+            </span>{" "}
+            &#5615; &#5615; &#5511;<Title> World.Wave.Radio</Title>
           </Logo>
         </Head>
 
@@ -43,8 +43,6 @@ const Header = () => {
               <Link to="?genre=indie">Indie</Link>
               <Link to="?genre=80s">80s</Link>
               <Link to="?genre=90s">90s</Link>
-              
-             
             </div>
           </div>
           <Linked to="/about">About</Linked>
@@ -64,7 +62,6 @@ const HeaderContainer = styled.header`
   justify-content: space-between;
   width: 100vw;
   display: flex;
-  /* z-index: 3; */
 `;
 
 const Head = styled(NavLink)`

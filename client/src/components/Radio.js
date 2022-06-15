@@ -14,11 +14,11 @@ const Radio = ({ item }) => {
   const [numLikes, setNumLikes] = useState(0);
 
   const handleUnlike = (id) => {
-    // To be done as a futire feature - stretch goal...
+    // Possible feature for future development
   };
 
   const handleLike = (id) => {
-    console.log("test");
+    // console.log("test");
 
     fetch("/post-liked-stations", {
       method: "POST",
@@ -67,7 +67,7 @@ const Radio = ({ item }) => {
   return (
     <Container>
       <StationName>
-        <GoRadioTower size={20} color="" /> {item.name}
+        <GoRadioTower size={20} /> {item.name}
       </StationName>
       <hr />
       <CountryName>
@@ -91,6 +91,7 @@ const Radio = ({ item }) => {
           }}
           onClick={() => {
             setPlayingAnimation(true);
+
             if (isLiked) {
               handleUnlike(item.id);
             } else {
@@ -100,7 +101,7 @@ const Radio = ({ item }) => {
           disabled={!isAuthenticated}
           isLiked={isLiked}
         >
-          <AiOutlineLike size={24} backgroundColor="red" />
+          <AiOutlineLike size={24} />
         </LikeButton>
         <span> {numLikes}</span>
       </Likes>
@@ -111,8 +112,6 @@ const Radio = ({ item }) => {
 const Container = styled.div`
   border: 1px solid white;
   padding: 20px 20px;
-  /* max-width: 1200px; */
-  /* position: relative; */
   transition: 400ms linear;
   :hover {
     transform: scale(1.1);
@@ -122,7 +121,7 @@ const Container = styled.div`
 `;
 
 const StationName = styled.div`
-  height: 52px;
+  height: 72px;
 `;
 const CountryName = styled.div`
   margin: 10px 0px;
@@ -154,7 +153,6 @@ const LikeButton = styled.button`
   outline: inherit;
   :disabled {
     cursor: not-allowed;
-    /* background-color: red; */
   }
 
   @keyframes clickLike {
