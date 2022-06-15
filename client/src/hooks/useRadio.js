@@ -7,7 +7,6 @@ const browserRadioApi = new RadioBrowserApi("My Radio App");
 
 const useRadio = ({ country, limit = 4 }) => {
   const [params] = useSearchParams();
-  // console.log(params.get("genre"));
 
   const genre = params.get("genre") ? [params.get("genre")] : [];
 
@@ -15,7 +14,6 @@ const useRadio = ({ country, limit = 4 }) => {
   const setupApi = async () => {
     const radioStations = await browserRadioApi
       .searchStations({
-        // language: language.toLowerCase(),
         country: country,
         tagList: genre,
 
@@ -42,5 +40,3 @@ const useRadio = ({ country, limit = 4 }) => {
 };
 
 export default useRadio;
-
-//  WHERE USE random ??? array.sort((a, b) => 0.5 - Math.random()); 

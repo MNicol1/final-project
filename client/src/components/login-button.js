@@ -24,7 +24,7 @@ const LoginBtn = styled.button`
   margin: 30px;
   &:hover {
     transition: background-color 0.3s ease-in;
-  background-color: pink;
+    background-color: #C5EAFA;
  
   }
 

@@ -3,14 +3,18 @@ import { FaAngleDown } from "react-icons/fa";
 import styled from "styled-components";
 import "./Header.css";
 import AuthenticationButton from "./authentication-button";
+import {TbWorld} from "react-icons/tb"
+
 
 const Header = () => {
   return (
     <>
       <HeaderContainer>
+       
         <Head to="/">
+          
           <Logo>
-            &#5615; &#5615; &#5511;<Title> World.Wave.Radio</Title>
+          <span><TbWorld color=""/></span> &#5615; &#5615; &#5511;<Title> World.Wave.Radio</Title>
           </Logo>
         </Head>
 
@@ -53,7 +57,7 @@ const Header = () => {
 };
 
 const HeaderContainer = styled.header`
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid white;
   padding: 20px 40px;
   box-sizing: border-box;
   align-items: center;

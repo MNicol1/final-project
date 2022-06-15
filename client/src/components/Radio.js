@@ -9,18 +9,12 @@ import "./Radio.css";
 const Radio = ({ item }) => {
   const { isAuthenticated, user } = useAuth0();
   const [isLiked, setIsLiked] = useState(false);
+  const [playingAnimation, setPlayingAnimation] = useState(false);
 
   const [numLikes, setNumLikes] = useState(0);
 
-  // get number of likes here - create a fetch (useEffect is recommended) who sole purpose is to return numLikes find with item.id  station ...
-
-  // console.log(item);
-
-  //  here create a endpoint for remove / unlike  ;
   const handleUnlike = (id) => {
-
-
-
+    // To be done as a futire feature - stretch goal...
   };
 
   const handleLike = (id) => {
@@ -66,7 +60,7 @@ const Radio = ({ item }) => {
         }
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   }, [user]);
 
@@ -79,18 +73,24 @@ const Radio = ({ item }) => {
       <CountryName>
         {item.country} <State>{item.state}</State>
       </CountryName>
-      {/* <div>{item.tags}</div> */}
+
       <Audio>
-        {/* <ReactAudioPlayer
-      class="audio"
-        src={item.urlResolved}
-        style={{ width: "220px"}}
-        controls controlsList="nodownload noplaybackrate"
-      /> */}
+        <ReactAudioPlayer
+          class="audio"
+          src={item.urlResolved}
+          style={{ width: "220px" }}
+          controls
+          controlsList="nodownload noplaybackrate"
+        />
       </Audio>
       <Likes>
         <LikeButton
+          playingAnimation={playingAnimation}
+          onAnimationEnd={() => {
+            setPlayingAnimation(false);
+          }}
           onClick={() => {
+            setPlayingAnimation(true);
             if (isLiked) {
               handleUnlike(item.id);
             } else {
@@ -100,7 +100,7 @@ const Radio = ({ item }) => {
           disabled={!isAuthenticated}
           isLiked={isLiked}
         >
-          <AiOutlineLike size={24} />
+          <AiOutlineLike size={24} backgroundColor="red" />
         </LikeButton>
         <span> {numLikes}</span>
       </Likes>
@@ -109,14 +109,16 @@ const Radio = ({ item }) => {
 };
 
 const Container = styled.div`
-  border: 1px solid black;
+  border: 1px solid white;
   padding: 20px 20px;
   /* max-width: 1200px; */
   /* position: relative; */
-  /* transition: 400ms linear; 
+  transition: 400ms linear;
   :hover {
     transform: scale(1.1);
-  } */
+    border: 2px solid white;
+    border-radius: 5%;
+  }
 `;
 
 const StationName = styled.div`
@@ -143,7 +145,7 @@ const Audio = styled.div`
 const LikeButton = styled.button`
   background: none;
 
-  color: ${(p) => (p.isLiked ? "blue" : "inherit")};
+  color: ${(p) => (p.isLiked ? "gold" : "inherit")};
 
   border: none;
   padding-right: 2px;
@@ -154,6 +156,23 @@ const LikeButton = styled.button`
     cursor: not-allowed;
     /* background-color: red; */
   }
+
+  @keyframes clickLike {
+    0% {
+      transform: translate(0);
+    }
+    50% {
+      transform: translate(0, -15px);
+    }
+    100% {
+      transform: translate(0);
+    }
+  }
+
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+
+  animation-name: ${(p) => (p.playingAnimation ? "clickLike" : "")};
 `;
 
 export default Radio;

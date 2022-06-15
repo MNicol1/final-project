@@ -6,6 +6,8 @@ const app = express();
 app.use(express.json())
 app.use(express.static("public"))
 
+
+// NOTE : for render list of favorites :  getUser ?? data.data.likedStations  need to do a fetch and useEffect. 
 // List of endpoints here : 
 
 // USER endpoints 

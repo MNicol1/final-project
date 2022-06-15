@@ -36,7 +36,7 @@ margin-top: 30px;
 `
 const Main = styled.div`
 text-align: justify;
-border: 1px solid black;
+border: 1px solid white;
 padding-bottom: 100px;
 padding-left: 25px;
 padding-right: 25px;

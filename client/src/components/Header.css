@@ -1,4 +1,3 @@
-
 span {
   margin-bottom: -5%;
 }
@@ -10,7 +9,7 @@ span {
   border: none;
   cursor: pointer;
   background-color: inherit;
-
+  color: inherit;
 }
 
 .dropdown {
@@ -23,12 +22,7 @@ span {
   display: none;
   position: absolute;
   width: 100%;
-  
-
-  /* min-width: 160px; */
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  /* overflow-y: scroll; */
 }
 
 .dropdown-content a {
@@ -36,12 +30,12 @@ span {
   text-decoration: none;
   display: block;
   background-color: white;
-  color: inherit;
-  
+  color: black;
 }
 
 .dropdown-content a:hover {
-  background-color: #f1f1f1;
+  background-color: #F8D6FE;
+ 
 }
 
 .dropdown:hover .dropdown-content {

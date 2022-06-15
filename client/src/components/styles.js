@@ -7,6 +7,7 @@ export const RadioContainer = styled.div`
   max-height: 100vh;
   max-width: 100vw;
   overflow-y: auto;
+  /* background-color: black; */
 `;
 export const RadioList = styled.div`
   display: grid;

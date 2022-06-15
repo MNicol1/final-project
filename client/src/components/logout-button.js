@@ -27,8 +27,8 @@ const LogoutBtn = styled.button`
 	outline: inherit;
   margin: 30px;
   &:hover {
-    transition: background-color 0.8s ease-in;
-  background-color: #C5EAFA;
+    transition: background-color 0.5s ease-in;
+  background-color: pink;
   }
 `
 

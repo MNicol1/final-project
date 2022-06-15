@@ -170,10 +170,29 @@ const postUsers = async (req, res) => {
   }
 };
 
-//  remove like from station
+//  REMOVE A like from station
+
+
 
 const removeLikeFromStation = async (req, res) => {
-  res.send(200);
+
+  const client = new MongoClient(MONGO_URI, options);
+
+  try {
+    const likeNum = { id: req.params.id };
+
+    await client.connect();
+    const db = client.db("db-name");
+
+    const result = await db.collection("likedStations").findOneAndDelete({ stationId: id, numLikes: 1 });
+
+    result
+      ? res.status(200).json({ status: 200, data: result })
+      : res.status(404).json({ status: 404, message: "Not Found" });
+  } catch (err) {
+    console.log(err.stack);
+  }
+  client.close();
 };
 
 
