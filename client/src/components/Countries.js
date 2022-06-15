@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-
-
 const Countries = () => {
   // return <div>Countries</div>
 
@@ -41,22 +39,20 @@ const Countries = () => {
     return (
       <Container>
         <h2>Browse by country:</h2>
-        <hr style={{backgroundColor: "white"}}/>
-     
-          {countries.map((country, item) => {
-            return (
-              <Main key={item}>
+        <hr style={{ backgroundColor: "white" }} />
+
+        {countries.map((country, item) => {
+          return (
+            <Main key={item}>
               <Country
-              
                 to={`/countries/${country.name}`}
                 onClick={() => setSelectedCountry()}
               >
                 {country.name}
               </Country>
-              </Main>
-            );
-          })}
-       
+            </Main>
+          );
+        })}
       </Container>
     );
   } else {
@@ -64,33 +60,24 @@ const Countries = () => {
   }
 };
 
-
 const Container = styled.div`
-padding: 40px;
-`
+  padding: 40px;
+`;
 
 const Main = styled.div`
-padding: 1px 0px; 
-
-`
+  padding: 1px 0px;
+  transition: 300ms linear;
+  max-width: 45%;
+  transform-origin: left top;
+  :hover {
+    transform: scale(1.3);
+  }
+`;
 const Country = styled(NavLink)`
-text-decoration: none;
-color: inherit;
-font-family: inherit;
-font-size: 1.2em;
-
-`
-
+  text-decoration: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: 1.2em;
+`;
 
 export default Countries;
-
-// console.log(sortedCountries)
-// POSSIBLE CODE FOR A-Z setup.
-// const letterMap = new Map();
-// countries.forEach(word => {
-//   const letter = word[0].toUpperCase();
-//   if (!letterMap.has(letter)) letterMap.set(letter, []);
-//   letterMap.get(letter).push(word);
-// });
-
-// console.log(letterMap);
