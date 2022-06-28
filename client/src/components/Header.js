@@ -2,7 +2,7 @@ import { NavLink, Link } from "react-router-dom";
 import { FaAngleDown } from "react-icons/fa";
 import styled from "styled-components";
 import "./Header.css";
-import AuthenticationButton from "./authentication-button";
+// import AuthenticationButton from "./authentication-button";
 import { TbWorld } from "react-icons/tb";
 
 const Header = () => {
@@ -46,7 +46,7 @@ const Header = () => {
           </div>
           <Linked to="/about">About</Linked>
 
-          <AuthenticationButton />
+          {/* <AuthenticationButton /> */}
         </Links>
       </HeaderContainer>
     </>
