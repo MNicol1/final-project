@@ -8,14 +8,14 @@ const About = () => {
     <Container>
       <Main>
       <p>
-        WWR was created by Mark Nicol, student of the Concordia University Web
-        Development Bootcamp. WWR is powered by the open source
+        WWR is a student project emerging out of the Concordia University Web
+        Development Bootcamp. With gratitude, WWR is powered by the open source
         community driven radio-browser.
       </p>
       <p>
         This site allows users to experience the myriad radio waves that
-        surround the world. Freely browse radio stations by country, filter by
-        genre, and sign up to like and save your favorites.
+        surround the world. Freely browse radio stations by country, and filter stations by your favorite
+        music genre. Happy listening! 
       </p>
       <Icons>
        <GiMusicalNotes size={28} /> <ImEarth size={28} />

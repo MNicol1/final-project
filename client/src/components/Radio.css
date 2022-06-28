@@ -26,4 +26,19 @@ audio::-webkit-media-controls-play-button:hover {
   transition: background-color 0.8s ease-in;
   background-color: pink;
   border-radius: 50%;
+  
+  /* animation: col 5s infinite; */
+
+ /* @keyframes col {
+    0% {
+      background-color: red;
+    }
+    50% {
+      background-color: green;
+    }
+    100% {
+      background-color: blue;
+    }
+  } */
+
 }

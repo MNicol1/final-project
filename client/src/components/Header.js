@@ -61,11 +61,19 @@ const HeaderContainer = styled.header`
   justify-content: space-between;
   width: 100vw;
   display: flex;
+  /* max-width: 100%; */
+
+  
+ 
+  
+
 `;
 
 const Head = styled(NavLink)`
   text-decoration: none;
   color: inherit;
+  flex-shrink: 0;
+  display: flex;
 `;
 
 const Title = styled.span`
@@ -80,6 +88,7 @@ const Logo = styled.div`
 const Links = styled.div`
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 `;
 
 const Linked = styled(NavLink)`

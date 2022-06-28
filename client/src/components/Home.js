@@ -1,9 +1,11 @@
 import useRadio from "../hooks/useRadio";
 import { RadioContainer, RadioList } from "./styles";
 import Radio from "./Radio";
+import styled from "styled-components";
+
 
 const Home = () => {
-  const stations = useRadio({ country: "Canada", limit: 8 });
+  const stations = useRadio({ country: "", limit: 8 });
 
   if (stations) {
     return (
@@ -22,5 +24,9 @@ const Home = () => {
     return null;
   }
 };
+
+
+
+
 
 export default Home;

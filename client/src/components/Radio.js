@@ -69,6 +69,7 @@ const Radio = ({ item }) => {
       <StationName>
         <GoRadioTower size={20} /> {item.name}
       </StationName>
+
       <hr />
       <CountryName>
         {item.country} <State>{item.state}</State>
@@ -111,8 +112,10 @@ const Radio = ({ item }) => {
 
 const Container = styled.div`
   border: 1px solid white;
-  padding: 20px 20px;
+  padding: 20px 25px;
   transition: 400ms linear;
+  
+
   :hover {
     transform: scale(1.1);
     border: 2px solid white;
@@ -121,7 +124,8 @@ const Container = styled.div`
 `;
 
 const StationName = styled.div`
-  height: 72px;
+  height: 110px;
+  width: 220px;
 `;
 const CountryName = styled.div`
   margin: 10px 0px;
@@ -167,7 +171,7 @@ const LikeButton = styled.button`
     }
   }
 
-  animation-duration: 1s;
+  animation-duration: .5s;
   animation-timing-function: ease-out;
 
   animation-name: ${(p) => (p.playingAnimation ? "clickLike" : "")};

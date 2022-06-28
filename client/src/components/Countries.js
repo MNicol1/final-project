@@ -63,7 +63,7 @@ const Container = styled.div`
 const Main = styled.div`
   padding: 1px 0px;
   transition: 300ms linear;
-  max-width: 45%;
+  max-width: 57%;
   transform-origin: left top;
   :hover {
     transform: scale(1.3);
