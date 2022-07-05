@@ -9,9 +9,10 @@ export const RadioContainer = styled.div`
   max-width: 100vw;
   /* overflow-y: auto; */
 
-  /* @media (max-width: 600px) { 
-padding: 50px 20px;
-} */
+  @media (max-width: 720px) { 
+    padding-bottom: 50px;
+
+}
 
 
 `;
@@ -22,14 +23,21 @@ export const RadioList = styled.div`
   grid-row-gap: 30px;
   margin-top: 40px;
 
+
+
+
   @media (max-width: 1200px) {
-grid-template-columns: repeat(3, 1fr);
+grid-template-columns: repeat(2, 1fr);
 grid-row-gap: 15px; 
+margin-bottom: 200px;
 } 
 
-@media (max-width: 600px) {
-grid-template-columns: repeat(2, 1fr);
-grid-column-gap: 10px; 
+@media (max-width: 720px) {
+grid-template-columns: repeat(1, 1fr);
+grid-column-gap: 40px; 
+grid-row-gap: 30px;
+padding-bottom: 50px;
+
 }
 `;
 

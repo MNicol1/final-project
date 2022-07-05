@@ -22,12 +22,12 @@ const Header = () => {
           <Linked to="/countries">Countries</Linked>
 
           <div className="dropdown">
-            <button className="dropbtn">
+            <Genre className="dropbtn">
               By Genre{" "}
               <span>
                 <FaAngleDown />
               </span>
-            </button>
+            </Genre>
             <div className="dropdown-content">
               <Link to="?genre=pop">Pop</Link>
               <Link to="?genre=classical">Classical</Link>
@@ -62,12 +62,30 @@ const HeaderContainer = styled.header`
   width: 100vw;
   display: flex;
   /* max-width: 100%; */
+  @media (max-width: 600px) { 
+display: block;
+width: 100%;
 
-  
- 
-  
+
+}
+
 
 `;
+
+const Genre = styled.button`
+  :hover {
+    color: #F8D6FE;
+  } 
+
+  @media (max-width: 720px) {
+
+display: block;
+margin: 0;
+padding: 0;
+
+}
+`
+ 
 
 const Head = styled(NavLink)`
   text-decoration: none;
@@ -89,6 +107,14 @@ const Links = styled.div`
   display: flex;
   align-items: center;
   flex-shrink: 0;
+
+  @media (max-width: 720px) {
+
+display: block;
+margin: 0;
+padding: 0;
+
+}
 `;
 
 const Linked = styled(NavLink)`
@@ -97,6 +123,20 @@ const Linked = styled(NavLink)`
   font-size: inherit;
   color: inherit;
   font-family: inherit;
+  :hover {
+    color: #F8D6FE;
+  } 
+  @media (max-width: 720px) {
+
+display: block;
+padding: 5px;
+margin: 0;
+
+}
+
 `;
+
+
+
 
 export default Header;
