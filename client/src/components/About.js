@@ -28,7 +28,14 @@ const About = () => {
 const Container = styled.div`
 padding: 40px 200px;
 margin-top: 30px;
+@media (max-width: 650px) {
 
+display: inline-block;
+padding: 30px 10px;
+margin-top: 20px;
+
+
+}
 `
 const Icons = styled.div`
 margin-top: 30px;
@@ -40,6 +47,10 @@ padding-bottom: 100px;
 padding-left: 25px;
 padding-right: 25px;
 padding-top: 25px;
+
+
+
+
 `
 
 export default About;

@@ -74,6 +74,7 @@ const Main = styled.div`
 max-width: 100%;
 
 border-bottom: solid white 1px;
+padding-top: 5px;
 
 }
 `;
@@ -94,7 +95,7 @@ const Country = styled(NavLink)`
 
   @media (max-width: 880px) {
 font-size: 18px;
-padding-top: 7px;
+padding-top: 20px;
 
 
 }
