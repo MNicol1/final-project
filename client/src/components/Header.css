@@ -3,20 +3,43 @@ span {
 }
 
 .dropbtn {
-  padding: 16px;
+  /* padding-bottom: 5px; */
   font-family: inherit;
   font-size: inherit;
   border: none;
   cursor: pointer;
   background-color: inherit;
   color: inherit;
+
+
+}
+
+.dropbtn:hover {
+    color: #F8D6FE;
+  
+
+
 }
 
 .dropdown {
   position: relative;
   display: inline-block;
-  margin: 14px;
+  /* margin: 14px; */
+
+
 }
+
+
+  
+@media (max-width: 720px) {
+
+/* .dropbtn {
+  margin: 0;
+} */
+
+
+}
+
 
 .dropdown-content {
   display: none;

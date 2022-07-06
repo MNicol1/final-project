@@ -68,16 +68,38 @@ const Main = styled.div`
   :hover {
     transform: scale(1.3);
   }
+
+  
+  @media (max-width: 880px) {
+max-width: 100%;
+
+border-bottom: solid white 1px;
+
+}
 `;
 
 const Heading = styled.h2`
   font-size: 1.8em;
+
+  @media (max-width: 880px) {
+font-size: 1.4em;
+
+}
 `;
 const Country = styled(NavLink)`
   text-decoration: none;
   color: inherit;
   font-family: inherit;
   font-size: 1.4em;
+
+  @media (max-width: 880px) {
+font-size: 18px;
+padding-top: 7px;
+
+
+}
+
+
 `;
 
 export default Countries;

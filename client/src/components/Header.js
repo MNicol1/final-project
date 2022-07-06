@@ -53,6 +53,8 @@ const Header = () => {
   );
 };
 
+
+
 const HeaderContainer = styled.header`
   border-bottom: 2px solid white;
   padding: 20px 40px;
@@ -62,12 +64,30 @@ const HeaderContainer = styled.header`
   width: 100vw;
   display: flex;
   /* max-width: 100%; */
+  @media (max-width: 880px) { 
+display: block;
+width: 100%;
 
-  
- 
-  
+
+}
+
 
 `;
+
+const Genre = styled.button`
+  :hover {
+    color: #F8D6FE;
+  } 
+
+  @media (max-width: 720px) {
+
+display: block;
+margin: 0;
+padding: 0;
+
+}
+`
+ 
 
 const Head = styled(NavLink)`
   text-decoration: none;
@@ -89,6 +109,15 @@ const Links = styled.div`
   display: flex;
   align-items: center;
   flex-shrink: 0;
+
+  @media (max-width: 650px) {
+
+display: block;
+margin: 0;
+padding: 5px 0px;
+
+
+}
 `;
 
 const Linked = styled(NavLink)`
@@ -97,6 +126,18 @@ const Linked = styled(NavLink)`
   font-size: inherit;
   color: inherit;
   font-family: inherit;
+  :hover {
+    color: #F8D6FE;
+  } 
+  @media (max-width: 650px) {
+
+display: block;
+padding: 7px;
+margin: 0;
+
+}
+
 `;
+
 
 export default Header;
