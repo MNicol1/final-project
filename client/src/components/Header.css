@@ -3,7 +3,7 @@ span {
 }
 
 .dropbtn {
-  padding: 16px;
+  /* padding-bottom: 5px; */
   font-family: inherit;
   font-size: inherit;
   border: none;
@@ -12,10 +12,14 @@ span {
   color: inherit;
 }
 
+.dropbtn:hover {
+  color: #f8d6fe;
+}
+
 .dropdown {
   position: relative;
   display: inline-block;
-  margin: 14px;
+  margin: 7px;
 }
 
 .dropdown-content {
@@ -26,16 +30,21 @@ span {
 }
 
 .dropdown-content a {
-  padding: 7px 16px;
+  padding: 7px 20px;
   text-decoration: none;
   display: block;
   background-color: white;
   color: black;
 }
 
+@media (max-width: 650px) {
+  .dropdown-content a {
+    padding: 7px;
+  }
+}
+
 .dropdown-content a:hover {
-  background-color: #F8D6FE;
- 
+  background-color: #f8d6fe;
 }
 
 .dropdown:hover .dropdown-content {

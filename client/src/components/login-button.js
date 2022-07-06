@@ -15,6 +15,16 @@ const LoginBtn = styled.button`
   cursor: pointer;
   outline: inherit;
   margin: 30px;
+
+  @media (max-width: 650px) {
+
+display: block;
+margin: 0;
+
+
+}
+
+
   &:hover {
     transition: color 0.3s ease-in, background-color 0.3s ease-in;
     background-color: #c5eafa;
