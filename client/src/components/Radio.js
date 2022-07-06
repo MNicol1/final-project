@@ -1,68 +1,70 @@
-import { AiOutlineLike } from "react-icons/ai";
+// import { AiOutlineLike } from "react-icons/ai";
 import styled from "styled-components";
 import ReactAudioPlayer from "react-audio-player";
-import { useState, useEffect } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useState, useEffect } from "react";
+// import { useAuth0 } from "@auth0/auth0-react";
 import { GoRadioTower } from "react-icons/go";
 import "./Radio.css";
 
 const Radio = ({ item }) => {
-  const { isAuthenticated, user } = useAuth0();
-  const [isLiked, setIsLiked] = useState(false);
-  const [playingAnimation, setPlayingAnimation] = useState(false);
 
-  const [numLikes, setNumLikes] = useState(0);
 
-  const handleUnlike = (id) => {
-    // Possible feature for future development
-  };
+  // const { isAuthenticated, user } = useAuth0();
+  // const [isLiked, setIsLiked] = useState(false);
+  // const [playingAnimation, setPlayingAnimation] = useState(false);
 
-  const handleLike = (id) => {
-    // console.log("test");
+  // const [numLikes, setNumLikes] = useState(0);
 
-    fetch("/post-liked-stations", {
-      method: "POST",
-      body: JSON.stringify({ id, email: user.email }),
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
+  // const handleUnlike = (id) => {
+  //   Possible feature for future development
+  // };
 
-      .then((data) => {
-        // console.log(data);
-        if (data.status === 200) {
-          setIsLiked(!isLiked);
-          setNumLikes(data.numLikes);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  // const handleLike = (id) => {
+   
 
-  useEffect(() => {
-    // console.log("fetching liked stations");
-    fetch(`/get-liked-stations/${item.id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        // console.log(data);
-        if (data.stations) {
-          setNumLikes(data.stations.numLikes);
-          if (user) {
-            // console.log(user.email);
-            // console.log(data.stations.users);
-            setIsLiked(data.stations.users.includes(user.email));
-          } else {
-            setIsLiked(false);
-          }
-        }
-      })
-      .catch((error) => {
-        // console.log(error);
-      });
-  }, [user]);
+  //   fetch("/post-liked-stations", {
+  //     method: "POST",
+  //     body: JSON.stringify({ id, email: user.email }),
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-Type": "application/json",
+  //     },
+  //   })
+  //     .then((res) => res.json())
+
+  //     .then((data) => {
+  //       // console.log(data);
+  //       if (data.status === 200) {
+  //         setIsLiked(!isLiked);
+  //         setNumLikes(data.numLikes);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
+
+  // useEffect(() => {
+  //   // console.log("fetching liked stations");
+  //   fetch(`/get-liked-stations/${item.id}`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       // console.log(data);
+  //       if (data.stations) {
+  //         setNumLikes(data.stations.numLikes);
+  //         if (user) {
+  //           // console.log(user.email);
+  //           // console.log(data.stations.users);
+  //           setIsLiked(data.stations.users.includes(user.email));
+  //         } else {
+  //           setIsLiked(false);
+  //         }
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       // console.log(error);
+  //     });
+  // }, [user]);
 
   return (
     <Container>
@@ -84,7 +86,7 @@ const Radio = ({ item }) => {
           controlsList="nodownload noplaybackrate"
         />
       </Audio>
-      <Likes>
+      {/* <Likes>
         <LikeButton
           playingAnimation={playingAnimation}
           onAnimationEnd={() => {
@@ -105,7 +107,7 @@ const Radio = ({ item }) => {
           <AiOutlineLike size={24} />
         </LikeButton>
         <span> {numLikes}</span>
-      </Likes>
+      </Likes> */}
     </Container>
   );
 };
@@ -137,44 +139,44 @@ const State = styled.span`
   font-style: italic;
 `;
 
-const Likes = styled.div`
-  padding: 5px;
-  margin-top: 30px;
-`;
+// const Likes = styled.div`
+//   padding: 5px;
+//   margin-top: 30px;
+// `;
 
 const Audio = styled.div`
   margin-top: 20px;
 `;
-const LikeButton = styled.button`
-  background: none;
+// const LikeButton = styled.button`
+//   background: none;
 
-  color: ${(p) => (p.isLiked ? "gold" : "inherit")};
+//   color: ${(p) => (p.isLiked ? "gold" : "inherit")};
 
-  border: none;
-  padding-right: 2px;
-  font: inherit;
-  cursor: pointer;
-  outline: inherit;
-  :disabled {
-    cursor: not-allowed;
-  }
+//   border: none;
+//   padding-right: 2px;
+//   font: inherit;
+//   cursor: pointer;
+//   outline: inherit;
+//   :disabled {
+//     cursor: not-allowed;
+//   }
 
-  @keyframes clickLike {
-    0% {
-      transform: translate(0);
-    }
-    50% {
-      transform: translate(0, -15px);
-    }
-    100% {
-      transform: translate(0);
-    }
-  }
+//   @keyframes clickLike {
+//     0% {
+//       transform: translate(0);
+//     }
+//     50% {
+//       transform: translate(0, -15px);
+//     }
+//     100% {
+//       transform: translate(0);
+//     }
+//   }
 
-  animation-duration: .5s;
-  animation-timing-function: ease-out;
+//   animation-duration: .5s;
+//   animation-timing-function: ease-out;
 
-  animation-name: ${(p) => (p.playingAnimation ? "clickLike" : "")};
-`;
+//   animation-name: ${(p) => (p.playingAnimation ? "clickLike" : "")};
+// `;
 
 export default Radio;

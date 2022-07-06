@@ -9,7 +9,7 @@ const Home = () => {
 
   if (stations) {
     return (
-      <>
+      <Main>
         <RadioContainer>
           <h3>Welcome!</h3>
           <RadioList>
@@ -18,14 +18,17 @@ const Home = () => {
             })}
           </RadioList>
         </RadioContainer>
-      </>
+      </Main>
     );
   } else {
     return null;
   }
 };
 
+const Main = styled.div`
+margin-bottom: 100px;
 
+`
 
 
 
