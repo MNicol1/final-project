@@ -1,70 +1,13 @@
-// import { AiOutlineLike } from "react-icons/ai";
+
 import styled from "styled-components";
 import ReactAudioPlayer from "react-audio-player";
-// import { useState, useEffect } from "react";
-// import { useAuth0 } from "@auth0/auth0-react";
+
 import { GoRadioTower } from "react-icons/go";
 import "./Radio.css";
 
 const Radio = ({ item }) => {
 
 
-  // const { isAuthenticated, user } = useAuth0();
-  // const [isLiked, setIsLiked] = useState(false);
-  // const [playingAnimation, setPlayingAnimation] = useState(false);
-
-  // const [numLikes, setNumLikes] = useState(0);
-
-  // const handleUnlike = (id) => {
-  //   Possible feature for future development
-  // };
-
-  // const handleLike = (id) => {
-   
-
-  //   fetch("/post-liked-stations", {
-  //     method: "POST",
-  //     body: JSON.stringify({ id, email: user.email }),
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //     .then((res) => res.json())
-
-  //     .then((data) => {
-  //       // console.log(data);
-  //       if (data.status === 200) {
-  //         setIsLiked(!isLiked);
-  //         setNumLikes(data.numLikes);
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
-
-  // useEffect(() => {
-  //   // console.log("fetching liked stations");
-  //   fetch(`/get-liked-stations/${item.id}`)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       // console.log(data);
-  //       if (data.stations) {
-  //         setNumLikes(data.stations.numLikes);
-  //         if (user) {
-  //           // console.log(user.email);
-  //           // console.log(data.stations.users);
-  //           setIsLiked(data.stations.users.includes(user.email));
-  //         } else {
-  //           setIsLiked(false);
-  //         }
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       // console.log(error);
-  //     });
-  // }, [user]);
 
   return (
     <Container>
