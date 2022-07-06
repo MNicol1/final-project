@@ -10,36 +10,17 @@ span {
   cursor: pointer;
   background-color: inherit;
   color: inherit;
-
-
 }
 
 .dropbtn:hover {
-    color: #F8D6FE;
-  
-
-
+  color: #f8d6fe;
 }
 
 .dropdown {
   position: relative;
   display: inline-block;
   /* margin: 14px; */
-
-
 }
-
-
-  
-@media (max-width: 720px) {
-
-/* .dropbtn {
-  margin: 0;
-} */
-
-
-}
-
 
 .dropdown-content {
   display: none;
@@ -57,8 +38,7 @@ span {
 }
 
 .dropdown-content a:hover {
-  background-color: #F8D6FE;
- 
+  background-color: #f8d6fe;
 }
 
 .dropdown:hover .dropdown-content {
