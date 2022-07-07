@@ -26,7 +26,7 @@ const About = () => {
 
 const Container = styled.div`
   padding: 40px 200px;
-  margin-top: 30px;
+  margin-top: 29px;
   @media (max-width: 800px) {
     display: inline-block;
     padding: 30px 15px;
