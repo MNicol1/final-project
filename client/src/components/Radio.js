@@ -63,7 +63,7 @@ const Container = styled.div`
 
   :hover {
     transform: scale(1.1);
-    border: 2px solid white;
+    border: 2px solid #f8d6fe;
     border-radius: 5%;
   }
 `;
