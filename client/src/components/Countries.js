@@ -69,23 +69,24 @@ const Main = styled.div`
     transform: scale(1.3);
   }
 
-  
   @media (max-width: 880px) {
-max-width: 100%;
+    max-width: 100%;
 
-border-bottom: solid white 1px;
-padding-top: 5px;
-
-}
+    border-bottom: solid white 1px;
+    padding-top: 15px;
+    transition: none;
+    :hover {
+      transform: none;
+    }
+  }
 `;
 
 const Heading = styled.h2`
   font-size: 1.8em;
 
   @media (max-width: 880px) {
-font-size: 1.4em;
-
-}
+    font-size: 1.8em;
+  }
 `;
 const Country = styled(NavLink)`
   text-decoration: none;
@@ -94,13 +95,9 @@ const Country = styled(NavLink)`
   font-size: 1.4em;
 
   @media (max-width: 880px) {
-font-size: 18px;
-padding-top: 20px;
-
-
-}
-
-
+    font-size: 22px;
+    padding-top: 20px;
+  }
 `;
 
 export default Countries;

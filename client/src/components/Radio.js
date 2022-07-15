@@ -66,6 +66,19 @@ const Container = styled.div`
     border: 2px solid #f8d6fe;
     border-radius: 5%;
   }
+
+
+  @media (max-width: 650px) {
+transition: none;
+:hover {
+  transform: none;
+  border-radius: 0%;
+  border: 1px solid white;
+}
+
+}
+
+
 `;
 
 const StationName = styled.div`

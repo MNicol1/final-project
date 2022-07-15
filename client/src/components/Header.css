@@ -10,7 +10,16 @@ span {
   cursor: pointer;
   background-color: inherit;
   color: inherit;
+
+
 }
+
+@media (max-width: 650px) {
+  .dropbtn {
+  font-size: 1.3em;
+  margin: 0;
+  }
+ }
 
 .dropbtn:hover {
   color: #f8d6fe;

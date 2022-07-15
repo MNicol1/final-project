@@ -1,5 +1,3 @@
-
-
 import styled from "styled-components";
 
 export const RadioContainer = styled.div`
@@ -11,12 +9,9 @@ export const RadioContainer = styled.div`
   max-width: 100vw;
   /* overflow-y: auto; */
 
-  @media (max-width: 720px) { 
+  @media (max-width: 720px) {
     padding-bottom: 20px;
-
-}
-
-
+  }
 `;
 export const RadioList = styled.div`
   display: grid;
@@ -26,29 +21,23 @@ export const RadioList = styled.div`
   margin-top: 40px;
   /* position: absolute; */
 
-
-
-
   @media (max-width: 1200px) {
-grid-template-columns: repeat(3, 1fr);
-grid-row-gap: 15px; 
-margin-bottom: 10px;
-} 
+    grid-template-columns: repeat(3, 1fr);
+    grid-row-gap: 15px;
+    margin-bottom: 10px;
+  }
 
-@media (max-width: 880px) {
-grid-template-columns: repeat(2, 1fr);
-grid-column-gap: 40px; 
-grid-row-gap: 30px;
-padding-bottom: 50px;
+  @media (max-width: 880px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 40px;
+    grid-row-gap: 30px;
+    padding-bottom: 50px;
+  }
 
-}
-
-@media (max-width: 650px) {
-grid-template-columns: repeat(1, 1fr);
-/* grid-column-gap: 40px; 
+  @media (max-width: 650px) {
+    grid-template-columns: repeat(1, 1fr);
+    /* grid-column-gap: 40px; 
 grid-row-gap: 30px; */
-padding-bottom: 50px;
-
-}
+    padding-bottom: 50px;
+  }
 `;
-

@@ -118,9 +118,12 @@ const Linked = styled(NavLink)`
     color: #f8d6fe;
   }
   @media (max-width: 650px) {
-    display: block;
+    display: inline-block;
+
     padding: 7px;
     margin: 0;
+    width: fit-content;
+    font-size: 1.2em;
   }
 `;
 
