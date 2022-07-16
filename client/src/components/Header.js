@@ -66,6 +66,12 @@ const HeaderContainer = styled.header`
     display: block;
     width: 100%;
   }
+
+  @media (max-width: 390px) {
+    padding: 20px;
+  }
+
+  
 `;
 
 const Genre = styled.button`
@@ -134,7 +140,7 @@ const Linked = styled(NavLink)`
 
   @media (max-width: 380px) {
     font-size: 1em;
-    display: block;
+    display: inline-block;
   }
 
 `;
