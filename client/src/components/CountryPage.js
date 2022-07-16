@@ -31,7 +31,7 @@ const CountryPage = () => {
     return (
       <Main>
         <Msg>
-          <GiMusicalNotes size={22} /> Loading...sorry, no stations found
+          <GiMusicalNotes size={22} /> loading.......no stations found
         </Msg>
       </Main>
     );
@@ -63,6 +63,13 @@ const Main = styled.div`
 `;
 const Msg = styled.h3`
   margin-top: 150px;
+
+
+  @media (max-width: 1200px) {
+   font-size: 14px;
+  }
+
+  
 `;
 
 const Page = styled.div`

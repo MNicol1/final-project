@@ -10,23 +10,19 @@ span {
   cursor: pointer;
   background-color: inherit;
   color: inherit;
-
-
 }
 
 @media (max-width: 650px) {
   .dropbtn {
-  font-size: 1.2em;
-  margin: 0;
+    font-size: 1.2em;
+    margin: 0;
   }
 }
-  @media (max-width: 380px) {
-    .dropbtn {
-      font-size: 1em;
-    }
-
-
- }
+@media (max-width: 380px) {
+  .dropbtn {
+    font-size: 1em;
+  }
+}
 
 .dropbtn:hover {
   color: #f8d6fe;

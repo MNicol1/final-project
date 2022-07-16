@@ -1,4 +1,3 @@
-
 import styled from "styled-components";
 import ReactAudioPlayer from "react-audio-player";
 
@@ -6,9 +5,6 @@ import { GoRadioTower } from "react-icons/go";
 import "./Radio.css";
 
 const Radio = ({ item }) => {
-
-
-
   return (
     <Container>
       <StationName>
@@ -59,7 +55,6 @@ const Container = styled.div`
   border: 1px solid white;
   padding: 20px 25px;
   transition: 400ms linear;
-  
 
   :hover {
     transform: scale(1.1);
@@ -67,18 +62,18 @@ const Container = styled.div`
     border-radius: 5%;
   }
 
-
   @media (max-width: 650px) {
-transition: none;
-:hover {
-  transform: none;
-  border-radius: 0%;
-  border: 1px solid white;
-}
+    transition: none;
+    :hover {
+      transform: none;
+      border-radius: 0%;
+      border: 1px solid white;
+    }
+  }
 
-}
-
-
+  /* @media (max-width: 380px) {
+    padding: 20px 30px;
+  } */
 `;
 
 const StationName = styled.div`
@@ -87,7 +82,7 @@ const StationName = styled.div`
 `;
 const CountryName = styled.div`
   margin: 10px 0px;
-  height: 30px;
+  height: 40px;
 `;
 
 const State = styled.span`

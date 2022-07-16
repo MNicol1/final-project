@@ -4,8 +4,20 @@ import styled from "styled-components";
 import "./Header.css";
 // import AuthenticationButton from "./authentication-button";
 import { TbWorld } from "react-icons/tb";
+import { useState } from "react";
+
+
 
 const Header = () => {
+
+const [hide, setHide] = useState(true);
+
+const handleClick = () => {
+  setHide(current => !current);
+  } 
+
+
+
   return (
     <>
       <HeaderContainer>
@@ -22,26 +34,26 @@ const Header = () => {
           <Linked to="/countries">Countries</Linked>
 
           <div className="dropdown">
-            <button className="dropbtn">
+            <button onClick={handleClick} className="dropbtn">
               By Genre{" "}
               <span>
                 <FaAngleDown />
               </span>
             </button>
-            <div className="dropdown-content">
-              <Link to="?genre=pop">Pop</Link>
-              <Link to="?genre=classical">Classical</Link>
-              <Link to="?genre=jazz">Jazz</Link>
-              <Link to="?genre=rock">Rock</Link>
-              <Link to="?genre=hiphop">Hiphop</Link>
-              <Link to="?genre=house">House</Link>
-              <Link to="?genre=folk">Folk</Link>
-              <Link to="?genre=country">Country</Link>
-              <Link to="?genre=electronic">Electronic</Link>
-              <Link to="?genre=chillout">Chillout</Link>
-              <Link to="?genre=indie">Indie</Link>
-              <Link to="?genre=80s">80s</Link>
-              <Link to="?genre=90s">90s</Link>
+            <div style={{display: hide || 'none'}}className="dropdown-content">
+              <Link onClick={handleClick} to="?genre=pop">Pop</Link>
+              <Link onClick={handleClick} to="?genre=classical">Classical</Link>
+              <Link onClick={handleClick} to="?genre=jazz">Jazz</Link>
+              <Link onClick={handleClick} to="?genre=rock">Rock</Link>
+              <Link onClick={handleClick} to="?genre=hiphop">Hiphop</Link>
+              <Link onClick={handleClick} to="?genre=house">House</Link>
+              <Link onClick={handleClick} to="?genre=folk">Folk</Link>
+              <Link onClick={handleClick} to="?genre=country">Country</Link>
+              <Link onClick={handleClick} to="?genre=electronic">Electronic</Link>
+              <Link onClick={handleClick} to="?genre=chillout">Chillout</Link>
+              <Link onClick={handleClick} to="?genre=indie">Indie</Link>
+              <Link onClick={handleClick} to="?genre=80s">80s</Link>
+              <Link onClick={handleClick} to="?genre=90s">90s</Link>
             </div>
           </div>
           <Linked to="/about">About</Linked>
@@ -91,6 +103,10 @@ const Head = styled(NavLink)`
   color: inherit;
   flex-shrink: 0;
   display: flex;
+
+  :hover {
+    color: #f8d6fe;
+  }
 `;
 
 const Title = styled.span`
