@@ -12,6 +12,10 @@ export const RadioContainer = styled.div`
   @media (max-width: 720px) {
     padding-bottom: 20px;
   }
+
+  @media (max-width: 380px) {
+    padding: 10px 15px;
+  }
 `;
 export const RadioList = styled.div`
   display: grid;

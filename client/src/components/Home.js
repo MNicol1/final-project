@@ -4,6 +4,7 @@ import Radio from "./Radio";
 import styled from "styled-components";
 
 
+
 const Home = () => {
   const stations = useRadio({ country: "", limit: 8 });
 
@@ -12,6 +13,7 @@ const Home = () => {
       <Main>
         <RadioContainer>
           <h3>Welcome!</h3>
+          <p>Browse radio stations by country and filter by your favorite musical genre.</p>
           <RadioList>
             {stations.map((item) => {
               return <Radio item={item} key={item.id} />;

@@ -94,6 +94,11 @@ const Title = styled.span`
 const Logo = styled.div`
   font-size: 2.3em;
   margin-bottom: 16px;
+
+  @media (max-width: 380px) {
+    font-size: 2.0em;
+  }
+
 `;
 
 const Links = styled.div`
@@ -125,6 +130,13 @@ const Linked = styled(NavLink)`
     width: fit-content;
     font-size: 1.2em;
   }
+
+
+  @media (max-width: 380px) {
+    font-size: 1em;
+    display: block;
+  }
+
 `;
 
 export default Header;

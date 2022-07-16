@@ -16,9 +16,16 @@ span {
 
 @media (max-width: 650px) {
   .dropbtn {
-  font-size: 1.3em;
+  font-size: 1.2em;
   margin: 0;
   }
+}
+  @media (max-width: 380px) {
+    .dropbtn {
+      font-size: 1em;
+    }
+
+
  }
 
 .dropbtn:hover {
