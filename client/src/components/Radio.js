@@ -88,6 +88,7 @@ const CountryName = styled.div`
 const State = styled.span`
   font-size: 0.8em;
   font-style: italic;
+  color: #f8d6fe;
 `;
 
 // const Likes = styled.div`

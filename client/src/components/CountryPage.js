@@ -39,6 +39,7 @@ const CountryPage = () => {
 
   return (
     <RadioContainer>
+      <Name>{country}</Name>
       <RadioList>{displayStations}</RadioList>
       <Page>
         <ReactPaginate
@@ -57,6 +58,13 @@ const CountryPage = () => {
   );
 };
 
+const Name = styled.h3`
+  /* text-decoration: underline;     
+            text-decoration-color: white;  */
+  /* border-bottom: 1px solid white;
+            width: fit-content; */
+`;
+
 const Main = styled.div`
   display: flex;
   justify-content: center;
@@ -64,12 +72,9 @@ const Main = styled.div`
 const Msg = styled.h3`
   margin-top: 150px;
 
-
   @media (max-width: 1200px) {
-   font-size: 14px;
+    font-size: 14px;
   }
-
-  
 `;
 
 const Page = styled.div`

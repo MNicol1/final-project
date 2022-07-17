@@ -73,7 +73,8 @@ const Main = styled.div`
     max-width: 100%;
 
     border-bottom: solid white 1px;
-    padding-top: 15px;
+    padding: 15px 0px;
+    
     transition: none;
     :hover {
       transform: none;
@@ -98,6 +99,7 @@ const Country = styled(NavLink)`
   @media (max-width: 880px) {
     font-size: 22px;
     padding-top: 20px;
+    
   }
 `;
 
