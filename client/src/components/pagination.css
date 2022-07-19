@@ -6,6 +6,8 @@
   justify-content: center;
   margin: auto;
   padding-top: 40px;
+  padding-left: 0px;
+  /* font-size: 1em; */
 }
 
 .navigationButtons a {
