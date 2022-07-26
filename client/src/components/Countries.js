@@ -59,7 +59,7 @@ const Countries = () => {
             }}
           />
           <Close onClick={clearSearch}>
-            <AiOutlineClose size={20} />
+            <AiOutlineClose size={20} color="black" />
           </Close>
         </SearchContainer>
 
