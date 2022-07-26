@@ -25,28 +25,6 @@ const Radio = ({ item }) => {
           controlsList="nodownload noplaybackrate"
         />
       </Audio>
-      {/* <Likes>
-        <LikeButton
-          playingAnimation={playingAnimation}
-          onAnimationEnd={() => {
-            setPlayingAnimation(false);
-          }}
-          onClick={() => {
-            setPlayingAnimation(true);
-
-            if (isLiked) {
-              handleUnlike(item.id);
-            } else {
-              handleLike(item.id);
-            }
-          }}
-          disabled={!isAuthenticated}
-          isLiked={isLiked}
-        >
-          <AiOutlineLike size={24} />
-        </LikeButton>
-        <span> {numLikes}</span>
-      </Likes> */}
     </Container>
   );
 };
@@ -91,44 +69,8 @@ const State = styled.span`
   color: #f8d6fe;
 `;
 
-// const Likes = styled.div`
-//   padding: 5px;
-//   margin-top: 30px;
-// `;
-
 const Audio = styled.div`
   margin-top: 20px;
 `;
-// const LikeButton = styled.button`
-//   background: none;
-
-//   color: ${(p) => (p.isLiked ? "gold" : "inherit")};
-
-//   border: none;
-//   padding-right: 2px;
-//   font: inherit;
-//   cursor: pointer;
-//   outline: inherit;
-//   :disabled {
-//     cursor: not-allowed;
-//   }
-
-//   @keyframes clickLike {
-//     0% {
-//       transform: translate(0);
-//     }
-//     50% {
-//       transform: translate(0, -15px);
-//     }
-//     100% {
-//       transform: translate(0);
-//     }
-//   }
-
-//   animation-duration: .5s;
-//   animation-timing-function: ease-out;
-
-//   animation-name: ${(p) => (p.playingAnimation ? "clickLike" : "")};
-// `;
 
 export default Radio;

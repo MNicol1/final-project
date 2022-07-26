@@ -5,7 +5,8 @@
   display: flex;
   justify-content: center;
   margin: auto;
-  padding-top: 40px;
+  padding-top: 20px;
+  padding-bottom: 50px;
   padding-left: 0px;
   /* font-size: 1em; */
 }

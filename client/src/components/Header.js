@@ -29,7 +29,7 @@ const handleClick = () => {
             &#5615; &#5615; &#5511;<Title> World.Wave.Radio</Title>
           </Logo>
         </Head>
-
+      
         <Links>
           <Linked to="/countries">Countries</Linked>
 
@@ -60,6 +60,7 @@ const handleClick = () => {
 
           {/* <AuthenticationButton /> */}
         </Links>
+    
       </HeaderContainer>
     </>
   );
@@ -114,7 +115,7 @@ const Title = styled.span`
   font-size: 0.4em;
 `;
 const Logo = styled.div`
-  font-size: 2.3em;
+  font-size: 2.7em;
   margin-bottom: 16px;
 
   @media (max-width: 380px) {
