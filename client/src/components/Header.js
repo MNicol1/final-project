@@ -5,10 +5,10 @@ import "./Header.css";
 // import AuthenticationButton from "./authentication-button";
 import { TbWorld } from "react-icons/tb";
 import { useState } from "react";
-import Countries from "./Countries";
 
 
-const Header = ({setSearchTerm}) => {
+
+const Header = () => {
 
 const [hide, setHide] = useState(true);
 
@@ -16,9 +16,11 @@ const handleClick = () => {
   setHide(current => !current);
   } 
 
-const setSearch = () => {
-  setSearchTerm("")
-}
+// const setSearch = () => {
+//   setSearchTerm("")
+// }
+
+// this goes into link  onClick={setSearch} 
 
   return (
     <>
@@ -33,7 +35,7 @@ const setSearch = () => {
         </Head>
       
         <Links>
-          <Linked onClick={setSearch} to="/countries">Countries</Linked>
+          <Linked to="/countries">Countries</Linked>
 
           <div className="dropdown">
             <button onClick={handleClick} className="dropbtn">
