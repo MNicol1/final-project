@@ -118,7 +118,7 @@ const Logo = styled.div`
   font-size: 2.7em;
   margin-bottom: 16px;
 
-  @media (max-width: 380px) {
+  @media (max-width: 430px) {
     font-size: 2.0em;
   }
 
