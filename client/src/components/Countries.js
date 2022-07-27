@@ -4,11 +4,11 @@ import styled from "styled-components";
 import { FiSearch } from "react-icons/fi";
 import { AiOutlineClose } from "react-icons/ai";
 
-const Countries = () => {
+const Countries = ({searchTerm, setSearchTerm, inputElement}) => {
   const [countries, setCountries] = useState();
   const [selectedCountry, setSelectedCountry] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
-  const inputElement = useRef(null);
+  // const [searchTerm, setSearchTerm] = useState("");
+  // const inputElement = useRef(null);
 
   useEffect(() => {
     const fetchData = () => {

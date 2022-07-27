@@ -8,7 +8,8 @@ import { useState } from "react";
 
 
 
-const Header = () => {
+const Header = ({setSearchTerm, inputElement}) => {
+ 
 
 const [hide, setHide] = useState(true);
 
@@ -16,11 +17,13 @@ const handleClick = () => {
   setHide(current => !current);
   } 
 
-// const setSearch = () => {
-//   setSearchTerm("")
-// }
+  const clearSearch = () => {
+    setSearchTerm("");
+    inputElement.current.value = "";
+  };
 
-// this goes into link  onClick={setSearch} 
+
+// this goes into link  onClick={clearSearch}  or onClick={()=>{ setSearchTerm("")}}
 
   return (
     <>
@@ -35,7 +38,7 @@ const handleClick = () => {
         </Head>
       
         <Links>
-          <Linked to="/countries">Countries</Linked>
+          <Linked onClick={clearSearch} to="/countries">Countries</Linked>
 
           <div className="dropdown">
             <button onClick={handleClick} className="dropbtn">
