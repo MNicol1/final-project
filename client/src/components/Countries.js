@@ -116,12 +116,12 @@ margin-bottom: 300px;
 `;
 
 const Main = styled.div`
-  padding: 3px 0px;
+  padding: 6px 0px;
   transition: 300ms linear;
   max-width: 57%;
-  transform-origin: left top;
+  transform-origin: left;
   :hover {
-    transform: scale(1.3);
+    transform: scale(1.2);
   }
 
   @media (max-width: 880px) {
