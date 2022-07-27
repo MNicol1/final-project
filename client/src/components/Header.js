@@ -17,10 +17,10 @@ const handleClick = () => {
   setHide(current => !current);
   } 
 
-  // const clearSearch = () => {
-  //   setSearchTerm("");
-  //   inputElement.current.value = "";
-  // };
+  const clearSearch = () => {
+    setSearchTerm("");
+    inputElement.current.value = "";
+  };
 
 
 // this goes into link  onClick={clearSearch}  or onClick={()=>{ setSearchTerm("")}}
@@ -38,7 +38,7 @@ const handleClick = () => {
         </Head>
       
         <Links>
-          <Linked to="/countries">Countries</Linked>
+          <Linked onClick={clearSearch} to="/countries">Countries</Linked>
 
           <div className="dropdown">
             <button onClick={handleClick} className="dropbtn">
