@@ -112,7 +112,7 @@ const Space = styled.div`
 
 const Container = styled.div`
   padding: 40px;
-margin-bottom: 165px;
+margin-bottom: 300px;
 `;
 
 const Main = styled.div`
