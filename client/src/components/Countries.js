@@ -69,7 +69,7 @@ const Countries = () => {
 
         {countries
           .filter((country) => {
-            if (searchTerm == "") {
+            if (searchTerm === "") {
               return country;
             } else if (
               country.name.toLowerCase().includes(searchTerm.toLowerCase())
