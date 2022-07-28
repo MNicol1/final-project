@@ -159,11 +159,6 @@ const Linked = styled(NavLink)`
     color: #f8d6fe;
   }
 
-  :focus {
-    color: #f8d6fe;
-    border-bottom: 2px solid white;
-  }
-
 
 
   @media (max-width: 650px) {
