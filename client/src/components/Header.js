@@ -10,12 +10,18 @@ import { useState } from "react";
 
 const Header = ({setSearchTerm, inputElement}) => {
  
+// For dropmenu close 
+
 
 const [hide, setHide] = useState(true);
 
 const handleClick = () => {
   setHide(current => !current);
   } 
+
+
+  //for search 
+
 
   const clearSearch = () => {
     setSearchTerm("");
@@ -39,7 +45,7 @@ const handleClick = () => {
       
         <Links>
           <Linked onClick={clearSearch} to="/countries">Countries</Linked>
-
+{/* 
           <div className="dropdown">
             <button onClick={handleClick} className="dropbtn">
               By Genre{" "}
@@ -62,7 +68,7 @@ const handleClick = () => {
               <Link onClick={handleClick} to="?genre=80s">80s</Link>
               <Link onClick={handleClick} to="?genre=90s">90s</Link>
             </div>
-          </div>
+          </div> */}
           <Linked to="/about">About</Linked>
 
           {/* <AuthenticationButton /> */}
@@ -146,7 +152,7 @@ const Links = styled.div`
 const Linked = styled(NavLink)`
   margin: 30px;
   text-decoration: none;
-  font-size: inherit;
+  font-size: 19px;
   color: inherit;
   font-family: inherit;
   :hover {

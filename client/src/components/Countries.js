@@ -138,7 +138,7 @@ const Main = styled.div`
 `;
 
 const Heading = styled.h2`
-  font-size: 1.8em;
+  font-size: 1.7em;
 
   @media (max-width: 880px) {
     font-size: 1.8em;
