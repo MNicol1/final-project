@@ -152,12 +152,20 @@ const Links = styled.div`
 const Linked = styled(NavLink)`
   margin: 30px;
   text-decoration: none;
-  font-size: 19px;
+  font-size: 18px;
   color: inherit;
   font-family: inherit;
   :hover {
     color: #f8d6fe;
   }
+
+  :focus {
+    color: #f8d6fe;
+    border-bottom: 2px solid white;
+  }
+
+
+
   @media (max-width: 650px) {
     display: inline-block;
 
@@ -165,6 +173,7 @@ const Linked = styled(NavLink)`
     margin: 0;
     width: fit-content;
     font-size: 1.2em;
+    margin-right: 25px;
   }
 
 
