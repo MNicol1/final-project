@@ -1,5 +1,5 @@
-import { NavLink, Link } from "react-router-dom";
-import { FaAngleDown } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
+
 import styled from "styled-components";
 import "./Header.css";
 // import AuthenticationButton from "./authentication-button";
@@ -45,33 +45,9 @@ const handleClick = () => {
       
         <Links>
           <Linked onClick={clearSearch} to="/countries">Countries</Linked>
-{/* 
-          <div className="dropdown">
-            <button onClick={handleClick} className="dropbtn">
-              By Genre{" "}
-              <span>
-                <FaAngleDown />
-              </span>
-            </button>
-            <div style={{display: hide || 'none'}}className="dropdown-content">
-              <Link onClick={handleClick} to="?genre=pop">Pop</Link>
-              <Link onClick={handleClick} to="?genre=classical">Classical</Link>
-              <Link onClick={handleClick} to="?genre=jazz">Jazz</Link>
-              <Link onClick={handleClick} to="?genre=rock">Rock</Link>
-              <Link onClick={handleClick} to="?genre=hiphop">Hiphop</Link>
-              <Link onClick={handleClick} to="?genre=house">House</Link>
-              <Link onClick={handleClick} to="?genre=folk">Folk</Link>
-              <Link onClick={handleClick} to="?genre=country">Country</Link>
-              <Link onClick={handleClick} to="?genre=electronic">Electronic</Link>
-              <Link onClick={handleClick} to="?genre=chillout">Chillout</Link>
-              <Link onClick={handleClick} to="?genre=indie">Indie</Link>
-              <Link onClick={handleClick} to="?genre=80s">80s</Link>
-              <Link onClick={handleClick} to="?genre=90s">90s</Link>
-            </div>
-          </div> */}
+
           <Linked to="/about">About</Linked>
 
-          {/* <AuthenticationButton /> */}
         </Links>
     
       </HeaderContainer>

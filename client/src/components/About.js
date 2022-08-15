@@ -7,14 +7,13 @@ const About = () => {
     <Container>
       <Main>
         <p>
-          WWR is a student project emerging out of the Concordia University Web
-          Development Bootcamp. With gratitude, WWR is powered by the open
-          source community driven radio-browser.
+          WWR is a student-designed project emerging out of the Concordia University Web
+          Development Bootcamp. WWR gives thanks to the open source community-driven radio-browser.
         </p>
         <p>
           This site allows users to experience the myriad radio waves that
-          surround the world. Freely browse radio stations by country, and
-          filter stations by your favorite music genre. Happy listening!
+          surround the globe. Freely browse radio stations by country and
+          filter radio stations by your favorite music genre. Happy listening!
         </p>
         <Icons>
           <GiMusicalNotes size={28} /> <ImEarth size={28} />
