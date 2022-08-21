@@ -149,7 +149,7 @@ const Linked = styled(NavLink)`
 
 
   @media (max-width: 380px) {
-    font-size: 1em;
+    font-size: 1.1em;
     display: inline-block;
   }
 

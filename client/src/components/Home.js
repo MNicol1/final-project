@@ -14,7 +14,7 @@ const Home = () => {
       <Main>
         <RadioContainer>
           <h3>Welcome!</h3>
-          <p>Choose radio stations by country and filter by your favorite musical genre.</p>
+          <p>To tune in and listen to radio stations from around the world, freely choose stations by country and filter down further by your favorite music genre.</p>
         
           <RadioList>
             {stations.map((item) => {

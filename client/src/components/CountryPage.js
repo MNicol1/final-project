@@ -11,12 +11,15 @@ import "./pagination.css";
 import "./Header.css";
 import { Link } from "react-router-dom";
 import { FaAngleDown } from "react-icons/fa";
-
+import BasicMenu from "./BasicMenu";
 
 
 
 
 const CountryPage = () => {
+
+
+  // for old genre :
 
   const [hide, setHide] = useState(true);
 
@@ -24,7 +27,7 @@ const CountryPage = () => {
     setHide(current => !current);
     } 
   
-
+// 
 
 
   const { country } = useParams();
@@ -67,6 +70,12 @@ const CountryPage = () => {
       <NCContainer>
 
 
+<BasicMenu  />
+
+
+
+{/* 
+
 
       <div className="dropdown">
             <button onClick={handleClick} className="dropbtn">
@@ -90,7 +99,9 @@ const CountryPage = () => {
               <Link onClick={handleClick} to="?genre=80s">80s</Link>
               <Link onClick={handleClick} to="?genre=90s">90s</Link>
             </div>
-          </div>
+          </div> */}
+
+
           </NCContainer>
 
 
