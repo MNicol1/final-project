@@ -14,7 +14,7 @@ const Home = () => {
       <Main>
         <RadioContainer>
           <h3>Welcome!</h3>
-          <p>To tune in and listen to radio from around the world, freely choose stations by country and filter down further by your favorite music genre.</p>
+          <Content>To tune in and listen to radio from around the world, freely choose stations by country and filter down further by your favorite music genre.</Content>
         
           <RadioList>
             {stations.map((item) => {
@@ -33,8 +33,12 @@ const Home = () => {
 
 const Main = styled.div`
 margin-bottom: 100px;
-
 `
+const Content = styled.p`
+ text-align: justify;
+  text-justify: inter-word;
+`;
+
 
 
 

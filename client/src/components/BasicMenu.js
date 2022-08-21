@@ -41,11 +41,10 @@ export default function BasicMenu() {
         By Genre {" "}  <span> <FaAngleDown /></span>
       </Button>
       <Menu
-      sx={{maxHeight: 360}}
-     elevation={0} 
-     marginThreshold={0}
-    // disableScrollLock={true}
- 
+      sx={{maxHeight: 340}}
+     elevation={0}
+  
+
        anchorOrigin={{
         vertical: 'bottom',
         horizontal: 'center',
