@@ -29,7 +29,7 @@ export default function BasicMenu() {
       disableRipple
       sx={{"&:hover": {
         color: "#f8d6fe"
-      }, textTransform: "none", fontSize: { xs: "16px", sm: "19px" }}}
+      }, textTransform: "none", fontSize: { xs: "18px", sm: "19px" }}}
         id="basic-button"
         color="inherit"
         fontFamily="inherit"
