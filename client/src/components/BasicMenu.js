@@ -41,7 +41,7 @@ export default function BasicMenu() {
         By Genre {" "}  <span> <FaAngleDown /></span>
       </Button>
       <Menu
-      // sx={{maxHeight: 340}}
+      // sx={{maxHeight: 340}} 
     //  elevation={0}
   
 
