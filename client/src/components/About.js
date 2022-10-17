@@ -47,7 +47,7 @@ const Icons = styled.div`
   margin-top: 30px;
 `;
 const Main = styled.div`
-  text-align: justify;
+  text-align: left;
   border: 1px solid white;
   padding-bottom: 100px;
   padding-left: 25px;

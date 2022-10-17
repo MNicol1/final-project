@@ -35,7 +35,7 @@ const Main = styled.div`
 margin-bottom: 100px;
 `
 const Content = styled.p`
- text-align: justify;
+ text-align: left;
   text-justify: inter-word;
 `;
 
