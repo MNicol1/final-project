@@ -5,6 +5,14 @@ import { GoRadioTower } from "react-icons/go";
 import "./Radio.css";
 
 const Radio = ({ item }) => {
+
+  document.addEventListener('play', (event) => {
+    const audios = [...document.getElementsByTagName('audio')];
+    
+    audios.forEach((audio) => audio !== event.target && audio.pause());
+  }, true);
+
+  
   return (
     <Container>
       <StationName>

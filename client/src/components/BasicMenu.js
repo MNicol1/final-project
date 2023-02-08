@@ -62,7 +62,7 @@ export default function BasicMenu() {
           'aria-labelledby': 'basic-button',
         }}
       >
-     
+         <MenuItem sx={linkSx} component={Link}  onClick={handleClose} to="?genre=">All</MenuItem>
         <MenuItem sx={linkSx} component={Link}  onClick={handleClose} to="?genre=pop">Pop</MenuItem>
         <MenuItem sx={linkSx} component={Link}  onClick={handleClose} to="?genre=classical">Classical</MenuItem>
         <MenuItem sx={linkSx} component={Link}  onClick={handleClose} to="?genre=jazz">Jazz</MenuItem>
