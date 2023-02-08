@@ -1,3 +1,21 @@
+@media (min-width: 650px) {
+  .logo:hover .blink {
+    animation: logoAnimate 1.7s both;
+  }
+
+  @keyframes logoAnimate {
+    0% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
 span {
   margin-bottom: -5%;
 }
@@ -46,14 +64,12 @@ span {
 }
 
 @media (max-width: 650px) {
-
   .link {
     /* padding: 7px; */
     margin: 0;
     width: fit-content;
     font-size: 1.2em;
     margin-right: 25px;
-
   }
 
   .link-active {
@@ -62,27 +78,18 @@ span {
     width: fit-content;
     font-size: 1.2em;
     margin-right: 25px;
-
   }
-  
-  
 }
 
 @media (max-width: 380px) {
-
   .link {
     font-size: 1.1em;
     /* display: inline-block; */
-}
+  }
 
-
-.link-active {
-  font-size: 1.1em;
-
-}
-
-
-
+  .link-active {
+    font-size: 1.1em;
+  }
 }
 
 /* 
@@ -106,9 +113,6 @@ span {
   }
  
 } */
-
-
-
 
 /* 
 .blink {
@@ -142,8 +146,6 @@ span {
     opacity: 1;
   }
 } */
-
-
 
 /* Old CSS for dropdown menu  */
 
