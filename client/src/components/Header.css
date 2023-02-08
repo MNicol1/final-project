@@ -1,6 +1,6 @@
 @media (min-width: 650px) {
   .logo:hover .blink {
-    animation: logoAnimate 1.7s both;
+    animation: logoAnimate 2s infinite;
   }
 
   @keyframes logoAnimate {
