@@ -7,8 +7,8 @@ const About = () => {
     <Container>
       <Main>
         <p>
-          WWR is a student-designed project emerging out of the Concordia University Web
-          Development Bootcamp. WWR gives thanks to the open source community-driven radio-browser.
+          WWR is a student-designed project that emerged out of the Concordia University Web
+          Development Bootcamp, in the spring of 2022. WWR gives thanks to the open source community-driven radio-browser.
         </p>
         <p>
           This site allows users to experience the myriad radio waves that
