@@ -4,9 +4,9 @@ import styled from "styled-components";
 import "./Header.css";
 // import AuthenticationButton from "./authentication-button";
 import { TbWorld } from "react-icons/tb";
-import { useState } from "react";
 
 const Header = ({ setSearchTerm, inputElement }) => {
+
   // For OLD dropmenu close
 
   // const [hide, setHide] = useState(true);
@@ -24,8 +24,6 @@ const Header = ({ setSearchTerm, inputElement }) => {
 
   // this goes into link  onClick={clearSearch}  or onClick={()=>{ setSearchTerm("")}}   I removed the clearSearch because it was throwing an error. setSearchTerm seems to work
 
-
-
   return (
     <>
       <HeaderContainer>
@@ -39,16 +37,22 @@ const Header = ({ setSearchTerm, inputElement }) => {
         </Head>
 
         <Links>
-          <Linked
+          <NavLink
+            className={({ isActive }) => (isActive ? "link-active" : "link")}
             onClick={() => {
               setSearchTerm("");
             }}
             to="/countries"
           >
             Countries
-          </Linked>
+          </NavLink>
 
-          <Linked to="/about">About</Linked>
+          <NavLink
+            className={({ isActive }) => (isActive ? "link-active" : "link")}
+            to="/about"
+          >
+            About
+          </NavLink>
         </Links>
       </HeaderContainer>
     </>
@@ -74,22 +78,23 @@ const HeaderContainer = styled.header`
   }
 `;
 
-const Genre = styled.button`
-  :hover {
-    color: #f8d6fe;
-  }
+// const Genre = styled.button`
+//   :hover {
+//     color: #f8d6fe;
+//   }
 
-  @media (max-width: 720px) {
-    display: block;
-    margin: 0;
-    padding: 0;
-  }
-`;
+//   @media (max-width: 720px) {
+//     display: block;
+//     margin: 0;
+//     padding: 0;
+//   }
+// `;
+
 
 const Head = styled(NavLink)`
   text-decoration: none;
   color: inherit;
- 
+
   flex-shrink: 0;
   display: flex;
 
@@ -123,56 +128,59 @@ const Links = styled.div`
   }
 `;
 
-const Linked = styled(NavLink)`
-  // added position : relative for the :beofre
+// OLD CSS FOR NAVLINKS
 
-  position: relative;
-  margin: 30px;
-  text-decoration: none;
-  font-size: 18px;
-  color: inherit;
-  font-family: inherit;
-  :hover {
-    color: #f8d6fe;
-  }
+// const Linked = styled(NavLink)`
+
+
+//   position: relative;
+//   margin: 30px;
+//   text-decoration: none;
+//   font-size: 18px;
+//   color: inherit;
+//   font-family: inherit;
+//   :hover {
+//     color: #f8d6fe;
+//   }
+
 
   // new code for underline animation *not for mobile
 
-  @media (min-width: 650px) {
-    :before {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      content: "";
-      background-color: #f8d6fe;
-      width: 0%;
-      height: 2px;
-      transition: width 1s, left 1s;
-      // remove left 1s  and change left: 0, if want mid.
-    }
+//   @media (min-width: 650px) {
+//     :before {
+//       position: absolute;
+//       bottom: 0;
+//       left: 50%;
+//       content: "";
+//       background-color: #f8d6fe;
+//       width: 0%;
+//       height: 2px;
+//       transition: width 1s, left 1s;
+//       // remove left 1s  and change left: 0, if want mid.
+//     }
 
-    :hover:before {
-      width: 100%;
-      left: 0%;
+//     :hover:before {
+//       width: 100%;
+//       left: 0%;
 
-      //  remove left don't want it moving from middle out
-    }
-  }
+//       //  remove left don't want it moving from middle out
+//     }
+//   }
 
-  @media (max-width: 650px) {
-    display: inline-block;
+//   @media (max-width: 650px) {
+//     display: inline-block;
 
-    padding: 7px;
-    margin: 0;
-    width: fit-content;
-    font-size: 1.2em;
-    margin-right: 25px;
-  }
+//     padding: 7px;
+//     margin: 0;
+//     width: fit-content;
+//     font-size: 1.2em;
+//     margin-right: 25px;
+//   }
 
-  @media (max-width: 380px) {
-    font-size: 1.1em;
-    display: inline-block;
-  }
-`;
+//   @media (max-width: 380px) {
+//     font-size: 1.1em;
+//     display: inline-block;
+//   }
+// `;
 
 export default Header;
