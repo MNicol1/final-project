@@ -29,7 +29,7 @@ const Header = ({ setSearchTerm, inputElement }) => {
       <HeaderContainer>
         <Head to="/">
           <Logo>
-            <span class="blink">
+            <span >
               <TbWorld />
             </span>{" "}
             &#5615; &#5615; &#5511;<Title> World.Wave.Radio</Title>
