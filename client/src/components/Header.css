@@ -107,12 +107,16 @@ span {
  
 } */
 
-/* .blink {
+
+
+
+/* 
+.blink {
   animation: blink-animation 2s steps(5, start) infinite;
   -webkit-animation: blink-animation 2s steps(5, start) infinite;
-}
+} */
 
-@keyframes blink-animation {
+/* @keyframes blink-animation {
   to {
     visibility: hidden;
   }
@@ -122,6 +126,22 @@ span {
     visibility: hidden;
   }
 } */
+
+.blink {
+  animation: blink 2s linear infinite alternate-reverse;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: .5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 
 
 
