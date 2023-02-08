@@ -6,30 +6,25 @@ import "./Header.css";
 import { TbWorld } from "react-icons/tb";
 import { useState } from "react";
 
+const Header = ({ setSearchTerm, inputElement }) => {
+  // For OLD dropmenu close
+
+  // const [hide, setHide] = useState(true);
+
+  // const handleClick = () => {
+  //   setHide(current => !current);
+  //   }
+
+  // FOR SEARCH
+
+  // const clearSearch = () => {
+  //   setSearchTerm("");
+  //   inputElement.current.value = "";
+  // };
+
+  // this goes into link  onClick={clearSearch}  or onClick={()=>{ setSearchTerm("")}}   I removed the clearSearch because it was throwing an error. setSearchTerm seems to work
 
 
-const Header = ({setSearchTerm, inputElement}) => {
- 
-// For dropmenu close 
-
-
-const [hide, setHide] = useState(true);
-
-const handleClick = () => {
-  setHide(current => !current);
-  } 
-
-
-  //for search 
-
-
-  const clearSearch = () => {
-    setSearchTerm("");
-    inputElement.current.value = "";
-  };
-
-
-// this goes into link  onClick={clearSearch}  or onClick={()=>{ setSearchTerm("")}}
 
   return (
     <>
@@ -42,14 +37,19 @@ const handleClick = () => {
             &#5615; &#5615; &#5511;<Title> World.Wave.Radio</Title>
           </Logo>
         </Head>
-      
+
         <Links>
-          <Linked onClick={clearSearch} to="/countries">Countries</Linked>
+          <Linked
+            onClick={() => {
+              setSearchTerm("");
+            }}
+            to="/countries"
+          >
+            Countries
+          </Linked>
 
           <Linked to="/about">About</Linked>
-
         </Links>
-    
       </HeaderContainer>
     </>
   );
@@ -72,8 +72,6 @@ const HeaderContainer = styled.header`
   @media (max-width: 390px) {
     padding: 20px;
   }
-
-  
 `;
 
 const Genre = styled.button`
@@ -91,6 +89,7 @@ const Genre = styled.button`
 const Head = styled(NavLink)`
   text-decoration: none;
   color: inherit;
+ 
   flex-shrink: 0;
   display: flex;
 
@@ -108,9 +107,8 @@ const Logo = styled.div`
   margin-bottom: 16px;
 
   @media (max-width: 430px) {
-    font-size: 2.0em;
+    font-size: 2em;
   }
-
 `;
 
 const Links = styled.div`
@@ -126,6 +124,9 @@ const Links = styled.div`
 `;
 
 const Linked = styled(NavLink)`
+  // added position : relative for the :beofre
+
+  position: relative;
   margin: 30px;
   text-decoration: none;
   font-size: 18px;
@@ -135,7 +136,28 @@ const Linked = styled(NavLink)`
     color: #f8d6fe;
   }
 
+  // new code for underline animation *not for mobile
 
+  @media (min-width: 650px) {
+    :before {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      content: "";
+      background-color: #f8d6fe;
+      width: 0%;
+      height: 2px;
+      transition: width 1s, left 1s;
+      // remove left 1s  and change left: 0, if want mid.
+    }
+
+    :hover:before {
+      width: 100%;
+      left: 0%;
+
+      //  remove left don't want it moving from middle out
+    }
+  }
 
   @media (max-width: 650px) {
     display: inline-block;
@@ -147,12 +169,10 @@ const Linked = styled(NavLink)`
     margin-right: 25px;
   }
 
-
   @media (max-width: 380px) {
     font-size: 1.1em;
     display: inline-block;
   }
-
 `;
 
 export default Header;
