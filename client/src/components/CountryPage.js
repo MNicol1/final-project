@@ -110,6 +110,7 @@ const CountryPage = () => {
       <RadioList>{displayStations}</RadioList>
       <Page>
         <ReactPaginate
+        breakLabel="..."
           previousLabel={"<"}
           nextLabel={">"}
           pageCount={totalPages}
@@ -119,6 +120,11 @@ const CountryPage = () => {
           nextLinkClassName={"nextButton"}
           disabledClassName={"navigationDisabled"}
           activeClassName={"navigationActive"}
+
+          // added these to try paginate fix
+          
+        pageRangeDisplayed={10}
+          disableInitialCallback={true}
         />
       </Page>
     </RadioContainer>
