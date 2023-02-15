@@ -46,7 +46,7 @@ const CountryPage = () => {
   const totalPages = Math.ceil(stations.length / stationsPerPage);
   const changePage = ({ selected }) => {
     setPage(selected);
-    window.scrollTo(0, 9999);
+    // window.scrollTo(0, 9999); trying to manage scroll up or down at paginate 
   };
 
   if (stations.length === 0) {
