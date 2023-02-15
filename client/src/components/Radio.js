@@ -46,6 +46,9 @@ const Container = styled.div`
     transform: scale(1.1);
     border: 2px solid #f8d6fe;
     border-radius: 5%;
+
+    /* * this fixes the janky movement issue for full screen size ...  */
+    margin: -2px;
   }
 
   @media (max-width: 650px) {
@@ -54,6 +57,7 @@ const Container = styled.div`
       transform: none;
       border-radius: 0%;
       border: 1px solid white;
+      margin: 0;
     }
   }
 
