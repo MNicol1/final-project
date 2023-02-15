@@ -1,9 +1,10 @@
 .navigationButtons {
-  width: 60%;
+  width: 95%;
   height: 20px;
   list-style: none;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   margin: auto;
   padding-top: 20px;
   padding-bottom: 50px;
