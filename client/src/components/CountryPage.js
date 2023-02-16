@@ -124,7 +124,7 @@ const CountryPage = () => {
           // added these to try paginate fix
           
         pageRangeDisplayed={10}
-          disableInitialCallback={true}
+          // disableInitialCallback={true}
         />
       </Page>
     </RadioContainer>
