@@ -33,20 +33,35 @@ const CountryPage = () => {
   const { country } = useParams();
 
   const stations = useRadio({ country: country, limit: 160 });
+ 
 
   const [page, setPage] = useState(0);
   const stationsPerPage = 12;
   const numberOfStationsVistited = page * stationsPerPage;
-  const displayStations = stations
+
+
+  const uniqueStations = stations.filter((station, index, self) => {
+    const nameMatch = index === self.findIndex((s) => s.name === station.name);
+    const urlMatch = index === self.findIndex((s) => s.urlResolved === station.urlResolved);
+    return nameMatch && urlMatch;
+  });
+  
+
+  const displayStations = uniqueStations
     .slice(numberOfStationsVistited, numberOfStationsVistited + stationsPerPage)
     .map((item) => {
       return <Radio item={item} key={item.id} />;
     });
 
-  const totalPages = Math.ceil(stations.length / stationsPerPage);
+
+
+  const totalPages = Math.ceil(uniqueStations.length / stationsPerPage);
+
   const changePage = ({ selected }) => {
     setPage(selected);
+    
     // window.scrollTo(0, 9999); trying to manage scroll up or down at paginate 
+
   };
 
   if (stations.length === 0) {
