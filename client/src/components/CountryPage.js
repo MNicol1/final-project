@@ -9,8 +9,8 @@ import { useState } from "react";
 import "./pagination.css";
 
 import "./Header.css";
-import { Link } from "react-router-dom";
-import { FaAngleDown } from "react-icons/fa";
+// import { Link } from "react-router-dom";
+// import { FaAngleDown } from "react-icons/fa";
 import BasicMenu from "./BasicMenu";
 
 
@@ -21,13 +21,12 @@ const CountryPage = () => {
 
   // for old genre :
 
-  const [hide, setHide] = useState(true);
+  // const [hide, setHide] = useState(true);
 
-  const handleClick = () => {
-    setHide(current => !current);
-    } 
+  // const handleClick = () => {
+  //   setHide(current => !current);
+  //   } 
   
-// 
 
 
   const { country } = useParams();
