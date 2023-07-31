@@ -13,11 +13,19 @@ const App = () => {
 
   const inputElement = useRef(null);
 
+  const MainLayout = styled.div`
+  padding-top: 10%; /* adjust this to match your Header's height */
+
+  @media (max-width: 760px) {
+  padding-top: 40%;
+  }
+`;
+
   return (
     <>
       <GlobalStyles />
       <Header setSearchTerm={setSearchTerm} inputElement={inputElement} />
-
+<MainLayout>
       <Routes>
         <Route path="/" element={<Home />} />
 
@@ -36,6 +44,7 @@ const App = () => {
 
         <Route path="/countries/:country" element={<CountryPage />} />
       </Routes>
+      </MainLayout>n
     </>
   );
 };

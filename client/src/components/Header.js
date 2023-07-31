@@ -69,7 +69,7 @@ const HeaderContainer = styled.header`
   display: flex;
   /* max-width: 100%; */
 
-  position: sticky; // added this
+  position: fixed; // added this
   top: 0; // added this
   left: 0; // added this
   background: black; // add background color to prevent content slip through
