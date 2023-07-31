@@ -44,7 +44,7 @@ const App = () => {
 
         <Route path="/countries/:country" element={<CountryPage />} />
       </Routes>
-      </MainLayout>n
+      </MainLayout>
     </>
   );
 };
