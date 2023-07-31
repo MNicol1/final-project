@@ -12,7 +12,7 @@ const MainContent = styled.main`
   padding-top: 10%; /* adjust this to match your Header's height */
 
   @media (max-width: 769px) {
-    padding-top: 35%;
+    padding-top: 40%;
   }
 `;
 

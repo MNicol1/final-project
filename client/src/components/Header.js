@@ -6,7 +6,6 @@ import "./Header.css";
 import { TbWorld } from "react-icons/tb";
 
 const Header = ({ setSearchTerm, inputElement }) => {
-
   // For OLD dropmenu close
 
   // const [hide, setHide] = useState(true);
@@ -29,7 +28,7 @@ const Header = ({ setSearchTerm, inputElement }) => {
       <HeaderContainer>
         <Head to="/">
           <Logo className="logo">
-            <span className="blink" >
+            <span className="blink">
               <TbWorld />
             </span>{" "}
             &#5615; &#5615; &#5511;<Title> World.Wave.Radio</Title>
@@ -42,7 +41,8 @@ const Header = ({ setSearchTerm, inputElement }) => {
             onClick={() => {
               setSearchTerm("");
             }}
-            end to="/countries"
+            end
+            to="/countries"
           >
             Countries
           </NavLink>
@@ -60,7 +60,6 @@ const Header = ({ setSearchTerm, inputElement }) => {
 };
 
 const HeaderContainer = styled.header`
-
   border-bottom: 2px solid white;
   padding: 20px 40px;
   box-sizing: border-box;
@@ -96,7 +95,6 @@ const HeaderContainer = styled.header`
 //     padding: 0;
 //   }
 // `;
-
 
 const Head = styled(NavLink)`
   text-decoration: none;
@@ -139,7 +137,6 @@ const Links = styled.div`
 
 // const Linked = styled(NavLink)`
 
-
 //   position: relative;
 //   margin: 30px;
 //   text-decoration: none;
@@ -150,8 +147,7 @@ const Links = styled.div`
 //     color: #f8d6fe;
 //   }
 
-
-  // new code for underline animation *not for mobile
+// new code for underline animation *not for mobile
 
 //   @media (min-width: 650px) {
 //     :before {
