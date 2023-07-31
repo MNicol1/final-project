@@ -8,14 +8,6 @@ import About from "./components/About";
 import { useState, useRef } from "react";
 import styled from "styled-components";
 
-const MainContent = styled.main`
-  padding-top: 10%; /* adjust this to match your Header's height */
-
-  @media (max-width: 769px) {
-    padding-top: 40%;
-  }
-`;
-
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -25,26 +17,25 @@ const App = () => {
     <>
       <GlobalStyles />
       <Header setSearchTerm={setSearchTerm} inputElement={inputElement} />
-      <MainContent>
-        <Routes>
-          <Route path="/" element={<Home />} />
 
-          <Route path="/about" element={<About />} />
+      <Routes>
+        <Route path="/" element={<Home />} />
 
-          <Route
-            path="/countries"
-            element={
-              <Countries
-                searchTerm={searchTerm}
-                setSearchTerm={setSearchTerm}
-                inputElement={inputElement}
-              />
-            }
-          />
+        <Route path="/about" element={<About />} />
 
-          <Route path="/countries/:country" element={<CountryPage />} />
-        </Routes>
-      </MainContent>
+        <Route
+          path="/countries"
+          element={
+            <Countries
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
+              inputElement={inputElement}
+            />
+          }
+        />
+
+        <Route path="/countries/:country" element={<CountryPage />} />
+      </Routes>
     </>
   );
 };
