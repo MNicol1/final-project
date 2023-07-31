@@ -8,18 +8,22 @@ import About from "./components/About";
 import { useState, useRef } from "react";
 import styled from "styled-components";
 
+const MainLayout = styled.div`
+padding-top: 10%; /* adjust this to match your Header's height */
+
+@media (max-width: 760px) {
+padding-top: 40%;
+}
+`;
+
+
+
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const inputElement = useRef(null);
 
-  const MainLayout = styled.div`
-  padding-top: 10%; /* adjust this to match your Header's height */
 
-  @media (max-width: 760px) {
-  padding-top: 40%;
-  }
-`;
 
   return (
     <>
