@@ -60,6 +60,7 @@ const Header = ({ setSearchTerm, inputElement }) => {
 };
 
 const HeaderContainer = styled.header`
+
   border-bottom: 2px solid white;
   padding: 20px 40px;
   box-sizing: border-box;
@@ -68,6 +69,12 @@ const HeaderContainer = styled.header`
   width: 100vw;
   display: flex;
   /* max-width: 100%; */
+
+  position: fixed; // added this
+  top: 0; // added this
+  left: 0; // added this
+  background: black; // add background color to prevent content slip through
+  z-index: 1000; // make sure the header is always on top
   @media (max-width: 880px) {
     display: block;
     width: 100%;

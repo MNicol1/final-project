@@ -68,7 +68,7 @@ span {
     /* padding: 7px; */
     margin: 0;
     width: fit-content;
-    font-size: 1.2em;
+    font-size: 1.3em;
     margin-right: 25px;
   }
 
@@ -76,19 +76,19 @@ span {
     /* padding: 7px; */
     margin: 0;
     width: fit-content;
-    font-size: 1.2em;
+    font-size: 1.3em;
     margin-right: 25px;
   }
 }
 
 @media (max-width: 380px) {
   .link {
-    font-size: 1.1em;
+    font-size: 1.2em;
     /* display: inline-block; */
   }
 
   .link-active {
-    font-size: 1.1em;
+    font-size: 1.2em;
   }
 }
 
