@@ -11,7 +11,20 @@ import styled from "styled-components";
 const MainLayout = styled.div`
 padding-top: 10%; /* adjust this to match your Header's height */
 
-@media (max-width: 760px) {
+
+@media (max-width: 1000px) {
+padding-top: 22%;
+}
+
+/* @media (max-width: 999px) {
+padding-top: 10%;
+} */
+
+@media (max-width: 769px) {
+padding-top: 30%;
+}
+
+@media (max-width: 380px) {
 padding-top: 40%;
 }
 `;
