@@ -15,16 +15,16 @@ export const AudioProvider = ({ children }) => {
 
   const [currentItem, setCurrentItem] = useState(null);
 
-  const playAudio = (url) => {
-    setCurrentlyPlayingURL(url);
-    setIsPlaying(true);
-  };
-
   // const playAudio = (url) => {
   //   setCurrentlyPlayingURL(url);
   //   setIsPlaying(true);
-  //   setIsLoading(true);  // Add this
   // };
+
+  const playAudio = (url) => {
+    setCurrentlyPlayingURL(url);
+    setIsPlaying(true);
+    setIsLoading(true); // Add this
+  };
 
   const pauseAudio = () => {
     setIsPlaying(false);

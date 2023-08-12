@@ -74,9 +74,16 @@ const CountryPage = () => {
           nextLinkClassName={"nextButton"}
           disabledClassName={"navigationDisabled"}
           activeClassName={"navigationActive"}
-          // added these to try paginate fix
 
-          pageRangeDisplayed={10}
+
+  // added these to try paginate fix  break label on next click 
+
+          pageRangeDisplayed={2}   
+          marginPagesDisplayed={2} 
+        
+
+          // this will break label the paginate :  // pageRangeDisplayed={10}
+
           // disableInitialCallback={true}
         />
       </Page>

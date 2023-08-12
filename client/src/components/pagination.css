@@ -9,11 +9,20 @@
   padding-top: 20px;
   padding-bottom: 50px;
   padding-left: 0px;
-  /* font-size: 1em; */
+  font-size: 1.1em;
+  align-items: center;
+}
+
+.navigationButtons .previousButton,
+.navigationButtons .nextButton {
+    font-size: 1.5em;  /* Adjust this value as per your requirement */
+
+    padding-bottom: 6px;
+    
 }
 
 .navigationButtons a {
-  padding: 3px;
+  padding: 5px 3px;
   margin: 4px;
   border-radius: 2px;
   /* border: 1px solid white; */
@@ -35,3 +44,12 @@
   color: grey;
   background-color: grey;
 } */
+
+
+@media (max-width: 768px) { 
+  .navigationButtons .previousButton:hover, 
+  .navigationButtons .nextButton:hover {
+    color: white;
+    background-color: transparent;
+  }
+}
