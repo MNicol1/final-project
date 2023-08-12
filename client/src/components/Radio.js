@@ -32,7 +32,7 @@ const Radio = ({ item }) => {
     } else if (isCurrentRadioPlaying) {
       return <FaPause />;
     } else {
-      return <FaPlay style={{color: "black"}} />;
+      return <FaPlay />;
     }
   };
 
@@ -106,10 +106,19 @@ const Audio = styled.div`
 
 const AudioButton = styled.button`
   width: 200px;
-  padding-top: 5px;
   height: 40px;
   font-size: 1.3em;
   color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  cursor: pointer;
+
+  @media (max-width: 380px) {
+    height: 35px;
+    width: 150px;
+  }
 `;
 
 export default Radio;

@@ -1,4 +1,91 @@
-@media (min-width: 650px) {
+/* Common styles for both mobile and desktop */
+span {
+  margin-bottom: -5%;
+}
+
+.link,
+.link-active {
+  position: relative;
+  margin: 30px;
+  text-decoration: none;
+  font-size: 18px;
+  font-family: inherit;
+  color: inherit;
+  padding-bottom: 2px;
+}
+
+.link:before,
+.link-active:before {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  content: "";
+  background-color: #f8d6fe;
+  width: 0%;
+  height: 2px;
+  transition: width 0.7s, left 0.7s;
+}
+
+/* Animation keyframes */
+@keyframes logoAnimate {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 769px) {
+  .logo:hover .blink {
+    animation: logoAnimate 2s infinite;
+  }
+
+  .link:hover,
+  .link-active {
+    color: #f8d6fe;
+  }
+
+  .link:hover:before {
+    width: 100%;
+    left: 0%;
+  }
+}
+
+/* Tablet and small desktop styles */
+@media (max-width: 768px) {
+  .link,
+  .link-active {
+    margin: 0;
+    width: fit-content;
+    font-size: 1.3em;
+    margin-right: 25px;
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 650px) {
+  .link,
+  .link-active {
+    font-size: 1.2em;
+  }
+}
+
+/* Smaller mobile styles */
+@media (max-width: 380px) {
+  .link,
+  .link-active {
+    font-size: 0.8em;
+  }
+}
+
+/* OLD  */
+
+/* @media (min-width: 769px) {
   .logo:hover .blink {
     animation: logoAnimate 2s infinite;
   }
@@ -43,10 +130,6 @@ span {
   padding-bottom: 2px;
 }
 
-.link:hover {
-  color: #f8d6fe;
-}
-
 .link:before {
   position: absolute;
   bottom: 0;
@@ -63,9 +146,15 @@ span {
   left: 0%;
 }
 
+@media (min-width: 769px) {
+  .link:hover {
+    color: #f8d6fe;
+  }
+}
+
 @media (max-width: 650px) {
   .link {
-    /* padding: 7px; */
+  
     margin: 0;
     width: fit-content;
     font-size: 1.3em;
@@ -73,7 +162,7 @@ span {
   }
 
   .link-active {
-    /* padding: 7px; */
+   
     margin: 0;
     width: fit-content;
     font-size: 1.3em;
@@ -84,123 +173,10 @@ span {
 @media (max-width: 380px) {
   .link {
     font-size: 1.2em;
-    /* display: inline-block; */
+   
   }
 
   .link-active {
     font-size: 1.2em;
   }
-}
-
-/* 
-@media (max-width: 650px) {
-
-.link {
-  display: inline-block;
-
-  padding: 7px;
-  margin: 0;
-  width: fit-content;
-  font-size: 1.2em;
-  margin-right: 25px;
-}
-}
-
-@media (max-width: 380px) {
-
-  .link { font-size: 1.1em;
-    display: inline-block;
-  }
- 
-} */
-
-/* 
-.blink {
-  animation: blink-animation 2s steps(5, start) infinite;
-  -webkit-animation: blink-animation 2s steps(5, start) infinite;
-} */
-
-/* @keyframes blink-animation {
-  to {
-    visibility: hidden;
-  }
-}
-@-webkit-keyframes blink-animation {
-  to {
-    visibility: hidden;
-  }
-} */
-
-/* .blink {
-  animation: blink 2s linear infinite alternate-reverse;
-}
-
-@keyframes blink {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: .5;
-  }
-  100% {
-    opacity: 1;
-  }
-} */
-
-/* Old CSS for dropdown menu  */
-
-/* 
-.dropbtn {
-  padding-bottom: 7px;
-  font-family: inherit;
-  font-size: 19px;
-  border: none;
-  cursor: pointer;
-  background-color: inherit;
-  color: inherit;
-}
-
-@media (max-width: 650px) {
-  .dropbtn {
-    font-size: 1.2em;
-    margin: 0;
-  }
-}
-@media (max-width: 380px) {
-  .dropbtn {
-    font-size: 1em;
-  }
-}
-
-.dropbtn:hover {
-  color: #f8d6fe;
-}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  width: 100%;
-  z-index: 1;
-}
-
-.dropdown-content a {
-  padding: 7px 16px;
-  text-decoration: none;
-  display: block;
-  background-color: white;
-  color: black;
-}
-
-.dropdown-content a:hover {
-  background-color: #f8d6fe;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
 } */

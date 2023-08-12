@@ -5,9 +5,8 @@ export const RadioContainer = styled.div`
   margin-bottom: 10px;
 
   position: relative;
-  max-height: 100vh;
+
   max-width: 100vw;
-  /* overflow-y: auto; */
 
   @media (max-width: 720px) {
     padding-bottom: 20px;

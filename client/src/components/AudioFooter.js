@@ -90,7 +90,7 @@ const AudioFooter = () => {
         onPause={() => setIsPlaying(false)}
         onCanPlay={() => setIsLoading(false)}
         onWaiting={() => setIsLoading(true)}
-        onStalled={() => setIsLoading(true)}
+        // onStalled={() => setIsLoading(true)}
       />
 
       <button className="playpause-button" onClick={togglePlay}>
@@ -126,17 +126,6 @@ const AudioFooter = () => {
       >
         {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
       </button>
-
-      {/* <input
-        type="range"
-        min="0"
-        max="1"
-        step="0.01"
-        value={volume}
-        onChange={handleVolumeChange}
-        style={{ visibility: isLoading ? "hidden" : "visible"}} 
-      />
-     */}
     </div>
   );
 };

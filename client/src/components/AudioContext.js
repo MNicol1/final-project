@@ -20,6 +20,12 @@ export const AudioProvider = ({ children }) => {
     setIsPlaying(true);
   };
 
+  // const playAudio = (url) => {
+  //   setCurrentlyPlayingURL(url);
+  //   setIsPlaying(true);
+  //   setIsLoading(true);  // Add this
+  // };
+
   const pauseAudio = () => {
     setIsPlaying(false);
   };
@@ -34,7 +40,7 @@ export const AudioProvider = ({ children }) => {
         pauseAudio,
         isLoading,
         setIsLoading,
-        currentItem, 
+        currentItem,
         setCurrentItem,
       }}
     >

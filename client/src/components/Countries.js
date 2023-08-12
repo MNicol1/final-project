@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { FiSearch } from "react-icons/fi";
 import { AiOutlineClose } from "react-icons/ai";
 
-const Countries = ({searchTerm, setSearchTerm, inputElement}) => {
+const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
   const [countries, setCountries] = useState();
   const [selectedCountry, setSelectedCountry] = useState(null);
   // const [searchTerm, setSearchTerm] = useState("");
@@ -112,7 +112,10 @@ const Space = styled.div`
 
 const Container = styled.div`
   padding: 40px;
-margin-bottom: 300px;
+  margin-bottom: 300px;
+  @media (max-width: 769px) {
+    margin-bottom: 70px;
+  }
 `;
 
 const Main = styled.div`
