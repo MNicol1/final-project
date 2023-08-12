@@ -39,6 +39,11 @@ span {
   }
 }
 
+.link-active:before {
+  width: 100%;
+  left: 0%;
+}
+
 /* Desktop styles */
 @media (min-width: 769px) {
   .logo:hover .blink {
@@ -55,7 +60,6 @@ span {
     left: 0%;
   }
 }
-
 /* Tablet and small desktop styles */
 @media (max-width: 768px) {
   .link,
@@ -79,7 +83,7 @@ span {
 @media (max-width: 380px) {
   .link,
   .link-active {
-    font-size: 0.8em;
+    font-size: 1.1em;
   }
 }
 
