@@ -1,0 +1,108 @@
+/* Basic styling for the footer container */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background-color: black;
+  color: #fff;
+  padding: 10px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  border-top: 1px solid white;
+}
+
+/* Style for the play/pause button */
+.footer button {
+  padding: 8px 12px;
+  background-color: inherit;
+  color: white;
+  border: none;
+  cursor: pointer;
+  /* font-size: 2em; */
+}
+
+.volume-button {
+  font-size: 1.5em;
+}
+
+.playpause-button {
+  font-size: 2.2em;
+}
+
+.spin-icon {
+  animation: spin 1s linear infinite;
+  font-size: 0.7em;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(110%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.marquee-wrapper {
+  flex-grow: 0;
+  width: 250px; /* Adjust to the width you want */
+
+  overflow: hidden; /* Prevent the marquee from going outside the wrapper */
+  position: relative;
+}
+
+.marquee-wrapper::before,
+.marquee-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 10px; /* adjust width to control the size of the blur */
+  pointer-events: none;
+  z-index: 2;
+}
+
+.marquee-wrapper::before {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    black,
+    rgba(255, 255, 255, 0)
+  ); /* Change color as needed */
+}
+
+.marquee-wrapper::after {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    black,
+    rgba(255, 255, 255, 0)
+  ); /* Change color as needed */
+}
+
+.marquee {
+  white-space: nowrap;
+
+  display: inline-block;
+  animation: marquee 15s linear infinite;
+  z-index: 1;
+}
+
+@media (max-width: 760px) {
+  .marquee-wrapper {
+    width: 200px; /* Adjust to the width you want */
+  }
+}

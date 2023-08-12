@@ -1,3 +1,19 @@
+.spin-icon {
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 
+
+
 audio::-webkit-media-controls-panel {
   background-color: white;
 }
@@ -14,9 +30,6 @@ audio::-webkit-media-controls-timeline-container {
   display: none;
 }
 
-/* audio::-webkit-media-controls-timeline { 
-    display: none;
-} */
 
 audio::-webkit-media-controls-play-button {
   border-radius: 50%;
@@ -26,19 +39,5 @@ audio::-webkit-media-controls-play-button:hover {
   transition: background-color 0.8s ease-in;
   background-color: pink;
   border-radius: 50%;
-  
-  /* animation: col 5s infinite; */
 
- /* @keyframes col {
-    0% {
-      background-color: red;
-    }
-    50% {
-      background-color: green;
-    }
-    100% {
-      background-color: blue;
-    }
-  } */
-
-}
+} */

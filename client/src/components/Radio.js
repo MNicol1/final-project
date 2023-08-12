@@ -1,18 +1,41 @@
 import styled from "styled-components";
-import ReactAudioPlayer from "react-audio-player";
 
 import { GoRadioTower } from "react-icons/go";
 import "./Radio.css";
+import { useAudio } from "./AudioContext";
+
+import { FaPlay, FaPause, FaSpinner } from "react-icons/fa";
 
 const Radio = ({ item }) => {
+  const {
+    playAudio,
+    pauseAudio,
+    isPlaying,
+    currentURL,
+    isLoading,
+    setCurrentItem,
+  } = useAudio();
 
-  document.addEventListener('play', (event) => {
-    const audios = [...document.getElementsByTagName('audio')];
-    
-    audios.forEach((audio) => audio !== event.target && audio.pause());
-  }, true);
+  const isCurrentRadioPlaying = currentURL === item.urlResolved && isPlaying;
 
-  
+  const handleTogglePlay = () => {
+    if (isCurrentRadioPlaying) {
+      pauseAudio();
+    } else {
+      playAudio(item.urlResolved);
+      setCurrentItem(item);
+    }
+  };
+  const renderAudioControl = () => {
+    if (isLoading && isCurrentRadioPlaying) {
+      return <FaSpinner className="spin-icon" />;
+    } else if (isCurrentRadioPlaying) {
+      return <FaPause />;
+    } else {
+      return <FaPlay />;
+    }
+  };
+
   return (
     <Container>
       <StationName>
@@ -25,13 +48,9 @@ const Radio = ({ item }) => {
       </CountryName>
 
       <Audio>
-        <ReactAudioPlayer
-          class="audio"
-          src={item.urlResolved}
-          style={{ width: "220px" }}
-          controls
-          controlsList="nodownload noplaybackrate"
-        />
+        <AudioButton onClick={handleTogglePlay}>
+          {renderAudioControl()}
+        </AudioButton>
       </Audio>
     </Container>
   );
@@ -82,7 +101,14 @@ const State = styled.span`
 `;
 
 const Audio = styled.div`
-  margin-top: 20px;
+  /* margin-top: 20px; */
+`;
+
+const AudioButton = styled.button`
+  width: 200px;
+  padding-top: 5px;
+  height: 40px;
+  font-size: 1.3em;
 `;
 
 export default Radio;
