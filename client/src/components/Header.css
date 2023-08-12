@@ -83,7 +83,7 @@ span {
 @media (max-width: 380px) {
   .link,
   .link-active {
-    font-size: 1.1em;
+    font-size: 19px;
   }
 }
 

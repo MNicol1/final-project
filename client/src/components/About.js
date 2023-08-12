@@ -34,6 +34,13 @@ const Container = styled.div`
     padding-bottom: 80px;
   }
 
+  @media (max-width: 380px) {
+    display: inline-block;
+    padding: 10px 5px;
+    margin-top: 20px;
+    padding-bottom: 80px;
+  }
+
   /* @media (width: 880px) {
     display: inline-block;
     padding: 30px 100px;
@@ -54,6 +61,10 @@ const Main = styled.div`
 
   @media (max-width: 680px) {
     padding-bottom: 45px;
+  }
+
+  @media (max-width: 380px) {
+    padding: 35px 12px;
   }
 `;
 

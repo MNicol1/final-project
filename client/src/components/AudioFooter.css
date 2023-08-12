@@ -8,6 +8,7 @@
   background-color: black;
   color: #fff;
   padding: 5px 10px;
+  padding-bottom: 0;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -18,7 +19,7 @@
 
 /* Style for the play/pause button */
 .footer button {
-  padding: 8px 5px;
+  padding: 1px 5px;
   background-color: inherit;
   color: white;
   border: none;
@@ -32,6 +33,8 @@
 
 .playpause-button {
   font-size: 2.2em;
+  padding: 0;
+  margin: 0;
 }
 
 .spin-icon {
@@ -114,11 +117,15 @@
 
 @media (max-width: 380px) {
   .marquee-wrapper {
-    width: 150px;
+    width: 160px;
   }
 
   .footer {
     height: 40px;
     width: 100%;
+    padding-top: 7px;
+    padding-bottom: 0;
+    border-top: 1px solid white;
+    border-right: none;
   }
 }
