@@ -44,7 +44,7 @@ const Header = ({ setSearchTerm, inputElement }) => {
 
 const HeaderContainer = styled.header`
   border-bottom: 2px solid white;
-  padding: 20px 40px;
+  padding: 10px 40px;
   box-sizing: border-box;
   align-items: center;
   justify-content: space-between;
