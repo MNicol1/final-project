@@ -28,7 +28,7 @@ const Radio = ({ item }) => {
   };
   const renderAudioControl = () => {
     if (isLoading && isCurrentRadioPlaying) {
-      return <FaSpinner className="spin-icon" />;
+      return <FaSpinner className="spin-icon" style={{ fontSize: "20px" }} />;
     } else if (isCurrentRadioPlaying) {
       return <FaPause />;
     } else {

@@ -60,10 +60,13 @@ const HeaderContainer = styled.header`
   @media (max-width: 880px) {
     display: block;
     width: 100%;
+    border-bottom: 1px solid white;
+    padding-bottom: 15px;
   }
 
   @media (max-width: 390px) {
     padding: 15px;
+    border-bottom: 1px solid white;
   }
 `;
 
@@ -91,6 +94,10 @@ const Logo = styled.div`
 
   @media (max-width: 430px) {
     font-size: 1.8em;
+  }
+
+  @media (max-width: 430px) {
+    font-size: 2.1em;
   }
 `;
 

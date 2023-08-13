@@ -15,6 +15,8 @@ export const AudioProvider = ({ children }) => {
 
   const [currentItem, setCurrentItem] = useState(null);
 
+  const [isAudioFooterVisible, setIsAudioFooterVisible] = useState(false);
+
   // const playAudio = (url) => {
   //   setCurrentlyPlayingURL(url);
   //   setIsPlaying(true);
@@ -24,6 +26,7 @@ export const AudioProvider = ({ children }) => {
     setCurrentlyPlayingURL(url);
     setIsPlaying(true);
     setIsLoading(true); // Add this
+    setIsAudioFooterVisible(true);
   };
 
   const pauseAudio = () => {
@@ -42,6 +45,8 @@ export const AudioProvider = ({ children }) => {
         setIsLoading,
         currentItem,
         setCurrentItem,
+        isAudioFooterVisible,
+        setIsAudioFooterVisible,
       }}
     >
       {children}

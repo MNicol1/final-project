@@ -107,14 +107,17 @@ const Close = styled.button`
 `;
 
 const Space = styled.div`
-  padding: 5px 0px;
+  padding-top: 5px;
 `;
 
 const Container = styled.div`
   padding: 40px;
   margin-bottom: 300px;
   @media (max-width: 769px) {
-    margin-bottom: 70px;
+    margin-bottom: 100px;
+  }
+  @media (max-width: 380px) {
+    padding: 30px;
   }
 `;
 
@@ -160,6 +163,11 @@ const Country = styled(NavLink)`
   @media (max-width: 880px) {
     font-size: 22px;
     padding-top: 20px;
+  }
+
+  @media (max-width: 380px) {
+    font-size: 20px;
+    padding-top: 10px;
   }
 `;
 

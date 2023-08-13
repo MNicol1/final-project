@@ -1,10 +1,9 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import { Link } from 'react-router-dom';
-import { FaAngleDown } from "react-icons/fa";
-
+import * as React from "react";
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import { Link } from "react-router-dom";
+import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 
 export default function BasicMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -18,66 +17,165 @@ export default function BasicMenu() {
 
   const linkSx = {
     "&:hover": {
-        backgroundColor: "#f8d6fe"
-      }
-
-  }
+      backgroundColor: "#f8d6fe",
+    },
+  };
 
   return (
     <div>
       <Button
-      disableRipple
-      sx={{"&:hover": {
-        color: "#f8d6fe"
-      }, textTransform: "none", fontSize: { xs: "18px", sm: "19px" }}}
+        disableRipple
+        sx={{
+          textTransform: "none",
+          fontSize: { xs: "20px", sm: "19px" },
+          // Apply hover styles only for screens larger than 600px
+          "@media (min-width: 900px)": {
+            "&:hover": {
+              color: "#f8d6fe",
+            },
+          },
+        }}
         id="basic-button"
         color="inherit"
         fontFamily="inherit"
-        aria-controls={open ? 'positioned-menu' : undefined}
+        aria-controls={open ? "positioned-menu" : undefined}
         aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
+        aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        By Genre {" "}  <span> <FaAngleDown /></span>
+        By Genre{" "}
+        <span>
+          {open ? (
+            <FaAngleUp style={{ paddingTop: "6px" }} />
+          ) : (
+            <FaAngleDown style={{ paddingTop: "6px" }} />
+          )}
+        </span>
       </Button>
       <Menu
-      sx={{maxHeight: 260}} 
-    //  elevation={0}
-  
+        sx={{ maxHeight: 260 }}
+        //  elevation={0}
 
-       anchorOrigin={{
-        vertical: 'bottom',
-        horizontal: 'center',
-      }}
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'center',
-      }}
-    
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "center",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "center",
+        }}
         id="positioned-menu"
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
         MenuListProps={{
-          'aria-labelledby': 'basic-button',
+          "aria-labelledby": "basic-button",
         }}
       >
-         <MenuItem sx={linkSx} component={Link}  onClick={handleClose} to="?genre=">All</MenuItem>
-        <MenuItem sx={linkSx} component={Link}  onClick={handleClose} to="?genre=pop">Pop</MenuItem>
-        <MenuItem sx={linkSx} component={Link}  onClick={handleClose} to="?genre=classical">Classical</MenuItem>
-        <MenuItem sx={linkSx} component={Link}  onClick={handleClose} to="?genre=jazz">Jazz</MenuItem>
-        <MenuItem sx={linkSx} component={Link}  onClick={handleClose} to="?genre=hiphop">Hiphop</MenuItem>
-        <MenuItem sx={linkSx} component={Link}  onClick={handleClose} to="?genre=house">House</MenuItem>
-        <MenuItem sx={linkSx} component={Link}  onClick={handleClose} to="?genre=folk">Folk</MenuItem>
-        <MenuItem sx={linkSx} component={Link}  onClick={handleClose} to="?genre=country">Country</MenuItem>
-        <MenuItem sx={linkSx} component={Link}  onClick={handleClose} to="?genre=electronic">Electronic</MenuItem>
-        <MenuItem sx={linkSx} component={Link}  onClick={handleClose} to="?genre=indie">Indie</MenuItem>
-        <MenuItem sx={linkSx} component={Link}  onClick={handleClose} to="?genre=chillout">Chillout</MenuItem>
-        <MenuItem sx={linkSx} component={Link}  onClick={handleClose} to="?genre=80s">80s</MenuItem>
-        <MenuItem sx={linkSx} component={Link}  onClick={handleClose} to="?genre=90s">90s</MenuItem>
-
-    
-       
+        <MenuItem
+          sx={linkSx}
+          component={Link}
+          onClick={handleClose}
+          to="?genre="
+        >
+          All
+        </MenuItem>
+        <MenuItem
+          sx={linkSx}
+          component={Link}
+          onClick={handleClose}
+          to="?genre=pop"
+        >
+          Pop
+        </MenuItem>
+        <MenuItem
+          sx={linkSx}
+          component={Link}
+          onClick={handleClose}
+          to="?genre=classical"
+        >
+          Classical
+        </MenuItem>
+        <MenuItem
+          sx={linkSx}
+          component={Link}
+          onClick={handleClose}
+          to="?genre=jazz"
+        >
+          Jazz
+        </MenuItem>
+        <MenuItem
+          sx={linkSx}
+          component={Link}
+          onClick={handleClose}
+          to="?genre=hiphop"
+        >
+          Hiphop
+        </MenuItem>
+        <MenuItem
+          sx={linkSx}
+          component={Link}
+          onClick={handleClose}
+          to="?genre=house"
+        >
+          House
+        </MenuItem>
+        <MenuItem
+          sx={linkSx}
+          component={Link}
+          onClick={handleClose}
+          to="?genre=folk"
+        >
+          Folk
+        </MenuItem>
+        <MenuItem
+          sx={linkSx}
+          component={Link}
+          onClick={handleClose}
+          to="?genre=country"
+        >
+          Country
+        </MenuItem>
+        <MenuItem
+          sx={linkSx}
+          component={Link}
+          onClick={handleClose}
+          to="?genre=electronic"
+        >
+          Electronic
+        </MenuItem>
+        <MenuItem
+          sx={linkSx}
+          component={Link}
+          onClick={handleClose}
+          to="?genre=indie"
+        >
+          Indie
+        </MenuItem>
+        <MenuItem
+          sx={linkSx}
+          component={Link}
+          onClick={handleClose}
+          to="?genre=chillout"
+        >
+          Chillout
+        </MenuItem>
+        <MenuItem
+          sx={linkSx}
+          component={Link}
+          onClick={handleClose}
+          to="?genre=80s"
+        >
+          80s
+        </MenuItem>
+        <MenuItem
+          sx={linkSx}
+          component={Link}
+          onClick={handleClose}
+          to="?genre=90s"
+        >
+          90s
+        </MenuItem>
       </Menu>
     </div>
   );

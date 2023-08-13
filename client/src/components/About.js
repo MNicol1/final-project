@@ -36,7 +36,7 @@ const Container = styled.div`
 
   @media (max-width: 380px) {
     display: inline-block;
-    padding: 10px 5px;
+    padding: 15px 10px;
     margin-top: 20px;
     padding-bottom: 80px;
   }
@@ -64,7 +64,7 @@ const Main = styled.div`
   }
 
   @media (max-width: 380px) {
-    padding: 35px 12px;
+    padding: 15px 20px;
   }
 `;
 

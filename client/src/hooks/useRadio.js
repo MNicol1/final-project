@@ -1,42 +1,83 @@
 import { useEffect, useState } from "react";
 import { RadioBrowserApi } from "radio-browser-api";
-
 import { useSearchParams } from "react-router-dom";
 
 const browserRadioApi = new RadioBrowserApi("My Radio App");
 
-const useRadio = ({ country, limit = 4}) => {
+const useRadio = ({ country, limit = 4 }) => {
   const [params] = useSearchParams();
-
   const genre = params.get("genre") ? [params.get("genre")] : [];
 
   const [stations, setStations] = useState([]);
+  const [loading, setLoading] = useState(true); // Initialize loading state as true
+  const [error, setError] = useState(null); // Initialize error state as null
+
   const setupApi = async () => {
-    const radioStations = await browserRadioApi
-      .searchStations({
+    try {
+      const radioStations = await browserRadioApi.searchStations({
         country: country,
         tagList: genre,
-
         limit: limit,
-      })
-      .then((data) => {
-        return data;
-      })
-      .catch((error) => {
-        console.log(error);
       });
-
-    return radioStations;
+      return radioStations;
+    } catch (err) {
+      setError(err.message || "An error occurred"); // Capture and set the error
+      return [];
+    }
   };
 
   useEffect(() => {
+    setLoading(true); // Set loading to true at the start of the effect
     setupApi().then((data) => {
       setStations(data);
-      // console.log(data);
+      setLoading(false); // Set loading to false once data is fetched
     });
   }, [country, params]);
 
-  return stations;
+  return { stations, loading, error };
 };
 
 export default useRadio;
+
+// import { useEffect, useState } from "react";
+// import { RadioBrowserApi } from "radio-browser-api";
+
+// import { useSearchParams } from "react-router-dom";
+
+// const browserRadioApi = new RadioBrowserApi("My Radio App");
+
+// const useRadio = ({ country, limit = 4}) => {
+//   const [params] = useSearchParams();
+
+//   const genre = params.get("genre") ? [params.get("genre")] : [];
+
+//   const [stations, setStations] = useState([]);
+//   const setupApi = async () => {
+//     const radioStations = await browserRadioApi
+//       .searchStations({
+//         country: country,
+//         tagList: genre,
+
+//         limit: limit,
+//       })
+//       .then((data) => {
+//         return data;
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//       });
+
+//     return radioStations;
+//   };
+
+//   useEffect(() => {
+//     setupApi().then((data) => {
+//       setStations(data);
+//       // console.log(data);
+//     });
+//   }, [country, params]);
+
+//   return stations;
+// };
+
+// export default useRadio;

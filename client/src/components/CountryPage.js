@@ -8,6 +8,8 @@ import styled from "styled-components";
 import { useState } from "react";
 import "./pagination.css";
 
+import { FaSpinner } from "react-icons/fa";
+
 import "./Header.css";
 // import { Link } from "react-router-dom";
 // import { FaAngleDown } from "react-icons/fa";
@@ -16,7 +18,10 @@ import BasicMenu from "./BasicMenu";
 const CountryPage = () => {
   const { country } = useParams();
 
-  const stations = useRadio({ country: country, limit: 160 });
+  const { stations, loading, error } = useRadio({
+    country: country,
+    limit: 160,
+  });
 
   const [page, setPage] = useState(0);
   const stationsPerPage = 12;
@@ -43,11 +48,21 @@ const CountryPage = () => {
     // window.scrollTo(0, 9999); trying to manage scroll up or down at paginate
   };
 
-  if (stations.length === 0) {
+  if (loading) {
     return (
       <Main>
         <Msg>
-          <GiMusicalNotes size={22} /> loading.......no stations found
+          <FaSpinner size={36} className="spin-icon" />
+        </Msg>
+      </Main>
+    );
+  }
+
+  if (!loading && stations.length === 0) {
+    return (
+      <Main>
+        <Msg>
+          <GiMusicalNotes size={22} /> No stations found
         </Msg>
       </Main>
     );
@@ -74,13 +89,10 @@ const CountryPage = () => {
           nextLinkClassName={"nextButton"}
           disabledClassName={"navigationDisabled"}
           activeClassName={"navigationActive"}
+          // added these to try paginate fix  break label on next click
 
-
-  // added these to try paginate fix  break label on next click 
-
-          pageRangeDisplayed={2}   
-          marginPagesDisplayed={2} 
-        
+          pageRangeDisplayed={2}
+          marginPagesDisplayed={2}
 
           // this will break label the paginate :  // pageRangeDisplayed={10}
 
@@ -92,7 +104,7 @@ const CountryPage = () => {
 };
 
 const NCContainer = styled.div`
-  padding: 12px 0px;
+  padding: 2px 0px;
   /* display: flex;
 align-items: center; */
   /* justify-content: space-between; */

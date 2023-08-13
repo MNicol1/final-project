@@ -4,9 +4,9 @@ import Radio from "./Radio";
 import styled from "styled-components";
 
 const Home = () => {
-  const stations = useRadio({ country: "", limit: 9 });
+  const { stations, loading, error } = useRadio({ country: "", limit: 9 });
 
-  if (stations) {
+  if (Array.isArray(stations)) {
     const uniqueStations = stations.filter((station, index, self) => {
       const nameMatch =
         index === self.findIndex((s) => s.name === station.name);
@@ -47,3 +47,17 @@ const Content = styled.p`
 `;
 
 export default Home;
+
+// CHANGE FOR ERROR HANDLING
+
+// const Home = () => {
+//   const stations = useRadio({ country: "", limit: 9 });
+
+//   if (stations) {
+//     const uniqueStations = stations.filter((station, index, self) => {
+//       const nameMatch =
+//         index === self.findIndex((s) => s.name === station.name);
+//       const urlMatch =
+//         index === self.findIndex((s) => s.urlResolved === station.urlResolved);
+//       return nameMatch && urlMatch;
+//     });

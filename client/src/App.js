@@ -6,16 +6,18 @@ import Header from "./components/Header";
 import Home from "./components/Home";
 import About from "./components/About";
 
-import styled from "styled-components";
 import { useRef, useState } from "react";
 import AudioFooter from "./components/AudioFooter";
 
 import "./App.css";
+import { useAudio } from "./components/AudioContext";
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const inputElement = useRef(null);
+
+  const { isAudioFooterVisible } = useAudio();
 
   return (
     <>
@@ -41,7 +43,7 @@ const App = () => {
           <Route path="/countries/:country" element={<CountryPage />} />
         </Routes>
       </div>
-      <AudioFooter />
+      {isAudioFooterVisible && <AudioFooter />}
     </>
   );
 };
