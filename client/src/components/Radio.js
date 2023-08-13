@@ -115,6 +115,13 @@ const AudioButton = styled.button`
   border-radius: 20px;
   cursor: pointer;
 
+  @media (min-width: 769px) {
+    :hover {
+      background-color: #f8d6fe;
+      transition: 0.3s ease-in-out;
+    }
+  }
+
   @media (max-width: 380px) {
     height: 35px;
     width: 150px;

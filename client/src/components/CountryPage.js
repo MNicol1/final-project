@@ -1,11 +1,11 @@
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import useRadio from "../hooks/useRadio";
 import { GiMusicalNotes } from "react-icons/gi";
 import ReactPaginate from "react-paginate";
 import Radio from "./Radio";
 import { RadioContainer, RadioList } from "./styles";
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./pagination.css";
 
 import { FaSpinner } from "react-icons/fa";
@@ -17,6 +17,8 @@ import BasicMenu from "./BasicMenu";
 
 const CountryPage = () => {
   const { country } = useParams();
+  const [params] = useSearchParams();
+  const currentGenre = params.get("genre");
 
   const { stations, loading, error } = useRadio({
     country: country,
@@ -45,8 +47,13 @@ const CountryPage = () => {
   const changePage = ({ selected }) => {
     setPage(selected);
 
-    // window.scrollTo(0, 9999); trying to manage scroll up or down at paginate
+    // window.scrollTo(0, 0);
+    //   to manage scroll up or down at paginate
   };
+
+  useEffect(() => {
+    setPage(0);
+  }, [currentGenre]);
 
   if (loading) {
     return (
