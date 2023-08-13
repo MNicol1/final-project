@@ -139,4 +139,10 @@
     border-top: 1px solid white;
     border-right: none;
   }
+
+  .spin-icon {
+    animation: spin 1s linear infinite;
+    font-size: 0.6em;
+    padding: 5px 5px;
+  }
 }

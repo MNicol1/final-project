@@ -52,7 +52,7 @@ const CountryPage = () => {
     return (
       <Main>
         <Msg>
-          <FaSpinner size={36} className="spin-icon" />
+          <FaSpinner size={32} className="spin-icon" />
         </Msg>
       </Main>
     );
