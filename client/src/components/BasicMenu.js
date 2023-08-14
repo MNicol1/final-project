@@ -46,9 +46,9 @@ export default function BasicMenu() {
         By Genre{" "}
         <span>
           {open ? (
-            <FaAngleUp style={{ paddingTop: "6px" }} />
+            <FaAngleUp style={{ paddingTop: "9px" }} />
           ) : (
-            <FaAngleDown style={{ paddingTop: "6px" }} />
+            <FaAngleDown style={{ paddingTop: "9px" }} />
           )}
         </span>
       </Button>
