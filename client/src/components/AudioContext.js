@@ -17,6 +17,8 @@ export const AudioProvider = ({ children }) => {
 
   const [isAudioFooterVisible, setIsAudioFooterVisible] = useState(false);
 
+  const [sourceError, setSourceError] = useState(null);
+
   // const playAudio = (url) => {
   //   setCurrentlyPlayingURL(url);
   //   setIsPlaying(true);
@@ -47,6 +49,8 @@ export const AudioProvider = ({ children }) => {
         setCurrentItem,
         isAudioFooterVisible,
         setIsAudioFooterVisible,
+        sourceError,
+        setSourceError,
       }}
     >
       {children}

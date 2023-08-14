@@ -16,6 +16,7 @@ const AudioFooter = () => {
     pauseAudio,
     playAudio,
     currentItem,
+    setSourceError,
   } = useAudio();
 
   const audioRef = useRef(null);
@@ -88,9 +89,18 @@ const AudioFooter = () => {
         src={currentURL}
         onPlay={() => setIsLoading(false)}
         onPause={() => setIsPlaying(false)}
-        onCanPlay={() => setIsLoading(false)}
+        onCanPlay={() => {
+          setIsLoading(false);
+          setSourceError(null); // Reset the error state when the audio is ready to play.
+        }}
         onWaiting={() => setIsLoading(true)}
         // onStalled={() => setIsLoading(true)}
+        onError={() => {
+          setIsLoading(false);
+          setIsPlaying(false);
+          // Update your context with an error state
+          setSourceError(currentURL); // Or use some unique identifier if not the URL
+        }}
       />
 
       <button className="playpause-button" onClick={togglePlay}>

@@ -14,6 +14,7 @@ const Radio = ({ item }) => {
     currentURL,
     isLoading,
     setCurrentItem,
+    sourceError,
   } = useAudio();
 
   const isCurrentRadioPlaying = currentURL === item.urlResolved && isPlaying;
@@ -26,8 +27,20 @@ const Radio = ({ item }) => {
       setCurrentItem(item);
     }
   };
+  // const renderAudioControl = () => {
+  //   if (isLoading && isCurrentRadioPlaying) {
+  //     return <FaSpinner className="spin-icon" style={{ fontSize: "20px" }} />;
+  //   } else if (isCurrentRadioPlaying) {
+  //     return <FaPause />;
+  //   } else {
+  //     return <FaPlay />;
+  //   }
+  // };
+
   const renderAudioControl = () => {
-    if (isLoading && isCurrentRadioPlaying) {
+    if (sourceError === item.urlResolved) {
+      return <ErrorMsg>Error: No source found</ErrorMsg>;
+    } else if (isLoading && isCurrentRadioPlaying) {
       return <FaSpinner className="spin-icon" style={{ fontSize: "20px" }} />;
     } else if (isCurrentRadioPlaying) {
       return <FaPause />;
@@ -55,6 +68,14 @@ const Radio = ({ item }) => {
     </Container>
   );
 };
+
+const ErrorMsg = styled.div`
+  font-size: 0.7em;
+
+  @media (max-width: 400px) {
+    font-size: 0.5em;
+  }
+`;
 
 const Container = styled.div`
   border: 1px solid white;
