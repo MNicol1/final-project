@@ -42,10 +42,27 @@
     .link,
     .link-active {
         font-size: 1.3em;
+        margin: 0;
+        padding: 2px 0px;
+        margin-right: 15px;
      
         
     }
 }
+
+@media only screen 
+    and (min-device-width: 769px) 
+    and (max-device-width: 1366px) {
+      .link,
+      .link-active {
+          margin: 0;
+          width: fit-content;
+          font-size: 1.4em;
+          margin-right: 25px;
+      }
+}
+
+
 
 /* Tablet and small desktop styles */
 @media (min-width: 651px) and (max-width: 768px) {
