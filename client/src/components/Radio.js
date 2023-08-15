@@ -135,6 +135,7 @@ const AudioButton = styled.button`
   align-items: center;
   border-radius: 20px;
   cursor: pointer;
+  border: none;
 
   @media (min-width: 769px) {
     :hover {
