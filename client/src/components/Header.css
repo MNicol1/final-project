@@ -1,5 +1,20 @@
 /* Mobile First Approach */
 
+
+.links {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+@media (max-width: 650px) {
+  .links {
+    display: block;
+    margin: 0;
+    padding: 2px 0px;
+  }
+}
+
 /* Base Styles: These styles apply for all devices initially */
 .link,
 .link-active {
@@ -16,7 +31,9 @@
 @media (max-width: 380px) {
     .link,
     .link-active {
-        font-size: 19px;
+        font-size: 1.2em;
+        margin: 0;
+        padding: 2px 10px;
     }
 }
 
@@ -25,6 +42,8 @@
     .link,
     .link-active {
         font-size: 1.3em;
+     
+        
     }
 }
 

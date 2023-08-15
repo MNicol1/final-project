@@ -18,7 +18,7 @@ const Header = ({ setSearchTerm, inputElement }) => {
           </Logo>
         </Head>
 
-        <Links>
+        <div className="links">
           <NavLink
             className={({ isActive }) => (isActive ? "link-active" : "link")}
             onClick={() => {
@@ -36,7 +36,7 @@ const Header = ({ setSearchTerm, inputElement }) => {
           >
             About
           </NavLink>
-        </Links>
+        </div>
       </HeaderContainer>
     </>
   );
@@ -48,7 +48,7 @@ const HeaderContainer = styled.header`
   box-sizing: border-box;
   align-items: center;
   justify-content: space-between;
-  width: 100vw;
+  width: 100%;
   display: flex;
   /* max-width: 100%; */
 
@@ -92,25 +92,25 @@ const Logo = styled.div`
   font-size: 2.7em;
   margin-bottom: 16px;
 
-  @media (max-width: 430px) {
+  /* @media (max-width: 430px) {
     font-size: 1.8em;
-  }
+  } */
 
   @media (max-width: 430px) {
     font-size: 2.1em;
   }
 `;
 
-const Links = styled.div`
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
+// const Links = styled.div`
+//   display: flex;
+//   align-items: center;
+//   flex-shrink: 0;
 
-  @media (max-width: 650px) {
-    display: block;
-    margin: 0;
-    padding: 2px 0px;
-  }
-`;
+//   @media (max-width: 650px) {
+//     display: block;
+//     margin: 0;
+//     padding: 2px 0px;
+//   }
+// `;
 
 export default Header;
