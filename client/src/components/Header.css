@@ -1,4 +1,96 @@
-/* Common styles for both mobile and desktop */
+/* Mobile First Approach */
+
+/* Base Styles: These styles apply for all devices initially */
+.link,
+.link-active {
+    position: relative;
+    margin: 30px;
+    text-decoration: none;
+    font-size: 20px;
+    font-family: inherit;
+    color: inherit;
+    padding-bottom: 2px;
+}
+
+/* Smaller mobile styles */
+@media (max-width: 380px) {
+    .link,
+    .link-active {
+        font-size: 19px;
+    }
+}
+
+/* Mobile styles */
+@media (min-width: 381px) and (max-width: 650px) {
+    .link,
+    .link-active {
+        font-size: 1.3em;
+    }
+}
+
+/* Tablet and small desktop styles */
+@media (min-width: 651px) and (max-width: 768px) {
+    .link,
+    .link-active {
+        margin: 0;
+        width: fit-content;
+        font-size: 1.3em;
+        margin-right: 25px;
+    }
+}
+
+/* Desktop styles */
+@media (min-width: 769px) {
+    .link:hover,
+    .link-active {
+        color: #f8d6fe;
+    }
+
+    .link:hover:before {
+        width: 100%;
+        left: 0%;
+    }
+
+    .logo:hover .blink {
+        animation: logoAnimate 2s infinite;
+    }
+}
+
+/* Other styles and animations */
+
+.link:before,
+.link-active:before {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    content: "";
+    background-color: #f8d6fe;
+    width: 0%;
+    height: 2px;
+    transition: width 0.7s, left 0.7s;
+}
+
+.link-active:before {
+    width: 100%;
+    left: 0%;
+}
+
+@keyframes logoAnimate {
+    0% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+
+/* 
+V1 
 span {
   margin-bottom: -5%;
 }
@@ -26,7 +118,7 @@ span {
   transition: width 0.7s, left 0.7s;
 }
 
-/* Animation keyframes */
+
 @keyframes logoAnimate {
   0% {
     opacity: 0.5;
@@ -44,7 +136,7 @@ span {
   left: 0%;
 }
 
-/* Desktop styles */
+
 @media (min-width: 769px) {
   .logo:hover .blink {
     animation: logoAnimate 2s infinite;
@@ -60,8 +152,8 @@ span {
     left: 0%;
   }
 }
-/* Tablet and small desktop styles */
-@media (max-width: 768px) and (orientation: portrait) {
+
+@media (max-width: 768px) {
   .link,
   .link-active {
     margin: 0;
@@ -71,21 +163,26 @@ span {
   }
 }
 
-/* Mobile styles */
-@media (max-width: 650px) and (orientation: portrait) {
+
+@media (max-width: 650px) {
   .link,
   .link-active {
     font-size: 1.3em;
   }
 }
 
-/* Smaller mobile styles */
-@media (max-width: 380px) and (orientation: portrait) {
+
+@media (max-width: 380px) {
   .link,
   .link-active {
     font-size: 19px;
   }
-}
+} */
+
+
+
+/* V2 */
+
 
 /* OLD  */
 
