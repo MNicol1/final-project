@@ -81,6 +81,16 @@ const CountryPage = () => {
       <hr style={{ backgroundColor: "white" }} />
       <NCContainer>
         <BasicMenu />
+
+        {currentGenre && ( // Display only if a genre has been selected
+          <GenreInfo>
+            <GenreTitle>
+              {currentGenre.charAt(0).toUpperCase() + currentGenre.slice(1)}
+            </GenreTitle>{" "}
+            {/* Capitalize the first letter */}
+            <TotalStations>({uniqueStations.length} results)</TotalStations>
+          </GenreInfo>
+        )}
       </NCContainer>
 
       <RadioList>{displayStations}</RadioList>
@@ -116,6 +126,23 @@ const NCContainer = styled.div`
 align-items: center; */
   /* justify-content: space-between; */
 `;
+
+const GenreInfo = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 15px 13px 15px;
+  margin-bottom: 5px;
+
+  @media (max-width: 769px) {
+    margin-bottom: 0;
+    padding: 0px 15px;
+  }
+`;
+
+const GenreTitle = styled.span``;
+
+const TotalStations = styled.span``;
 
 const Name = styled.h3`
   /* text-decoration: underline;     
