@@ -94,16 +94,16 @@ const CountryPage = () => {
       </NCContainer>
 
       <RadioList>
-      {(!loading && stations.length === 0) ? (
-        <Main2>
-          <Msg2>
-            <GiMusicalNotes size={22} /> No stations found
-          </Msg2>
-        </Main2>
-      ) : (
-        displayStations
-      )}
-    </RadioList>
+        {!loading && stations.length === 0 ? (
+          <Main2>
+            <Msg2>
+              <GiMusicalNotes size={22} /> No stations found
+            </Msg2>
+          </Main2>
+        ) : (
+          displayStations
+        )}
+      </RadioList>
       <Page>
         <ReactPaginate
           breakLabel="..."
@@ -155,10 +155,9 @@ const GenreTitle = styled.span``;
 const TotalStations = styled.span``;
 
 const Name = styled.h3`
-  /* text-decoration: underline;     
-            text-decoration-color: white;  */
-  /* border-bottom: 1px solid white;
-            width: fit-content; */
+  @media (min-width: 1000px) {
+    font-size: 23px;
+  }
 `;
 
 const Main = styled.div`
@@ -173,9 +172,8 @@ const Msg = styled.h3`
   }
 `;
 
-
 const Main2 = styled.div`
-  grid-column: 1 / -1;  // This spans the entire width of the grid
+  grid-column: 1 / -1; // This spans the entire width of the grid
   display: flex;
   justify-content: center;
   align-items: center;
@@ -184,13 +182,10 @@ const Main2 = styled.div`
 `;
 
 const Msg2 = styled.h3`
-
   @media (max-width: 1200px) {
     font-size: 14px;
   }
 `;
-
-
 
 const Page = styled.div`
   padding: 30px 0px;

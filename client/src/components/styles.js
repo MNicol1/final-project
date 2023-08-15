@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const RadioContainer = styled.div`
-  padding: 40px 40px;
+  padding: 30px 40px;
   margin-bottom: 10px;
 
   position: relative;
