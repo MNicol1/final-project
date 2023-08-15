@@ -65,15 +65,15 @@ const CountryPage = () => {
     );
   }
 
-  if (!loading && stations.length === 0) {
-    return (
-      <Main>
-        <Msg>
-          <GiMusicalNotes size={22} /> No stations found
-        </Msg>
-      </Main>
-    );
-  }
+  // if (!loading && stations.length === 0) {
+  //   return (
+  //     <Main>
+  //       <Msg>
+  //         <GiMusicalNotes size={22} /> No stations found
+  //       </Msg>
+  //     </Main>
+  //   );
+  // }
 
   return (
     <RadioContainer>
@@ -93,7 +93,17 @@ const CountryPage = () => {
         )}
       </NCContainer>
 
-      <RadioList>{displayStations}</RadioList>
+      <RadioList>
+      {(!loading && stations.length === 0) ? (
+        <Main2>
+          <Msg2>
+            <GiMusicalNotes size={22} /> No stations found
+          </Msg2>
+        </Main2>
+      ) : (
+        displayStations
+      )}
+    </RadioList>
       <Page>
         <ReactPaginate
           breakLabel="..."
@@ -162,6 +172,25 @@ const Msg = styled.h3`
     font-size: 14px;
   }
 `;
+
+
+const Main2 = styled.div`
+  grid-column: 1 / -1;  // This spans the entire width of the grid
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 25vh;
+`;
+
+const Msg2 = styled.h3`
+
+  @media (max-width: 1200px) {
+    font-size: 14px;
+  }
+`;
+
+
 
 const Page = styled.div`
   padding: 30px 0px;
