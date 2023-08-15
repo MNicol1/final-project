@@ -1,6 +1,5 @@
 /* Mobile First Approach */
 
-
 .links {
   display: flex;
   align-items: center;
@@ -18,112 +17,108 @@
 /* Base Styles: These styles apply for all devices initially */
 .link,
 .link-active {
-    position: relative;
-    margin: 30px;
-    text-decoration: none;
-    font-size: 20px;
-    font-family: inherit;
-    color: inherit;
-    padding-bottom: 2px;
+  position: relative;
+  margin: 30px;
+  text-decoration: none;
+  font-size: 20px;
+  font-family: inherit;
+  color: inherit;
+  padding-bottom: 2px;
 }
 
 /* Smaller mobile styles */
 @media (max-width: 380px) {
-    .link,
-    .link-active {
-        font-size: 1.2em;
-        margin: 0;
-        padding: 2px 10px;
-    }
+  .link,
+  .link-active {
+    font-size: 20px;
+    margin: 0;
+    margin-right: 25px;
+  }
 }
 
 /* Mobile styles */
 @media (min-width: 381px) and (max-width: 650px) {
-    .link,
-    .link-active {
-        font-size: 1.3em;
-        margin: 0;
-        padding: 2px 0px;
-        margin-right: 15px;
-     
-        
-    }
+  .link,
+  .link-active {
+    font-size: 1.3em;
+    margin: 0;
+    padding: 2px 0px;
+    margin-right: 25px;
+  }
 }
 
-@media only screen 
-    and (min-device-width: 769px) 
-    and (max-device-width: 1366px) {
-      .link,
-      .link-active {
-          margin: 0;
-          width: fit-content;
-          font-size: 1.4em;
-          margin-right: 25px;
-      }
+@media only screen and (min-device-width: 769px) and (max-device-width: 1366px) {
+  .link,
+  .link-active {
+    margin: 0;
+    width: fit-content;
+    font-size: 1.4em;
+    margin-right: 25px;
+  }
 }
-
-
 
 /* Tablet and small desktop styles */
 @media (min-width: 651px) and (max-width: 768px) {
-    .link,
-    .link-active {
-        margin: 0;
-        width: fit-content;
-        font-size: 1.3em;
-        margin-right: 25px;
-    }
+  .link,
+  .link-active {
+    margin: 0;
+    width: fit-content;
+    font-size: 1.3em;
+    margin-right: 25px;
+  }
 }
 
 /* Desktop styles */
 @media (min-width: 769px) {
-    .link:hover,
-    .link-active {
-        color: #f8d6fe;
-    }
+  .link:hover,
+  .link-active {
+    color: #f8d6fe;
+  }
 
-    .link:hover:before {
-        width: 100%;
-        left: 0%;
-    }
+  .link {
+    margin: 0 30px;
+  }
 
-    .logo:hover .blink {
-        animation: logoAnimate 2s infinite;
-    }
+  .link:hover:before {
+    width: 100%;
+    left: 0%;
+  }
+
+  .logo:hover .blink {
+    animation: logoAnimate 2s infinite;
+  }
 }
 
 /* Other styles and animations */
 
 .link:before,
 .link-active:before {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    content: "";
-    background-color: #f8d6fe;
-    width: 0%;
-    height: 2px;
-    transition: width 0.7s, left 0.7s;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  content: "";
+  background-color: #f8d6fe;
+  width: 0%;
+  height: 2px;
+  transition: width 0.7s, left 0.7s;
 }
 
 .link-active:before {
-    width: 100%;
-    left: 0%;
+  width: 100%;
+  left: 0%;
 }
 
 @keyframes logoAnimate {
-    0% {
-        opacity: 0.5;
-    }
-    50% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
-
-
 
 /* 
 V1 
@@ -215,10 +210,7 @@ span {
   }
 } */
 
-
-
 /* V2 */
-
 
 /* OLD  */
 
