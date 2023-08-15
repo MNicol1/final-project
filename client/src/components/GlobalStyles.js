@@ -14,4 +14,10 @@ body {
 
 } 
 
+html {
+  -webkit-text-size-adjust: none;  /* WebKit browsers */
+  -ms-text-size-adjust: none;      /* IE Mobile */
+  text-size-adjust: none;          /* Modern browsers */
+}
+
 `;

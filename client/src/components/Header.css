@@ -40,7 +40,7 @@
 @media (min-width: 381px) and (max-width: 650px) {
   .link,
   .link-active {
-    font-size: 1.3em;
+    font-size: 22px;
     margin: 0;
     padding: 2px 0px;
     margin-right: 25px;
@@ -52,7 +52,7 @@
   .link-active {
     margin: 0;
     width: fit-content;
-    font-size: 1.4em;
+    font-size: 23px;
     margin-right: 25px;
   }
 }
@@ -63,7 +63,7 @@
   .link-active {
     margin: 0;
     width: fit-content;
-    font-size: 1.3em;
+    font-size: 22px;
     margin-right: 25px;
   }
 }
