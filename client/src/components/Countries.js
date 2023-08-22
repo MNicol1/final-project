@@ -1,27 +1,52 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { FiSearch } from "react-icons/fi";
 import { AiOutlineClose } from "react-icons/ai";
+import { CountriesContext } from "./CountriesContext";
 
 const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
-  const [countries, setCountries] = useState();
+  // const [countries, setCountries] = useState();
   const [selectedCountry, setSelectedCountry] = useState(null);
-  // const [searchTerm, setSearchTerm] = useState("");
-  // const inputElement = useRef(null);
 
-  useEffect(() => {
-    const fetchData = () => {
-      fetch("https://de1.api.radio-browser.info/json/countries")
-        .then((response) => {
-          return response.json();
-        })
-        .then((countries) => {
-          return setCountries(countries);
-        });
-    };
-    fetchData();
-  }, []);
+  const { countries } = useContext(CountriesContext);
+
+  // useEffect(() => {
+  //   const fetchData = () => {
+  //     fetch("https://de1.api.radio-browser.info/json/countries")
+  //       .then((response) => {
+  //         return response.json();
+  //       })
+  //       .then((countries) => {
+  //         return setCountries(countries);
+  //       });
+  //   };
+  //   fetchData();
+  // }, []);
+
+  // For using local storage :
+
+  // useEffect(() => {
+  //   const fetchData = () => {
+  //     // Check if data is in local storage
+  //     const cachedCountries = localStorage.getItem('countries');
+
+  //     if (cachedCountries) {
+  //       setCountries(JSON.parse(cachedCountries));
+  //     } else {
+  //       fetch("https://de1.api.radio-browser.info/json/countries")
+  //         .then((response) => {
+  //           return response.json();
+  //         })
+  //         .then((countries) => {
+  //           // Cache the fetched data in local storage
+  //           localStorage.setItem('countries', JSON.stringify(countries));
+  //           setCountries(countries);
+  //         });
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
 
   if (countries) {
     const sortedCountries = countries.sort((a, b) => {

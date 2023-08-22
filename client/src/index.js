@@ -4,18 +4,20 @@ import { HashRouter} from 'react-router-dom';
 
 import App from "./App";
 import { AudioProvider } from "./components/AudioContext";
+import { CountriesProvider } from "./components/CountriesContext";
+
 
  
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-  <React.StrictMode>
-    <AudioProvider>
+ 
+  <CountriesProvider>
+  <AudioProvider>
     <HashRouter>
-  
       <App />
-
     </HashRouter>
-    </AudioProvider>
-  </React.StrictMode>
+  </AudioProvider>
+</CountriesProvider>
+
 );
