@@ -104,6 +104,8 @@ export default function BasicMenu() {
         >
           Jazz
         </MenuItem>
+
+
         <MenuItem
           sx={linkSx}
           component={Link}
@@ -112,6 +114,20 @@ export default function BasicMenu() {
         >
           Hiphop
         </MenuItem>
+
+        <MenuItem
+          sx={linkSx}
+          component={Link}
+          onClick={handleClose}
+          to="?genre=ambient"
+        >
+          Ambient
+        </MenuItem>
+
+
+
+
+
         <MenuItem
           sx={linkSx}
           component={Link}
