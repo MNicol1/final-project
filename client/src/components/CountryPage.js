@@ -22,7 +22,7 @@ const CountryPage = () => {
 
   const { stations, loading, error } = useRadio({
     country: country,
-    limit: 5900,
+    limit: 2500,
   });
 
   const [page, setPage] = useState(0);
@@ -59,21 +59,11 @@ const CountryPage = () => {
     return (
       <Main>
         <Msg>
-          <FaSpinner size={32} className="spin-icon" />
+          <FaSpinner size={30} className="spin-icon" />
         </Msg>
       </Main>
     );
   }
-
-  // if (!loading && stations.length === 0) {
-  //   return (
-  //     <Main>
-  //       <Msg>
-  //         <GiMusicalNotes size={22} /> No stations found
-  //       </Msg>
-  //     </Main>
-  //   );
-  // }
 
   return (
     <RadioContainer>
@@ -157,6 +147,10 @@ const TotalStations = styled.span``;
 const Name = styled.h3`
   @media (min-width: 1000px) {
     font-size: 23px;
+  }
+
+  @media (max-width: 390px) {
+    font-size: 18px;
   }
 `;
 

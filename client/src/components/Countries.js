@@ -24,29 +24,7 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
   //   fetchData();
   // }, []);
 
-  // For using local storage :
-
-  // useEffect(() => {
-  //   const fetchData = () => {
-  //     // Check if data is in local storage
-  //     const cachedCountries = localStorage.getItem('countries');
-
-  //     if (cachedCountries) {
-  //       setCountries(JSON.parse(cachedCountries));
-  //     } else {
-  //       fetch("https://de1.api.radio-browser.info/json/countries")
-  //         .then((response) => {
-  //           return response.json();
-  //         })
-  //         .then((countries) => {
-  //           // Cache the fetched data in local storage
-  //           localStorage.setItem('countries', JSON.stringify(countries));
-  //           setCountries(countries);
-  //         });
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
+  
 
   if (countries) {
     const sortedCountries = countries.sort((a, b) => {

@@ -112,6 +112,7 @@ const StationName = styled.div`
 `;
 const CountryName = styled.div`
   margin: 10px 0px;
+  padding-bottom: 12px;
   height: 40px;
 `;
 
