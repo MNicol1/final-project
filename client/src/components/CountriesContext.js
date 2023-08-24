@@ -7,7 +7,7 @@ export const CountriesProvider = ({ children }) => {
   const [countries, setCountries] = useState(null);
 
   useEffect(() => {
-    fetch("https://de1.api.radio-browser.info/json/countries")
+    fetch("https://nl1.api.radio-browser.info/json/countries")
       .then((response) => response.json())
       .then((data) => setCountries(data));
   }, []);

@@ -22,7 +22,7 @@ const CountryPage = () => {
 
   const { stations, loading, error } = useRadio({
     country: country,
-    limit: 160,
+    limit: 5900,
   });
 
   const [page, setPage] = useState(0);
