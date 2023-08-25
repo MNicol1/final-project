@@ -4,9 +4,33 @@ import Radio from "./Radio";
 import styled from "styled-components";
 
 const Home = () => {
-  const { stations, loading, error } = useRadio({ country: "", limit: 9 });
+  const { stations, error } = useRadio({ country: "", limit: 9 });
 
-  if (Array.isArray(stations)) {
+  if (error) {
+    return (
+      <Main>
+
+<RadioContainer>
+          <h3>Welcome!</h3>
+          <Content>
+            To tune in and listen to radio from around the world, choose
+            stations by country and filter down further by your favorite music
+            genre.
+          </Content>
+
+          <ErrorMessage>
+          An error occurred: Please refresh your browser or try again later. 
+        </ErrorMessage>
+        </RadioContainer>
+
+       
+      </Main>
+    );
+  }
+
+
+
+  if (Array.isArray(stations) && stations.length > 0) {
     const uniqueStations = stations.filter((station, index, self) => {
       const nameMatch =
         index === self.findIndex((s) => s.name === station.name);
@@ -33,9 +57,11 @@ const Home = () => {
         </RadioContainer>
       </Main>
     );
-  } else {
+  } 
+
+
     return null;
-  }
+  
 };
 
 const Main = styled.div`
@@ -44,6 +70,14 @@ const Main = styled.div`
 const Content = styled.p`
   text-align: left;
   text-justify: inter-word;
+`;
+
+const ErrorMessage = styled.div`
+  color: white;
+  padding: 150px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
 `;
 
 export default Home;

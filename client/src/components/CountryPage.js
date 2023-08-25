@@ -65,6 +65,19 @@ const CountryPage = () => {
     );
   }
 
+
+  if (error) {
+    return (
+<Main>
+<ErrorMessage>
+          An error occurred: Please refresh your browser or try again later. 
+        </ErrorMessage>
+
+</Main>
+    );
+  }
+
+
   return (
     <RadioContainer>
       <Name>{country}</Name>
@@ -119,6 +132,15 @@ const CountryPage = () => {
     </RadioContainer>
   );
 };
+
+const ErrorMessage = styled.div`
+  color: white;
+  padding: 150px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+`;
+
 
 const NCContainer = styled.div`
   padding: 2px 0px;
