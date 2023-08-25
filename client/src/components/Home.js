@@ -19,7 +19,7 @@ const Home = () => {
           </Content>
 
           <ErrorMessage>
-          An error occurred: Please refresh your browser or try again later. Also make sure url contains http://... not https://... http://worldwaveradio.ca/ 
+          An error occurred: Please refresh your browser, or try again later. Check url : http://worldwaveradio.ca/ 
         </ErrorMessage>
         </RadioContainer>
 
