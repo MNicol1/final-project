@@ -11,21 +11,6 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
 
   const { countries } = useContext(CountriesContext);
 
-  // useEffect(() => {
-  //   const fetchData = () => {
-  //     fetch("https://de1.api.radio-browser.info/json/countries")
-  //       .then((response) => {
-  //         return response.json();
-  //       })
-  //       .then((countries) => {
-  //         return setCountries(countries);
-  //       });
-  //   };
-  //   fetchData();
-  // }, []);
-
-  
-
   if (countries) {
     const sortedCountries = countries.sort((a, b) => {
       const nameA = a.name.toUpperCase();

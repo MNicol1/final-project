@@ -13,7 +13,7 @@ const Home = () => {
 <RadioContainer>
           <h3>Welcome!</h3>
           <Content>
-            To tune in and listen to radio from around the world, choose
+            To tune in and listen to radio from around the world, simply choose
             stations by country and filter down further by your favorite music
             genre.
           </Content>

@@ -53,7 +53,7 @@ export default function BasicMenu() {
         </span>
       </Button>
       <Menu
-        sx={{ maxHeight: 220 }}
+        sx={{ maxHeight: 175 }}
         //  elevation={0}
 
         anchorOrigin={{
@@ -105,7 +105,6 @@ export default function BasicMenu() {
           Jazz
         </MenuItem>
 
-
         <MenuItem
           sx={linkSx}
           component={Link}
@@ -123,10 +122,6 @@ export default function BasicMenu() {
         >
           Ambient
         </MenuItem>
-
-
-
-
 
         <MenuItem
           sx={linkSx}

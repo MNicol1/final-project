@@ -13,8 +13,8 @@ const About = () => {
         </p>
         <p>
           This site allows users to experience the myriad radio waves that
-          surround the globe. Freely browse radio stations by country and filter
-          radio stations by your favorite music genre. Happy listening!
+          surround the globe. Freely browse radio stations by country, filter
+          stations by your favorite music genre or search for specific radio station names. Happy listening!
         </p>
         <Icons>
           <GiMusicalNotes size={28} /> <ImEarth size={28} />

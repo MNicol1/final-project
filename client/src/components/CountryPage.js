@@ -11,9 +11,11 @@ import "./pagination.css";
 import { FaSpinner } from "react-icons/fa";
 
 import "./Header.css";
-// import { Link } from "react-router-dom";
-// import { FaAngleDown } from "react-icons/fa";
+
 import BasicMenu from "./BasicMenu";
+
+import { FiSearch } from "react-icons/fi";
+import { AiOutlineClose } from "react-icons/ai";
 
 const CountryPage = () => {
   const { country } = useParams();
@@ -22,8 +24,12 @@ const CountryPage = () => {
 
   const { stations, loading, error } = useRadio({
     country: country,
-    limit: 2500,
+    limit: 3500,
   });
+
+  const [nameSearchTerm, setNameSearchTerm] = useState("");
+  const [filteredStations, setFilteredStations] = useState([]);
+  const [hasSearched, setHasSearched] = useState(false);
 
   const [page, setPage] = useState(0);
   const stationsPerPage = 12;
@@ -36,13 +42,15 @@ const CountryPage = () => {
     return nameMatch && urlMatch;
   });
 
-  const displayStations = uniqueStations
+  const stationsToDisplay = nameSearchTerm ? filteredStations : uniqueStations;
+
+  const displayStations = stationsToDisplay
     .slice(numberOfStationsVistited, numberOfStationsVistited + stationsPerPage)
     .map((item) => {
       return <Radio item={item} key={item.id} />;
     });
 
-  const totalPages = Math.ceil(uniqueStations.length / stationsPerPage);
+  const totalPages = Math.ceil(stationsToDisplay.length / stationsPerPage);
 
   const changePage = ({ selected }) => {
     setPage(selected);
@@ -51,36 +59,61 @@ const CountryPage = () => {
     //   to manage scroll up or down at paginate
   };
 
+  const handleSearch = () => {
+    const results = stations.filter((station) =>
+      station.name.toLowerCase().includes(nameSearchTerm.toLowerCase())
+    );
+    setPage(0); // Move this up
+    setFilteredStations(results);
+    setHasSearched(true);
+  };
+
   useEffect(() => {
     setPage(0);
-  }, [currentGenre]);
+  }, [currentGenre, hasSearched]);
 
   if (loading) {
     return (
       <Main>
         <Msg>
-          <FaSpinner size={30} className="spin-icon" />
+          <FaSpinner size={32} className="spin-icon" />
         </Msg>
       </Main>
     );
   }
 
-
-  if (error) {
-    return (
-<Main>
-<ErrorMessage>
-          An error occurred: Please refresh your browser or try again later. 
-        </ErrorMessage>
-
-</Main>
-    );
-  }
-
-
   return (
     <RadioContainer>
-      <Name>{country}</Name>
+      <Name>{country} </Name>
+
+      <SearchBarContainer>
+        <Icon onClick={handleSearch} />
+
+        <SearchInput
+          type="text"
+          placeholder="Search station name..."
+          value={nameSearchTerm}
+          onChange={(e) => {
+            setNameSearchTerm(e.target.value);
+            setHasSearched(false);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              handleSearch();
+              e.target.blur(); // this will make the keyboard close
+            }
+          }}
+        />
+        <Close
+          onClick={() => {
+            setPage(0);
+            setNameSearchTerm("");
+            setHasSearched(false);
+          }}
+        />
+      </SearchBarContainer>
+
       <hr style={{ backgroundColor: "white" }} />
       <NCContainer>
         <BasicMenu />
@@ -97,18 +130,38 @@ const CountryPage = () => {
       </NCContainer>
 
       <RadioList>
-        {!loading && stations.length === 0 ? (
-          <Main2>
-            <Msg2>
-              <GiMusicalNotes size={22} /> No stations found
-            </Msg2>
-          </Main2>
+        {hasSearched ? (
+          stationsToDisplay.length === 0 ? (
+            <Main2>
+              <Msg2>
+                <GiMusicalNotes size={22} /> No stations found
+              </Msg2>
+            </Main2>
+          ) : (
+            stationsToDisplay
+              .slice(
+                numberOfStationsVistited,
+                numberOfStationsVistited + stationsPerPage
+              )
+              .map((item) => {
+                return <Radio item={item} key={item.id} />;
+              })
+          )
         ) : (
-          displayStations
+          uniqueStations
+            .slice(
+              numberOfStationsVistited,
+              numberOfStationsVistited + stationsPerPage
+            )
+            .map((item) => {
+              return <Radio item={item} key={item.id} />;
+            })
         )}
       </RadioList>
+
       <Page>
         <ReactPaginate
+          forcePage={page}
           breakLabel="..."
           previousLabel={"<"}
           nextLabel={">"}
@@ -133,6 +186,50 @@ const CountryPage = () => {
   );
 };
 
+const Icon = styled(FiSearch)`
+  width: 20px;
+  cursor: pointer;
+  color: black;
+`;
+
+const Close = styled(AiOutlineClose)`
+  width: 20px;
+  cursor: pointer;
+  color: black;
+`;
+
+const SearchBarContainer = styled.div`
+  border: 2px solid black;
+  border-radius: 30px;
+  height: 20px;
+  width: 300px;
+  /* background: #a7e1f8; */
+  background: white;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin: 5px 0px 20px 0px;
+
+  @media (max-width: 410px) {
+    width: 70%;
+  }
+`;
+
+const SearchInput = styled.input`
+  font-size: inherit;
+  font-family: inherit;
+  border: 0;
+  border-radius: 30px;
+  flex-grow: 1;
+  outline: none;
+
+  @media (max-width: 410px) {
+    width: 90%;
+  }
+`;
+
 const ErrorMessage = styled.div`
   color: white;
   padding: 150px;
@@ -140,7 +237,6 @@ const ErrorMessage = styled.div`
   text-align: center;
   justify-content: center;
 `;
-
 
 const NCContainer = styled.div`
   padding: 2px 0px;
@@ -172,7 +268,7 @@ const Name = styled.h3`
   }
 
   @media (max-width: 390px) {
-    font-size: 18px;
+    font-size: 20px;
   }
 `;
 
