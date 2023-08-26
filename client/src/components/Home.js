@@ -52,7 +52,7 @@ const Home = () => {
 
           <RadioList>
             {uniqueStations.map((item) => {
-               console.log(uniqueStations);
+            
               return <Radio item={item} key={item.id} />;
 
             })}
