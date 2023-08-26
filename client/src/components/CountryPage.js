@@ -22,7 +22,7 @@ const CountryPage = () => {
   const [params] = useSearchParams();
   const currentGenre = params.get("genre");
 
-  const { stations, loading, error } = useRadio({
+  const { stations, loading} = useRadio({
     country: country,
     limit: 3500,
   });
