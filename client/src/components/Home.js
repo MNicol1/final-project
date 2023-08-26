@@ -3,14 +3,15 @@ import { RadioContainer, RadioList } from "./styles";
 import Radio from "./Radio";
 import styled from "styled-components";
 
+import { BiMessageAltError } from "react-icons/bi";
+
 const Home = () => {
   const { stations, error } = useRadio({ country: "", limit: 9 });
 
   if (error) {
     return (
       <Main>
-
-<RadioContainer>
+        <RadioContainer>
           <h3>Welcome!</h3>
           <Content>
             To tune in and listen to radio from around the world, simply choose
@@ -19,16 +20,16 @@ const Home = () => {
           </Content>
 
           <ErrorMessage>
-          An error occurred: Please refresh your browser, or try again later. Check url : http://worldwaveradio.ca/ 
-        </ErrorMessage>
+            <span>
+              <BiMessageAltError size={40} />
+            </span>
+            An error occurred: Please refresh your browser, or try again later.
+            Check url : http://worldwaveradio.ca/
+          </ErrorMessage>
         </RadioContainer>
-
-       
       </Main>
     );
   }
-
-
 
   if (Array.isArray(stations) && stations.length > 0) {
     const uniqueStations = stations.filter((station, index, self) => {
@@ -51,16 +52,23 @@ const Home = () => {
 
           <RadioList>
             {uniqueStations.map((item) => {
+               console.log(uniqueStations);
               return <Radio item={item} key={item.id} />;
+
             })}
+            
           </RadioList>
         </RadioContainer>
       </Main>
     );
-  } 
 
+    
+  }
 
-    return null;
+ 
+ 
+  return null;
+
   
 };
 
@@ -74,10 +82,15 @@ const Content = styled.p`
 
 const ErrorMessage = styled.div`
   color: white;
-  padding: 150px;
+  padding: 100px;
   display: flex;
   text-align: center;
   justify-content: center;
+  border-top: 1px solid white;
+
+  @media (max-width: 768px) {
+    padding: 70px 5px;
+  }
 `;
 
 export default Home;

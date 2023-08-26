@@ -213,7 +213,7 @@ const SearchBarContainer = styled.div`
   margin: 5px 0px 20px 0px;
 
   @media (max-width: 410px) {
-    width: 70%;
+    width: 75%;
   }
 `;
 
@@ -230,13 +230,6 @@ const SearchInput = styled.input`
   }
 `;
 
-const ErrorMessage = styled.div`
-  color: white;
-  padding: 150px;
-  display: flex;
-  text-align: center;
-  justify-content: center;
-`;
 
 const NCContainer = styled.div`
   padding: 2px 0px;
@@ -268,7 +261,7 @@ const Name = styled.h3`
   }
 
   @media (max-width: 390px) {
-    font-size: 20px;
+    font-size: 19px;
   }
 `;
 
