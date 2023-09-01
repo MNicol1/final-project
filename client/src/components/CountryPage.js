@@ -22,7 +22,7 @@ const CountryPage = () => {
   const [params] = useSearchParams();
   const currentGenre = params.get("genre");
 
-  const { stations, loading} = useRadio({
+  const { stations, loading } = useRadio({
     country: country,
     limit: 3500,
   });
@@ -59,18 +59,57 @@ const CountryPage = () => {
     //   to manage scroll up or down at paginate
   };
 
+  // const handleSearch = () => {
+  //   const results = stations.filter((station) =>
+  //     station.name.toLowerCase().includes(nameSearchTerm.toLowerCase())
+  //   );
+  //   console.log(results);
+  //   setPage(0); // Move this up
+  //   setFilteredStations(results);
+  //   setHasSearched(true);
+  // };
+
   const handleSearch = () => {
     const results = stations.filter((station) =>
       station.name.toLowerCase().includes(nameSearchTerm.toLowerCase())
     );
-    setPage(0); // Move this up
-    setFilteredStations(results);
+
+    // Create an object to keep track of unique station names and their entries
+    const uniqueStationsMap = {};
+
+    // Populate the uniqueStationsMap with the first occurrence of each unique station name
+    results.forEach((station) => {
+      const lowerCaseName = station.name.toLowerCase();
+      if (!uniqueStationsMap[lowerCaseName]) {
+        uniqueStationsMap[lowerCaseName] = station;
+      }
+    });
+
+    // Convert the values of uniqueStationsMap back to an array for display
+    const uniqueStationsArray = Object.values(uniqueStationsMap);
+
+    setPage(0);
+    setFilteredStations(uniqueStationsArray);
     setHasSearched(true);
+
+    if (currentGenre) {
+      setNameSearchTerm("");
+      setFilteredStations([]);
+      setHasSearched(false);
+    }
   };
 
   useEffect(() => {
     setPage(0);
-  }, [currentGenre, hasSearched]);
+    setNameSearchTerm(""); // Reset the search term
+    setFilteredStations([]); // Reset filtered stations
+    setHasSearched(false); // Reset hasSearched
+  }, [currentGenre]);
+
+  // useEffect(() => {
+  //   setPage(0);
+
+  // }, [currentGenre, hasSearched]);
 
   if (loading) {
     return (
@@ -229,7 +268,6 @@ const SearchInput = styled.input`
     width: 90%;
   }
 `;
-
 
 const NCContainer = styled.div`
   padding: 2px 0px;
