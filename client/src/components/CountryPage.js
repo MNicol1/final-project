@@ -24,7 +24,7 @@ const CountryPage = () => {
 
   const { stations, loading } = useRadio({
     country: country,
-    limit: 3500,
+    limit: 5000,
   });
 
   const [nameSearchTerm, setNameSearchTerm] = useState("");
