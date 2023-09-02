@@ -70,33 +70,29 @@ const CountryPage = () => {
   // };
 
   const handleSearch = () => {
-    const results = stations.filter((station) =>
+    const searchResults = stations.filter((station) =>
       station.name.toLowerCase().includes(nameSearchTerm.toLowerCase())
     );
-
-    // Create an object to keep track of unique station names and their entries
+  
+    // If a genre is selected, filter search results by genre
+    const filteredResults = currentGenre
+      ? searchResults.filter((station) => station.tags.includes(currentGenre))
+      : searchResults;
+  
+    // Remove duplicates from filteredResults
     const uniqueStationsMap = {};
-
-    // Populate the uniqueStationsMap with the first occurrence of each unique station name
-    results.forEach((station) => {
+    filteredResults.forEach((station) => {
       const lowerCaseName = station.name.toLowerCase();
       if (!uniqueStationsMap[lowerCaseName]) {
         uniqueStationsMap[lowerCaseName] = station;
       }
     });
-
-    // Convert the values of uniqueStationsMap back to an array for display
     const uniqueStationsArray = Object.values(uniqueStationsMap);
-
+  
     setPage(0);
     setFilteredStations(uniqueStationsArray);
     setHasSearched(true);
-
-    if (currentGenre) {
-      setNameSearchTerm("");
-      setFilteredStations([]);
-      setHasSearched(false);
-    }
+  
   };
 
   useEffect(() => {
