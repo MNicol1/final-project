@@ -16,7 +16,6 @@ const About = () => {
           surround the globe. Freely browse radio stations by country, filter
           stations by your favorite music genre or search for specific radio station names. Happy listening!
         </p>
-        <p>Test</p>
         <Icons>
           <GiMusicalNotes size={28} /> <ImEarth size={28} />
         </Icons>
