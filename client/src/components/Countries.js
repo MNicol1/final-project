@@ -45,6 +45,12 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
             onChange={(event) => {
               setSearchTerm(event.target.value);
             }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                e.target.blur(); // This will make the keyboard close
+              }
+            }}
           />
           <Close onClick={clearSearch}>
             <AiOutlineClose size={20} color="black" />
