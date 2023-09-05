@@ -1,11 +1,12 @@
 // V2
 
-
 import { useEffect, useState } from "react";
 import { RadioBrowserApi } from "radio-browser-api";
 import { useSearchParams } from "react-router-dom";
 
 const browserRadioApi = new RadioBrowserApi("My Radio App");
+
+browserRadioApi.setBaseUrl("https://at1.api.radio-browser.info");
 
 const useRadio = ({ country, limit = 4 }) => {
   const [params] = useSearchParams();
@@ -41,12 +42,6 @@ const useRadio = ({ country, limit = 4 }) => {
 };
 
 export default useRadio;
-
-
-
-
-
-
 
 // SESSION STORAGE
 
@@ -102,11 +97,7 @@ export default useRadio;
 
 // export default useRadio;
 
-
-
-
 // ORIGIN useRadioo
-
 
 // import { useEffect, useState } from "react";
 // import { RadioBrowserApi } from "radio-browser-api";
