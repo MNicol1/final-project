@@ -24,7 +24,6 @@ const Home = () => {
               <BiMessageAltError size={40} />
             </span>
             An error occurred: Please refresh your browser, or try again later.
-            Check url : http://worldwaveradio.ca/
           </ErrorMessage>
         </RadioContainer>
       </Main>
@@ -52,24 +51,15 @@ const Home = () => {
 
           <RadioList>
             {uniqueStations.map((item) => {
-            
               return <Radio item={item} key={item.id} />;
-
             })}
-            
           </RadioList>
         </RadioContainer>
       </Main>
     );
-
-    
   }
 
- 
- 
   return null;
-
-  
 };
 
 const Main = styled.div`
