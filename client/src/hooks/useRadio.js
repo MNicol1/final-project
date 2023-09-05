@@ -6,6 +6,8 @@ import { useSearchParams } from "react-router-dom";
 
 const browserRadioApi = new RadioBrowserApi("My Radio App");
 
+//added baseurl
+
 browserRadioApi.setBaseUrl("https://at1.api.radio-browser.info");
 
 const useRadio = ({ country, limit = 4 }) => {

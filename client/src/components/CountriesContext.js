@@ -6,6 +6,7 @@ export const CountriesContext = createContext();
 export const CountriesProvider = ({ children }) => {
   const [countries, setCountries] = useState(null);
 
+  //Changed url
   useEffect(() => {
     fetch("https://at1.api.radio-browser.info/json/countries")
       .then((response) => response.json())

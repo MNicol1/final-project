@@ -200,7 +200,6 @@ const Input = styled.input`
 
 const Icon = styled(FiSearch)`
   width: 20px;
-
   color: black;
 `;
 
