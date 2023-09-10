@@ -24,18 +24,17 @@ const AudioFooter = () => {
   const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
-    if (isPlaying) {
-      audioRef.current.play();
+    if (isPlaying && currentURL) {
+        audioRef.current.play().catch(error => {
+            console.warn("Play was interrupted:", error);
+        });
     } else {
-      audioRef.current.pause();
+        audioRef.current.pause();
     }
-  }, [isPlaying]);
+}, [isPlaying, currentURL]);
 
-  useEffect(() => {
-    if (currentURL) {
-      audioRef.current.play();
-    }
-  }, [currentURL]);
+
+  
 
   const [volume, setVolume] = useState(0.5); // 0.5 as a default value for volume (50%)
 
