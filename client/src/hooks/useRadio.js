@@ -1,4 +1,4 @@
-// V2
+// https filtered Version
 
 import { useEffect, useState } from "react";
 import { RadioBrowserApi } from "radio-browser-api";
@@ -25,9 +25,19 @@ const useRadio = ({ country, limit = 4 }) => {
         tagList: genre,
         limit: limit,
       });
-      return radioStations;
+
+      // Filter out HTTP stations
+      const httpsOnlyStations = radioStations.filter((station) =>
+        station.urlResolved.startsWith("https://")
+      );
+
+      // Log the count of all stations and HTTPS only stations
+      // console.log('Total fetched radio stations:', radioStations.length);
+      // console.log('HTTPS only radio stations:', httpsOnlyStations.length);
+
+      return httpsOnlyStations;
     } catch (err) {
-      setError(err.message || "An error occurred"); // Capture and set the error
+      setError(err.message || "An error occurred");
       return [];
     }
   };
@@ -44,6 +54,53 @@ const useRadio = ({ country, limit = 4 }) => {
 };
 
 export default useRadio;
+
+// V2
+
+// import { useEffect, useState } from "react";
+// import { RadioBrowserApi } from "radio-browser-api";
+// import { useSearchParams } from "react-router-dom";
+
+// const browserRadioApi = new RadioBrowserApi("My Radio App");
+
+// //added baseurl
+
+// browserRadioApi.setBaseUrl("https://at1.api.radio-browser.info");
+
+// const useRadio = ({ country, limit = 4 }) => {
+//   const [params] = useSearchParams();
+//   const genre = params.get("genre") ? [params.get("genre")] : [];
+
+//   const [stations, setStations] = useState([]);
+//   const [loading, setLoading] = useState(true); // Initialize loading state as true
+//   const [error, setError] = useState(null); // Initialize error state as null
+
+//   const setupApi = async () => {
+//     try {
+//       const radioStations = await browserRadioApi.searchStations({
+//         country: country,
+//         tagList: genre,
+//         limit: limit,
+//       });
+//       return radioStations;
+//     } catch (err) {
+//       setError(err.message || "An error occurred"); // Capture and set the error
+//       return [];
+//     }
+//   };
+
+//   useEffect(() => {
+//     setLoading(true); // Set loading to true at the start of the effect
+//     setupApi().then((data) => {
+//       setStations(data);
+//       setLoading(false); // Set loading to false once data is fetched
+//     });
+//   }, [country, params]);
+
+//   return { stations, loading, error };
+// };
+
+// export default useRadio;
 
 // SESSION STORAGE
 

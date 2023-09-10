@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { BiMessageAltError } from "react-icons/bi";
 
 const Home = () => {
-  const { stations, error } = useRadio({ country: "", limit: 9 });
+  const { stations, error } = useRadio({ country: "", limit: 11 });
 
   if (error) {
     return (
