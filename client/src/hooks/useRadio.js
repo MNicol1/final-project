@@ -30,11 +30,7 @@ const useRadio = ({ country, limit = 4 }) => {
       const httpsOnlyStations = radioStations.filter((station) =>
         station.urlResolved.startsWith("https://")
       );
-
-      // Log the count of all stations and HTTPS only stations
-      // console.log('Total fetched radio stations:', radioStations.length);
-      // console.log('HTTPS only radio stations:', httpsOnlyStations.length);
-
+      
       return httpsOnlyStations;
     } catch (err) {
       setError(err.message || "An error occurred");

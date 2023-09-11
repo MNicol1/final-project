@@ -24,8 +24,10 @@ const CountryPage = () => {
 
   const { stations, loading } = useRadio({
     country: country,
-    limit: 5000,
+    limit: 5890,
   });
+
+  console.log(stations);
 
   const [nameSearchTerm, setNameSearchTerm] = useState("");
   const [filteredStations, setFilteredStations] = useState([]);
@@ -73,12 +75,12 @@ const CountryPage = () => {
     const searchResults = stations.filter((station) =>
       station.name.toLowerCase().includes(nameSearchTerm.toLowerCase())
     );
-  
+
     // If a genre is selected, filter search results by genre
     const filteredResults = currentGenre
       ? searchResults.filter((station) => station.tags.includes(currentGenre))
       : searchResults;
-  
+
     // Remove duplicates from filteredResults
     const uniqueStationsMap = {};
     filteredResults.forEach((station) => {
@@ -88,11 +90,10 @@ const CountryPage = () => {
       }
     });
     const uniqueStationsArray = Object.values(uniqueStationsMap);
-  
+
     setPage(0);
     setFilteredStations(uniqueStationsArray);
     setHasSearched(true);
-  
   };
 
   useEffect(() => {
