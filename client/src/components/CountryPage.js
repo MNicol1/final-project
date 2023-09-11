@@ -27,7 +27,6 @@ const CountryPage = () => {
     limit: 5890,
   });
 
-  console.log(stations);
 
   const [nameSearchTerm, setNameSearchTerm] = useState("");
   const [filteredStations, setFilteredStations] = useState([]);
