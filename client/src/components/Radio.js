@@ -130,7 +130,7 @@ const AudioButton = styled.button`
   width: 200px;
   height: 40px;
   font-size: 1.3em;
-
+  color: black;
   display: flex;
   justify-content: center;
   align-items: center;

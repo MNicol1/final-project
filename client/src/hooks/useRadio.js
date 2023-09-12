@@ -28,8 +28,8 @@ const useRadio = ({ country, limit = 4 }) => {
 
       // Filter out HTTP stations
       const httpsOnlyStations = radioStations.filter((station) =>
-        station.urlResolved.startsWith("https://")
-      );
+      station.urlResolved.startsWith("https://") && station.name && station.name.trim() !== ""
+    );
       
       return httpsOnlyStations;
     } catch (err) {
