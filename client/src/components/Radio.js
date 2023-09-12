@@ -130,15 +130,16 @@ const AudioButton = styled.button`
   width: 200px;
   height: 40px;
   font-size: 1.3em;
-  color: black;
+
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 20px;
   cursor: pointer;
   border: none;
+  background-color: white;
 
-  @media (min-width: 769px) {
+  @media (min-width: 1069px) {
     :hover {
       background-color: #f8d6fe;
       transition: 0.3s ease-in-out;
