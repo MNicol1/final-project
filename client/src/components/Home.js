@@ -4,9 +4,25 @@ import Radio from "./Radio";
 import styled from "styled-components";
 
 import { BiMessageAltError } from "react-icons/bi";
+import { FaSpinner } from "react-icons/fa";
+
+
 
 const Home = () => {
-  const { stations, error } = useRadio({ country: "", limit: 39 });
+  const { stations, error, loading } = useRadio({ country: "", limit: 40 });
+
+  if (loading) {
+    return (
+      <MainOne>
+        <Msg>
+          <FaSpinner size={32} className="spin-icon" />
+        </Msg>
+      </MainOne>
+    );
+  }
+
+
+
 
   if (error) {
     return (
@@ -61,6 +77,22 @@ const Home = () => {
 
   return null;
 };
+
+
+const MainOne = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+const Msg = styled.h3`
+  margin-top: 150px;
+
+  @media (max-width: 1200px) {
+    font-size: 14px;
+  }
+`;
+
+
+
 
 const Main = styled.div`
   margin-bottom: 100px;
