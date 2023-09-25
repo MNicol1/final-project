@@ -105,16 +105,9 @@ const CountryPage = () => {
   }, [currentGenre]);
 
 
-  useEffect(() => {
-    if (currentGenre) {
-      setIsProcessing(true);  // Set processing to true as soon as genre changes
-      // ... Perform your data fetching and filtering operations ...
-      // ... Once data has loaded and been processed:
-      setIsProcessing(false);  // Reset processing to false
-    }
-  }, [currentGenre]);
 
-  
+
+
 
   // useEffect(() => {
   //   setPage(0);
@@ -123,17 +116,7 @@ const CountryPage = () => {
 
 
 
-  // if (loading) {
-  //   return (
-  //     <Main>
-  //       <Msg>
-  //         <FaSpinner size={32} className="spin-icon" />
-  //       </Msg>
-  //     </Main>
-  //   );
-  // }
-
-  if (loading || isProcessing) {
+  if (loading) {
     return (
       <Main>
         <Msg>
@@ -143,15 +126,9 @@ const CountryPage = () => {
     );
   }
 
-  // if (totalPages === 0) {
-  //   return (
-  //     <Main>
-  //       <Msg>
-  //         <GiMusicalNotes size={22} /> No stations found
-  //       </Msg>
-  //     </Main>
-  //   );
-  // }
+
+
+
 
   return (
     <RadioContainer>
