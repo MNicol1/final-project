@@ -10,6 +10,8 @@ import "./pagination.css";
 
 import { FaSpinner } from "react-icons/fa";
 
+import { BiMessageAltError } from "react-icons/bi";
+
 import "./Header.css";
 
 import BasicMenu from "./BasicMenu";
@@ -22,7 +24,7 @@ const CountryPage = () => {
   const [params] = useSearchParams();
   const currentGenre = params.get("genre");
 
-  const { stations, loading } = useRadio({
+  const { stations, loading, error } = useRadio({
     country: country,
     limit: 5890,
   });
@@ -125,6 +127,17 @@ const CountryPage = () => {
       </Main>
     );
   }
+
+  if (error) {
+    return (
+   <ErrorMessage>
+            <span>
+              <BiMessageAltError size={40} />
+            </span>
+            An error occurred on the server end: Please try again later.
+          </ErrorMessage>
+    );
+}
 
 
 
@@ -233,6 +246,19 @@ const CountryPage = () => {
     </RadioContainer>
   );
 };
+
+const ErrorMessage = styled.div`
+  color: white;
+  padding: 150px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+
+
+  @media (max-width: 768px) {
+    padding: 70px 30px;
+  }
+`;
 
 const Icon = styled(FiSearch)`
   width: 20px;
