@@ -53,7 +53,7 @@ export default function BasicMenu() {
         </span>
       </Button>
       <Menu
-        sx={{ maxHeight: 175 }}
+        sx={{ maxHeight: 275 }}
         //  elevation={0}
 
         anchorOrigin={{
