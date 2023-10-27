@@ -9,7 +9,7 @@ import { FaSpinner } from "react-icons/fa";
 
 
 const Home = () => {
-  const { stations, error, loading } = useRadio({ country: "", limit: 40 });
+  const { stations, error, loading } = useRadio({ country: "", limit: 39 });
 
   if (loading) {
     return (
@@ -95,7 +95,7 @@ const Msg = styled.h3`
 
 
 const Main = styled.div`
-  margin-bottom: 100px;
+
 `;
 const Content = styled.p`
   text-align: left;

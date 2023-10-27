@@ -31,35 +31,39 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
 
     return (
       <Container>
-        <Heading>Browse by country:</Heading>
+        <SearchWrapper>
+          <Heading>Browse by country:</Heading>
 
-        <SearchContainer>
-          <Icon />
+          <SearchContainer>
+            <Icon />
 
-          <Input
-            ref={inputElement}
-            type="text"
-            name="search"
-            autoComplete="off"
-            placeholder="Search..."
-            onChange={(event) => {
-              setSearchTerm(event.target.value);
-            }}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                e.preventDefault();
-                e.target.blur(); // This will make the keyboard close
-              }
-            }}
-          />
-          <Close onClick={clearSearch}>
-            <AiOutlineClose size={20} color="black" />
-          </Close>
-        </SearchContainer>
+            <Input
+              ref={inputElement}
+              type="text"
+              name="search"
+              autoComplete="off"
+              placeholder="Search..."
+              onChange={(event) => {
+                setSearchTerm(event.target.value);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  e.target.blur(); // This will make the keyboard close
+                }
+              }}
+            />
+            <Close onClick={clearSearch}>
+              <AiOutlineClose size={20} color="black" />
+            </Close>
+          </SearchContainer>
 
-        <Space>
-          <hr style={{ backgroundColor: "white" }} />
-        </Space>
+          <Space>
+            <hr style={{ backgroundColor: "white" }} />
+          </Space>
+        </SearchWrapper>
+
+        <BigSpace />
 
         {countries
           .filter((country) => {
@@ -92,6 +96,41 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
 
 // STYLING
 
+const BigSpace = styled.div`
+  height: 190px;
+
+  @media (max-width: 380px) {
+    height: 165px;
+  }
+
+  @media (max-width: 767px) {
+    height: 150px;
+  }
+`;
+
+const SearchWrapper = styled.div`
+  position: fixed;
+  /* top: 0;              */
+  left: 40px;
+  right: 40px;
+  /* height: 150px; */
+  padding-top: 40px;
+  z-index: 2;
+
+  background-color: #00000088;
+  backdrop-filter: blur(5px);
+
+  @media (max-width: 380px) {
+    left: 30px;
+    right: 30px;
+    padding-top: 30px;
+  }
+
+  @media (max-width: 767px) {
+    padding-top: 20px;
+  }
+`;
+
 const Close = styled.button`
   background: none;
   border: none;
@@ -101,24 +140,26 @@ const Close = styled.button`
 `;
 
 const Space = styled.div`
-  padding-top: 5px;
+  padding-top: 15px;
 `;
 
 const Container = styled.div`
-  padding: 40px;
+  /* position: relative; */
+  padding: 0px 47px;
   margin-bottom: 300px;
   @media (max-width: 769px) {
     margin-bottom: 100px;
+    padding: 0px 40px;
   }
   @media (max-width: 380px) {
-    padding: 30px;
+    padding: 0px 30px;
   }
 `;
 
 const Main = styled.div`
   padding: 6px 0px;
   transition: 300ms linear;
-  max-width: 57%;
+
   transform-origin: left;
   :hover {
     transform: scale(1.2);

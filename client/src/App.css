@@ -1,23 +1,26 @@
 .main-layout {
-  padding-top: 10%; /* adjust this to match your Header's height */
-  /* padding-bottom: 70px; */
+ 
+  padding-top: min(15vh, 90px);
+
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1026px) {
   .main-layout {
-    padding-top: 15%;
+    padding-top: 7vh;
   }
 }
 
-@media (max-width: 769px) {
+
+
+@media (max-width: 766px) {
   .main-layout {
-    padding-top: 22%;
+    padding-top: 15vh;
   }
 }
 
 @media (max-width: 380px) {
   .main-layout {
-    padding-top: 35%;
+    padding-top: 20vh;
     padding-bottom: 0;
   }
 }
