@@ -7,7 +7,7 @@ export const useAudio = () => {
 };
 
 export const AudioProvider = ({ children }) => {
-  const [currentURL, setCurrentURL] = useState(null);
+  // const [currentURL, setCurrentURL] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
   const [currentlyPlayingURL, setCurrentlyPlayingURL] = useState(null);

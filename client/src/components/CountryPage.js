@@ -34,7 +34,7 @@ const CountryPage = () => {
   const [filteredStations, setFilteredStations] = useState([]);
   const [hasSearched, setHasSearched] = useState(false);
 
-  const [isProcessing, setIsProcessing] = useState(false);
+  // const [isProcessing, setIsProcessing] = useState(false);
 
   const [page, setPage] = useState(0);
   const stationsPerPage = 12;
@@ -78,6 +78,8 @@ const CountryPage = () => {
     const searchResults = stations.filter((station) =>
       station.name.toLowerCase().includes(nameSearchTerm.toLowerCase())
     );
+
+
 
     // If a genre is selected, filter search results by genre
     const filteredResults = currentGenre
