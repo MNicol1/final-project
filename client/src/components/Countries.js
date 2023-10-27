@@ -145,6 +145,8 @@ const Space = styled.div`
 
 const Container = styled.div`
   /* position: relative; */
+
+  overflow-x: hidden;
   padding: 0px 47px;
   margin-bottom: 300px;
   @media (max-width: 769px) {
