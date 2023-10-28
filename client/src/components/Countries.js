@@ -118,7 +118,7 @@ const SearchWrapper = styled.div`
   z-index: 2;
 
   background-color: transparent;
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(5px);
 
   @media (max-width: 380px) {
     left: 30px;
