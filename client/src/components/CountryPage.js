@@ -20,6 +20,11 @@ import { FiSearch } from "react-icons/fi";
 import { AiOutlineClose } from "react-icons/ai";
 
 const CountryPage = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   const { country } = useParams();
   const [params] = useSearchParams();
   const currentGenre = params.get("genre");

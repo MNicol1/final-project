@@ -1,8 +1,15 @@
 import styled from "styled-components";
 import { GiMusicalNotes } from "react-icons/gi";
 import { ImEarth } from "react-icons/im";
+import { useEffect } from "react";
+
 
 const About = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <Container>
       <Main>

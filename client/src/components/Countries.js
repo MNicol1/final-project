@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { FiSearch } from "react-icons/fi";
@@ -6,6 +6,10 @@ import { AiOutlineClose } from "react-icons/ai";
 import { CountriesContext } from "./CountriesContext";
 
 const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // const [countries, setCountries] = useState();
   const [selectedCountry, setSelectedCountry] = useState(null);
 
