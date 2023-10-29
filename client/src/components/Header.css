@@ -85,7 +85,7 @@
   }
 
   .logo:hover .blink {
-    animation: logoAnimate 2s infinite;
+    animation: logoAnimate 3.2s infinite;
   }
 }
 
