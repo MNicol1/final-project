@@ -7,7 +7,7 @@ import { CountriesContext } from "./CountriesContext";
 
 const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo(0, -30);
   }, []);
 
   // const [countries, setCountries] = useState();
