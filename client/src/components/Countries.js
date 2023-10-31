@@ -6,9 +6,42 @@ import { AiOutlineClose } from "react-icons/ai";
 import { CountriesContext } from "./CountriesContext";
 
 const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
+
+  // This is for scroll to top issue : 
+
   useEffect(() => {
     window.scrollTo(0, -30);
   }, []);
+
+
+  // Added this for mobile fixed position on search input issue 
+
+
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  useEffect(() => {
+    const handleFocus = () => {
+      setScrollPosition(window.scrollY);
+    };
+  
+    const handleBlur = () => {
+      setTimeout(() => { // Add a delay to account for browser's own adjustments
+        window.scrollTo(0, scrollPosition);
+      }, 50);
+    };
+  
+    inputElement.current.addEventListener('focus', handleFocus);
+    inputElement.current.addEventListener('blur', handleBlur);
+  
+    return () => {
+      if (inputElement.current) {
+        inputElement.current.removeEventListener('focus', handleFocus);
+        inputElement.current.removeEventListener('blur', handleBlur);
+      }
+    };
+  }, []);
+  
+  
 
   // const [countries, setCountries] = useState();
   const [selectedCountry, setSelectedCountry] = useState(null);
@@ -114,7 +147,7 @@ const BigSpace = styled.div`
 
 const SearchWrapper = styled.div`
   position: fixed;
-  /* top: 0;              */
+          
   left: 40px;
   right: 40px;
   /* height: 150px; */
