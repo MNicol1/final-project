@@ -6,6 +6,16 @@ import { AiOutlineClose } from "react-icons/ai";
 import { CountriesContext } from "./CountriesContext";
 
 const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
+  
+  const [tempSearchTerm, setTempSearchTerm] = useState("");
+
+  const handleSearch = (e) => {
+    if (e.key === "Enter" || e.type === "click") {
+      setSearchTerm(tempSearchTerm);
+      e.target.blur(); // Closes the keyboard on mobile devices
+      window.scrollTo(0, 0); // Scroll to the top of the page
+    }
+  };
 
   // This is for scroll to top issue : 
 
@@ -17,29 +27,30 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
   // Added this for mobile fixed position on search input issue 
 
 
-  const [scrollPosition, setScrollPosition] = useState(0);
+  // const [scrollPosition, setScrollPosition] = useState(0);
 
-  useEffect(() => {
-    const handleFocus = () => {
-      setScrollPosition(window.scrollY);
-    };
+
+  // useEffect(() => {
+  //   const handleFocus = () => {
+  //     setScrollPosition(window.scrollY);
+  //   };
   
-    const handleBlur = () => {
-      setTimeout(() => { // Add a delay to account for browser's own adjustments
-        window.scrollTo(0, scrollPosition);
-      }, 50);
-    };
+  //   const handleBlur = () => {
+  //     setTimeout(() => { // Add a delay to account for browser's own adjustments
+  //       window.scrollTo(0, scrollPosition);
+  //     }, 50);
+  //   };
   
-    inputElement.current.addEventListener('focus', handleFocus);
-    inputElement.current.addEventListener('blur', handleBlur);
+  //   inputElement.current.addEventListener('focus', handleFocus);
+  //   inputElement.current.addEventListener('blur', handleBlur);
   
-    return () => {
-      if (inputElement.current) {
-        inputElement.current.removeEventListener('focus', handleFocus);
-        inputElement.current.removeEventListener('blur', handleBlur);
-      }
-    };
-  }, []);
+  //   return () => {
+  //     if (inputElement.current) {
+  //       inputElement.current.removeEventListener('focus', handleFocus);
+  //       inputElement.current.removeEventListener('blur', handleBlur);
+  //     }
+  //   };
+  // }, []);
   
   
 
@@ -68,31 +79,23 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
 
     return (
       <Container>
-        <SearchWrapper>
-          <Heading>Browse by country:</Heading>
+      <SearchWrapper>
+      <Heading>Browse by country:</Heading>
+        <SearchContainer>
 
-          <SearchContainer>
-            <Icon />
-
-            <Input
-              ref={inputElement}
-              type="text"
-              name="search"
-              autoComplete="off"
-              placeholder="Search..."
-              onChange={(event) => {
-                setSearchTerm(event.target.value);
-              }}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  e.preventDefault();
-                  e.target.blur(); // This will make the keyboard close
-                }
-              }}
-            />
-            <Close onClick={clearSearch}>
-              <AiOutlineClose size={20} color="black" />
-            </Close>
+              <AiOutlineClose style={{padding: "0 5px", cursor: "pointer"}} onClick={clearSearch} size={22} color="black" />
+      
+          <Input
+            ref={inputElement}
+            type="text"
+            autoComplete="off"
+            name="search"
+            placeholder="Search..."
+            onChange={(e) => setTempSearchTerm(e.target.value)}
+            onKeyDown={handleSearch}
+          />
+               <Icon size={20} onClick={handleSearch} />
+         
           </SearchContainer>
 
           <Space>
@@ -138,10 +141,12 @@ const BigSpace = styled.div`
 
   @media (max-width: 380px) {
     height: 165px;
+    margin-bottom: 25px;
   }
 
   @media (max-width: 767px) {
     height: 150px;
+    margin-bottom: 25px;
   }
 `;
 
@@ -279,8 +284,10 @@ const Input = styled.input`
 `;
 
 const Icon = styled(FiSearch)`
-  width: 20px;
+  width: 22px;
   color: black;
+  padding: 0 10px;
+  cursor: pointer;
 `;
 
 export default Countries;
