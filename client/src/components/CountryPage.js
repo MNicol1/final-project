@@ -155,7 +155,14 @@ const CountryPage = () => {
       <Name>{country} </Name>
 
       <SearchBarContainer>
-        <Icon onClick={handleSearch} />
+      <Close
+      size={20}
+          onClick={() => {
+            setPage(0);
+            setNameSearchTerm("");
+            setHasSearched(false);
+          }}
+        />
 
         <SearchInput
           type="text"
@@ -173,13 +180,8 @@ const CountryPage = () => {
             }
           }}
         />
-        <Close
-          onClick={() => {
-            setPage(0);
-            setNameSearchTerm("");
-            setHasSearched(false);
-          }}
-        />
+  
+          <Icon size={20} onClick={handleSearch} />
       </SearchBarContainer>
 
       <hr style={{ backgroundColor: "white" }} />
@@ -268,15 +270,17 @@ const ErrorMessage = styled.div`
 `;
 
 const Icon = styled(FiSearch)`
-  width: 20px;
+  width: 22px;
   cursor: pointer;
   color: black;
+  padding: 0 5px;
 `;
 
 const Close = styled(AiOutlineClose)`
-  width: 20px;
+  width: 22px;
   cursor: pointer;
   color: black;
+  padding: 0 5px;
 `;
 
 const SearchBarContainer = styled.div`

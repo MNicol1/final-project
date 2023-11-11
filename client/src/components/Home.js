@@ -9,7 +9,7 @@ import { FaSpinner } from "react-icons/fa";
 
 
 const Home = () => {
-  const { stations, error, loading } = useRadio({ country: "", limit: 40 });
+  const { stations, error, loading } = useRadio({ country: "", limit: 41 });
 
   if (loading) {
     return (

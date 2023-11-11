@@ -6,7 +6,6 @@ import { AiOutlineClose } from "react-icons/ai";
 import { CountriesContext } from "./CountriesContext";
 
 const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
-  
   const [tempSearchTerm, setTempSearchTerm] = useState("");
 
   const handleSearch = (e) => {
@@ -17,33 +16,30 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
     }
   };
 
-  // This is for scroll to top issue : 
+  // This is for scroll to top issue :
 
   useEffect(() => {
     window.scrollTo(0, -30);
   }, []);
 
-
-  // Added this for mobile fixed position on search input issue 
-
+  // Added this for mobile fixed position on search input issue
 
   // const [scrollPosition, setScrollPosition] = useState(0);
-
 
   // useEffect(() => {
   //   const handleFocus = () => {
   //     setScrollPosition(window.scrollY);
   //   };
-  
+
   //   const handleBlur = () => {
   //     setTimeout(() => { // Add a delay to account for browser's own adjustments
   //       window.scrollTo(0, scrollPosition);
   //     }, 50);
   //   };
-  
+
   //   inputElement.current.addEventListener('focus', handleFocus);
   //   inputElement.current.addEventListener('blur', handleBlur);
-  
+
   //   return () => {
   //     if (inputElement.current) {
   //       inputElement.current.removeEventListener('focus', handleFocus);
@@ -51,8 +47,6 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
   //     }
   //   };
   // }, []);
-  
-  
 
   // const [countries, setCountries] = useState();
   const [selectedCountry, setSelectedCountry] = useState(null);
@@ -79,23 +73,26 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
 
     return (
       <Container>
-      <SearchWrapper>
-      <Heading>Browse by country:</Heading>
-        <SearchContainer>
+        <SearchWrapper>
+          <Heading>Browse by country:</Heading>
+          <SearchContainer>
+            <AiOutlineClose
+              style={{ padding: "0 5px", cursor: "pointer" }}
+              onClick={clearSearch}
+              size={22}
+              color="black"
+            />
 
-              <AiOutlineClose style={{padding: "0 5px", cursor: "pointer"}} onClick={clearSearch} size={22} color="black" />
-      
-          <Input
-            ref={inputElement}
-            type="text"
-            autoComplete="off"
-            name="search"
-            placeholder="Search..."
-            onChange={(e) => setTempSearchTerm(e.target.value)}
-            onKeyDown={handleSearch}
-          />
-               <Icon size={20} onClick={handleSearch} />
-         
+            <Input
+              ref={inputElement}
+              type="text"
+              autoComplete="off"
+              name="search"
+              placeholder="Search..."
+              onChange={(e) => setTempSearchTerm(e.target.value)}
+              onKeyDown={handleSearch}
+            />
+            <Icon size={20} onClick={handleSearch} />
           </SearchContainer>
 
           <Space>
@@ -152,7 +149,7 @@ const BigSpace = styled.div`
 
 const SearchWrapper = styled.div`
   position: fixed;
-          
+
   left: 40px;
   right: 40px;
   /* height: 150px; */
@@ -286,7 +283,7 @@ const Input = styled.input`
 const Icon = styled(FiSearch)`
   width: 22px;
   color: black;
-  padding: 0 10px;
+  padding: 0 5px;
   cursor: pointer;
 `;
 
