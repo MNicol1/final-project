@@ -20,11 +20,10 @@ import { FiSearch } from "react-icons/fi";
 import { AiOutlineClose } from "react-icons/ai";
 
 const CountryPage = () => {
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  
+
   const { country } = useParams();
   const [params] = useSearchParams();
   const currentGenre = params.get("genre");
@@ -33,7 +32,6 @@ const CountryPage = () => {
     country: country,
     limit: 5890,
   });
-
 
   const [nameSearchTerm, setNameSearchTerm] = useState("");
   const [filteredStations, setFilteredStations] = useState([]);
@@ -84,8 +82,6 @@ const CountryPage = () => {
       station.name.toLowerCase().includes(nameSearchTerm.toLowerCase())
     );
 
-
-
     // If a genre is selected, filter search results by genre
     const filteredResults = currentGenre
       ? searchResults.filter((station) => station.tags.includes(currentGenre))
@@ -113,17 +109,10 @@ const CountryPage = () => {
     setHasSearched(false); // Reset hasSearched
   }, [currentGenre]);
 
-
-
-
-
-
   // useEffect(() => {
   //   setPage(0);
 
   // }, [currentGenre, hasSearched]);
-
-
 
   if (loading) {
     return (
@@ -137,26 +126,22 @@ const CountryPage = () => {
 
   if (error) {
     return (
-   <ErrorMessage>
-            <span>
-              <BiMessageAltError size={40} />
-            </span>
-            An error occurred on the server end: Please try again later.
-          </ErrorMessage>
+      <ErrorMessage>
+        <span>
+          <BiMessageAltError size={40} />
+        </span>
+        An error occurred on the server end: Please try again later.
+      </ErrorMessage>
     );
-}
-
-
-
-
+  }
 
   return (
     <RadioContainer>
       <Name>{country} </Name>
 
       <SearchBarContainer>
-      <Close
-      size={20}
+        <Close
+          size={20}
           onClick={() => {
             setPage(0);
             setNameSearchTerm("");
@@ -180,8 +165,8 @@ const CountryPage = () => {
             }
           }}
         />
-  
-          <Icon size={20} onClick={handleSearch} />
+
+        <Icon size={20} onClick={handleSearch} />
       </SearchBarContainer>
 
       <hr style={{ backgroundColor: "white" }} />
@@ -262,7 +247,6 @@ const ErrorMessage = styled.div`
   display: flex;
   text-align: center;
   justify-content: center;
-
 
   @media (max-width: 768px) {
     padding: 70px 30px;

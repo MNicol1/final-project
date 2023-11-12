@@ -8,130 +8,117 @@ import { CountriesContext } from "./CountriesContext";
 const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
   const [tempSearchTerm, setTempSearchTerm] = useState("");
 
-  const handleSearch = (e) => {
-    if (e.key === "Enter" || e.type === "click") {
-      setSearchTerm(tempSearchTerm);
-      e.target.blur(); // Closes the keyboard on mobile devices
-      window.scrollTo(0, 0); // Scroll to the top of the page
-    }
-  };
-
   // This is for scroll to top issue :
 
   useEffect(() => {
     window.scrollTo(0, -30);
   }, []);
 
-  // Added this for mobile fixed position on search input issue
-
-  // const [scrollPosition, setScrollPosition] = useState(0);
-
-  // useEffect(() => {
-  //   const handleFocus = () => {
-  //     setScrollPosition(window.scrollY);
-  //   };
-
-  //   const handleBlur = () => {
-  //     setTimeout(() => { // Add a delay to account for browser's own adjustments
-  //       window.scrollTo(0, scrollPosition);
-  //     }, 50);
-  //   };
-
-  //   inputElement.current.addEventListener('focus', handleFocus);
-  //   inputElement.current.addEventListener('blur', handleBlur);
-
-  //   return () => {
-  //     if (inputElement.current) {
-  //       inputElement.current.removeEventListener('focus', handleFocus);
-  //       inputElement.current.removeEventListener('blur', handleBlur);
-  //     }
-  //   };
-  // }, []);
-
   // const [countries, setCountries] = useState();
   const [selectedCountry, setSelectedCountry] = useState(null);
 
   const { countries } = useContext(CountriesContext);
 
-  if (countries) {
-    const sortedCountries = countries.sort((a, b) => {
-      const nameA = a.name.toUpperCase();
-      const nameB = b.name.toUpperCase();
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-      return 0;
-    });
-
-    const clearSearch = () => {
-      setSearchTerm("");
-      inputElement.current.value = "";
-    };
-
+  const filterCountries = (country) => {
     return (
-      <Container>
-        <SearchWrapper>
-          <Heading>Browse by country:</Heading>
-          <SearchContainer>
-            <AiOutlineClose
-              style={{ padding: "0 5px", cursor: "pointer" }}
-              onClick={clearSearch}
-              size={22}
-              color="black"
-            />
-
-            <Input
-              ref={inputElement}
-              type="text"
-              autoComplete="off"
-              name="search"
-              placeholder="Search..."
-              onChange={(e) => setTempSearchTerm(e.target.value)}
-              onKeyDown={handleSearch}
-            />
-            <Icon size={20} onClick={handleSearch} />
-          </SearchContainer>
-
-          <Space>
-            <hr style={{ backgroundColor: "white" }} />
-          </Space>
-        </SearchWrapper>
-
-        <BigSpace />
-
-        {countries
-          .filter((country) => {
-            if (searchTerm === "") {
-              return country;
-            } else if (
-              country.name.toLowerCase().includes(searchTerm.toLowerCase())
-            ) {
-              return country;
-            }
-          })
-          .map((country, item) => {
-            return (
-              <Main key={item}>
-                <Country
-                  to={`/countries/${country.name}`}
-                  onClick={() => setSelectedCountry()}
-                >
-                  {country.name}
-                </Country>
-              </Main>
-            );
-          })}
-      </Container>
+      searchTerm === "" ||
+      country.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
-  } else {
-    return null;
-  }
+  };
+
+  const filteredCountries = countries
+    ? countries.filter(filterCountries).sort((a, b) => {
+        const nameA = a.name.toUpperCase();
+        const nameB = b.name.toUpperCase();
+        return nameA < nameB ? -1 : nameA > nameB ? 1 : 0;
+      })
+    : [];
+
+  const handleSearch = (e) => {
+    if (e.key === "Enter" || e.type === "click") {
+      const trimmedSearchTerm = tempSearchTerm.trim();
+      setSearchTerm(trimmedSearchTerm);
+      e.target.blur(); // Closes the keyboard on mobile devices
+      window.scrollTo(0, 0); // Scroll to the top of the page
+    }
+  };
+
+  const clearSearch = () => {
+    setSearchTerm("");
+    setTempSearchTerm("");
+    inputElement.current.value = "";
+  };
+
+  return (
+    <Container>
+      <SearchWrapper>
+        <Heading>Browse by country:</Heading>
+        <SearchContainer>
+          <AiOutlineClose
+            style={{ padding: "0 5px", cursor: "pointer" }}
+            onClick={clearSearch}
+            size={22}
+            color="black"
+          />
+
+          <Input
+            ref={inputElement}
+            type="text"
+            autoComplete="off"
+            name="search"
+            placeholder="Search..."
+            onChange={(e) => setTempSearchTerm(e.target.value)}
+            onKeyDown={handleSearch}
+          />
+          <Icon size={20} onClick={handleSearch} />
+        </SearchContainer>
+
+        <Space>
+          <hr style={{ backgroundColor: "white" }} />
+        </Space>
+      </SearchWrapper>
+
+      <BigSpace />
+
+      {filteredCountries.length > 0
+        ? filteredCountries.map((country, index) => (
+            <Main key={index}>
+              <Country
+                to={`/countries/${country.name}`}
+                onClick={() => setSelectedCountry(country)}
+              >
+                {country.name}
+              </Country>
+            </Main>
+          ))
+        : searchTerm && (
+            <Error>No countries match your search. Please try again.</Error>
+          )}
+    </Container>
+  );
 };
 
 // STYLING
+
+const Error = styled.div`
+  margin: 0; // Resets any margin
+  padding: 10px 0;
+  font-family: inherit;
+  font-size: 1.4em;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  max-height: 50px; // Adjust as needed
+
+  @media (max-width: 880px) {
+    font-size: 22px;
+    padding: 20px 0;
+  }
+
+  @media (max-width: 380px) {
+    font-size: 20px;
+    padding: 20px 0;
+  }
+`;
 
 const BigSpace = styled.div`
   height: 190px;
@@ -170,13 +157,13 @@ const SearchWrapper = styled.div`
   }
 `;
 
-const Close = styled.button`
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding-top: 3px;
-  position: relative;
-`;
+// const Close = styled.button`
+//   background: none;
+//   border: none;
+//   cursor: pointer;
+//   padding-top: 3px;
+//   position: relative;
+// `;
 
 const Space = styled.div`
   padding-top: 15px;
@@ -184,7 +171,7 @@ const Space = styled.div`
 
 const Container = styled.div`
   /* position: relative; */
-
+  overflow-y: hidden; // Add this line
   overflow-x: hidden;
   padding: 0px 47px;
   margin-bottom: 300px;
