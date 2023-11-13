@@ -27,6 +27,16 @@ const AudioFooter = () => {
   const [isDragging, setIsDragging] = useState(false);
   const sliderRef = useRef(null);
 
+  const [isVolumeHovered, setIsVolumeHovered] = useState(false);
+
+  const handleVolumeEnter = () => {
+    setIsVolumeHovered(true);
+  };
+
+  const handleVolumeLeave = () => {
+    setIsVolumeHovered(false);
+  };
+
   useEffect(() => {
     if (isPlaying && currentURL) {
       audioRef.current.play().catch((error) => {
@@ -106,12 +116,6 @@ const AudioFooter = () => {
     }
   };
 
-  //   const handleVolumeChange = (e) => {
-  //     const newVolume = e.target.value;
-  //     audioRef.current.volume = newVolume;
-  //     setVolume(newVolume);
-  //   };
-
   const renderAudioControl = () => {
     if (isLoading) {
       return <FaSpinner className="spin-icon" />;
@@ -141,77 +145,80 @@ const AudioFooter = () => {
   // Existing component code...
 
   return (
-    <div className="footer">
-      <audio
-        className="audio-player"
-        ref={audioRef}
-        src={currentURL}
-        onPlay={() => setIsLoading(false)}
-        onPause={() => setIsPlaying(false)}
-        onCanPlay={() => {
-          setIsLoading(false);
-          setSourceError(null); // Reset the error state when the audio is ready to play.
-        }}
-        onWaiting={() => setIsLoading(true)}
-        // onStalled={() => setIsLoading(true)}
-        onError={() => {
-          setIsLoading(false);
-          setIsPlaying(false);
-          // Update your context with an error state
-          setSourceError(currentURL); // Or use some unique identifier if not the URL
-        }}
-      />
-
-      <button className="playpause-button" onClick={togglePlay}>
-        {renderAudioControl()}
-      </button>
-
-      {/* <div className="marquee-wrapper">
-    <div className="marquee"  style={{ animationPlayState: isPlaying ? "running" : "paused", visibility: isLoading ? "hidden" : "visible" 
- }} key={currentItem?.id || JSON.stringify(currentItem)} >
-        {currentItem && currentItem.name}
-    </div>
-</div> */}
-
-      <div className="marquee-wrapper">
-        <div
-          className="marquee"
-          key={displayedItem?.id || JSON.stringify(displayedItem)}
-          style={{
-            animationPlayState: isPlaying ? "running" : "paused",
-            visibility: isLoading ? "hidden" : "visible",
+    <>
+      <div className="footer">
+        <audio
+          className="audio-player"
+          ref={audioRef}
+          src={currentURL}
+          onPlay={() => setIsLoading(false)}
+          onPause={() => setIsPlaying(false)}
+          onCanPlay={() => {
+            setIsLoading(false);
+            setSourceError(null); // Reset the error state when the audio is ready to play.
           }}
-        >
-          {displayedItem
-            ? `Playing: ${displayedItem.name} from ${displayedItem.country} `
-            : ""}
-        </div>
-      </div>
+          onWaiting={() => setIsLoading(true)}
+          // onStalled={() => setIsLoading(true)}
+          onError={() => {
+            setIsLoading(false);
+            setIsPlaying(false);
+            // Update your context with an error state
+            setSourceError(currentURL); // Or use some unique identifier if not the URL
+          }}
+        />
 
-      <div className="volume-container">
-        <button
-          className="volume-button"
-          style={{ visibility: isLoading ? "hidden" : "visible" }}
-          onClick={toggleMute}
-        >
-          {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
+        <button className="playpause-button" onClick={togglePlay}>
+          {renderAudioControl()}
         </button>
 
-        <div className="slider-container">
+        <div className="marquee-wrapper">
           <div
-            className="volume-slider"
-            ref={sliderRef}
-            onClick={handleSliderClick}
+            className="marquee"
+            key={displayedItem?.id || JSON.stringify(displayedItem)}
+            style={{
+              animationPlayState: isPlaying ? "running" : "paused",
+              visibility: isLoading ? "hidden" : "visible",
+            }}
           >
-            <div
-              className="volume-thumb"
-              onMouseDown={handleMouseDown}
-              style={{ bottom: `${volume * 100}%` }}
-            ></div>
+            {displayedItem
+              ? `Playing: ${displayedItem.name} from ${displayedItem.country} `
+              : ""}
           </div>
         </div>
+
+        <div
+          className="volume-container"
+          onMouseEnter={handleVolumeEnter}
+          onMouseLeave={handleVolumeLeave}
+        >
+          <button
+            className="volume-button"
+            style={{ visibility: isLoading ? "hidden" : "visible" }}
+            onClick={toggleMute}
+          >
+            {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
+          </button>
+        </div>
       </div>
-    </div>
+
+      <div
+        onMouseEnter={handleVolumeEnter}
+        onMouseLeave={handleVolumeLeave}
+        className={`slider-container ${isVolumeHovered ? "show" : ""}`}
+      >
+        <div
+          className="volume-slider"
+          ref={sliderRef}
+          onClick={handleSliderClick}
+        >
+          <div
+            className="volume-thumb"
+            onMouseDown={handleMouseDown}
+            style={{ bottom: `${volume * 100}%` }}
+          ></div>
+        </div>
+      </div>
+    </>
   );
 };
 
