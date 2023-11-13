@@ -1,4 +1,3 @@
-/* Basic styling for the footer container */
 .footer {
   position: fixed;
   bottom: 0;
@@ -15,8 +14,85 @@
   gap: 20px;
   border-top: 2px solid white;
   border-right: 2px solid white;
-  /* overflow: hidden;
-  z-index: 1000; */
+  z-index: 20;
+}
+
+.volume-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 60px; /* Adjust to match the height of the footer */
+  z-index: 10;
+}
+
+.slider-container {
+  position: absolute;
+  bottom: 100%; /* Aligns the bottom of the slider with the top of the volume button */
+  right: 0; /* Aligns the slider to the right side of the volume button */
+  height: 110px;
+  width: 40px; /* Width of the container */
+  border: 2px solid white; /* Border for the container */
+  background-color: black; /* Background color of the container */
+  padding: 20px 10px 10px 10px; /* Padding inside the container */
+  box-sizing: border-box;
+  display: none;
+  z-index: -1;
+
+  opacity: 0;
+  transform: translateY(100%);
+
+  transition: transform 0.4s ease, opacity 0.7s ease; /* Smooth transition for transform */
+}
+
+@media screen and (min-width: 768px) {
+  .slider-container {
+    display: block;
+  }
+}
+
+.volume-slider {
+  height: calc(100% - 30px);
+  width: 3px; /* Make the slider thin */
+  background-color: grey; /* Color of the slider */
+  position: absolute;
+  left: 50%; /* Center the slider within the container */
+  transform: translateX(-50%);
+  bottom: 10px; /* Offset by the bottom padding */
+  cursor: pointer;
+}
+
+.volume-slider::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--fill-percentage); /* Dynamic height based on volume */
+  background-color: #f8d6fe; /* Color of the filled portion of the slider */
+}
+
+.volume-thumb {
+  position: absolute;
+  bottom: 0; /* Adjust based on initial volume */
+  left: 50%; /* Center the thumb on the slider */
+  transform: translateX(-50%);
+  height: 15px;
+  width: 15px;
+  background-color: #f8d6fe;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.volume-container:hover .slider-container {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.volume-container,
+.volume-slider,
+.volume-thumb,
+.slider-container {
+  user-select: none;
 }
 
 /* Style for the play/pause button */
@@ -84,12 +160,20 @@
 
 .marquee-wrapper::before {
   left: 0;
-  background: linear-gradient(to right, black, transparent); /* Change color as needed */
+  background: linear-gradient(
+    to right,
+    black,
+    transparent
+  ); /* Change color as needed */
 }
 
 .marquee-wrapper::after {
   right: 0;
-  background: linear-gradient(to left, black, transparent); /* Change color as needed */
+  background: linear-gradient(
+    to left,
+    black,
+    transparent
+  ); /* Change color as needed */
 }
 
 .marquee {

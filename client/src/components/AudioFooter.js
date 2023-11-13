@@ -22,21 +22,71 @@ const AudioFooter = () => {
   const audioRef = useRef(null);
 
   const [isMuted, setIsMuted] = useState(false);
+  const [volume, setVolume] = useState(0.5); // 0.5 as a default value for volume (50%)
+
+  const [isDragging, setIsDragging] = useState(false);
+  const sliderRef = useRef(null);
 
   useEffect(() => {
     if (isPlaying && currentURL) {
-        audioRef.current.play().catch(error => {
-            console.warn("Play was interrupted:", error);
-        });
+      audioRef.current.play().catch((error) => {
+        console.warn("Play was interrupted:", error);
+      });
     } else {
-        audioRef.current.pause();
+      audioRef.current.pause();
     }
-}, [isPlaying, currentURL]);
+  }, [isPlaying, currentURL]);
 
+  useEffect(() => {
+    // Assuming the initial volume is stored in the state `volume`
+    // Adjust this logic if the volume is stored or retrieved differently
+    const initialFillPercentage = `${volume * 100}%`;
+    if (sliderRef.current) {
+      sliderRef.current.style.setProperty(
+        "--fill-percentage",
+        initialFillPercentage
+      );
+    }
+  }, []); // Empty dependency array to run only once on mount
 
-  
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (isDragging) {
+        updateVolume(e);
+      }
+    };
 
-  const [volume, setVolume] = useState(0.5); // 0.5 as a default value for volume (50%)
+    const handleMouseUp = () => {
+      setIsDragging(false);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseup", handleMouseUp);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, [isDragging]);
+
+  const handleMouseDown = () => {
+    setIsDragging(true);
+  };
+
+  const updateVolume = (e) => {
+    if (!sliderRef.current) return;
+
+    const rect = sliderRef.current.getBoundingClientRect();
+    const y = e.clientY - rect.top;
+    let newVolume = (rect.height - y) / rect.height;
+    newVolume = Math.max(0, Math.min(newVolume, 1)); // Clamp between 0 and 1
+
+    setVolume(newVolume);
+    audioRef.current.volume = newVolume;
+
+    const fillPercentage = `${newVolume * 100}%`;
+    sliderRef.current.style.setProperty("--fill-percentage", fillPercentage);
+  };
 
   const toggleMute = () => {
     if (audioRef.current) {
@@ -79,6 +129,16 @@ const AudioFooter = () => {
       setDisplayedItem(currentItem);
     }
   }, [isLoading, currentItem]);
+
+  const handleSliderClick = (e) => {
+    const rect = e.target.getBoundingClientRect();
+    const y = e.clientY - rect.top; // y position within the element.
+    const volumeLevel = 1 - y / rect.height;
+    audioRef.current.volume = volumeLevel;
+    setVolume(volumeLevel);
+  };
+
+  // Existing component code...
 
   return (
     <div className="footer">
@@ -128,13 +188,29 @@ const AudioFooter = () => {
         </div>
       </div>
 
-      <button
-        className="volume-button"
-        style={{ visibility: isLoading ? "hidden" : "visible" }}
-        onClick={toggleMute}
-      >
-        {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
-      </button>
+      <div className="volume-container">
+        <button
+          className="volume-button"
+          style={{ visibility: isLoading ? "hidden" : "visible" }}
+          onClick={toggleMute}
+        >
+          {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
+        </button>
+
+        <div className="slider-container">
+          <div
+            className="volume-slider"
+            ref={sliderRef}
+            onClick={handleSliderClick}
+          >
+            <div
+              className="volume-thumb"
+              onMouseDown={handleMouseDown}
+              style={{ bottom: `${volume * 100}%` }}
+            ></div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
