@@ -67,15 +67,7 @@ const CountryPage = () => {
     //   to manage scroll up or down at paginate
   };
 
-  // const handleSearch = () => {
-  //   const results = stations.filter((station) =>
-  //     station.name.toLowerCase().includes(nameSearchTerm.toLowerCase())
-  //   );
-  //   console.log(results);
-  //   setPage(0); // Move this up
-  //   setFilteredStations(results);
-  //   setHasSearched(true);
-  // };
+
 
   const handleSearch = () => {
     const searchResults = stations.filter((station) =>
@@ -130,7 +122,7 @@ const CountryPage = () => {
         <span>
           <BiMessageAltError size={40} />
         </span>
-        An error occurred on the server end: Please try again later.
+        An error occurred on the server end: Please refresh or try again later.
       </ErrorMessage>
     );
   }
