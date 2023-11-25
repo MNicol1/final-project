@@ -188,6 +188,16 @@
   z-index: 1;
 }
 
+@media screen and (min-width: 1024px) {
+  .playpause-button:hover {
+    color: grey;
+  }
+
+  .volume-button:hover {
+    color: grey;
+  }
+}
+
 @media (max-width: 769px) {
   .marquee-wrapper {
     width: 260px; /* Adjust to the width you want */

@@ -67,8 +67,6 @@ const CountryPage = () => {
     //   to manage scroll up or down at paginate
   };
 
-
-
   const handleSearch = () => {
     const searchResults = stations.filter((station) =>
       station.name.toLowerCase().includes(nameSearchTerm.toLowerCase())
@@ -274,7 +272,7 @@ const SearchBarContainer = styled.div`
   margin: 5px 0px 20px 0px;
 
   @media (max-width: 410px) {
-    width: 75%;
+    width: 82%;
   }
 `;
 
