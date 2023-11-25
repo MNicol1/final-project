@@ -189,12 +189,16 @@
 }
 
 @media screen and (min-width: 1024px) {
-  .playpause-button:hover {
-    color: grey;
+  .playpause-button,
+  .volume-button {
+    /* Define the transition on the button elements */
+    transition: color 0.2s ease-in-out;
   }
 
+  .playpause-button:hover,
   .volume-button:hover {
-    color: grey;
+    /* Define the hover color */
+    color: rgb(157, 157, 157);
   }
 }
 
