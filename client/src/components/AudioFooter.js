@@ -17,6 +17,8 @@ const AudioFooter = () => {
     playAudio,
     currentItem,
     setSourceError,
+    sourceError,
+    isAudioFooterVisible,
   } = useAudio();
 
   const audioRef = useRef(null);
@@ -142,7 +144,18 @@ const AudioFooter = () => {
     setVolume(volumeLevel);
   };
 
-  // Existing component code...
+  useEffect(() => {
+    if (isAudioFooterVisible) {
+      const timer = setTimeout(() => {
+        const slider = document.querySelector(".slider-container");
+        if (slider) {
+          slider.classList.remove("slider-initial-hidden");
+        }
+      }, 300); // Set this to match the footer's animation duration
+
+      return () => clearTimeout(timer);
+    }
+  }, [isAudioFooterVisible]);
 
   return (
     <>
@@ -172,18 +185,22 @@ const AudioFooter = () => {
         </button>
 
         <div className="marquee-wrapper">
-          <div
-            className="marquee"
-            key={displayedItem?.id || JSON.stringify(displayedItem)}
-            style={{
-              animationPlayState: isPlaying ? "running" : "paused",
-              visibility: isLoading ? "hidden" : "visible",
-            }}
-          >
-            {displayedItem
-              ? `Playing: ${displayedItem.name} from ${displayedItem.country} `
-              : ""}
-          </div>
+          {sourceError === currentURL ? (
+            <div style={{ textAlign: "center" }}>Error: No source found</div>
+          ) : (
+            <div
+              className="marquee"
+              key={displayedItem?.id || JSON.stringify(displayedItem)}
+              style={{
+                animationPlayState: isPlaying ? "running" : "paused",
+                visibility: isLoading ? "hidden" : "visible",
+              }}
+            >
+              {displayedItem
+                ? `Playing: ${displayedItem.name} from ${displayedItem.country} `
+                : ""}
+            </div>
+          )}
         </div>
 
         <div
@@ -204,7 +221,9 @@ const AudioFooter = () => {
       <div
         onMouseEnter={handleVolumeEnter}
         onMouseLeave={handleVolumeLeave}
-        className={`slider-container ${isVolumeHovered ? "show" : ""}`}
+        className={`slider-container slider-initial-hidden ${
+          isVolumeHovered ? "show" : ""
+        }`}
       >
         <div
           className="volume-slider"

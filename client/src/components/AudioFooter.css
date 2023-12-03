@@ -1,3 +1,12 @@
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
 .footer {
   position: fixed;
   bottom: 0;
@@ -15,6 +24,7 @@
   border-top: 2px solid white;
   border-right: 2px solid white;
   z-index: 20;
+  animation: slideUp 0.3s ease-in forwards;
 }
 
 .volume-container {
@@ -22,6 +32,10 @@
   display: flex;
   align-items: center;
   height: 70px; /* Adjust to match the height of the footer */
+}
+
+.slider-initial-hidden {
+  display: none;
 }
 
 .slider-container {
@@ -37,6 +51,7 @@
   box-sizing: border-box;
   display: none;
   z-index: 10;
+  opacity: 0;
 
   transform: translateY(100%);
 
@@ -45,6 +60,7 @@
 
 .slider-container.show {
   transform: translateY(0);
+  opacity: 1;
 }
 
 @media screen and (min-width: 768px) {

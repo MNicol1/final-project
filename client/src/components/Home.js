@@ -6,8 +6,6 @@ import styled from "styled-components";
 import { BiMessageAltError } from "react-icons/bi";
 import { FaSpinner } from "react-icons/fa";
 
-
-
 const Home = () => {
   const { stations, error, loading } = useRadio({ country: "", limit: 41 });
 
@@ -21,9 +19,6 @@ const Home = () => {
     );
   }
 
-
-
-
   if (error) {
     return (
       <Main>
@@ -31,8 +26,8 @@ const Home = () => {
           <h3>Welcome!</h3>
           <Content>
             To tune in and listen to radio from around the world, simply choose
-            stations by country and filter down further by your favorite music
-            genre.
+            stations by country, and filter down further by your favorite genre
+            or search for a specific station name.
           </Content>
 
           <ErrorMessage>
@@ -60,9 +55,9 @@ const Home = () => {
         <RadioContainer>
           <h3>Welcome!</h3>
           <Content>
-            To tune in and listen to radio from around the world, choose
-            stations by country and filter down further by your favorite music
-            genre.
+            To tune in and listen to radio from around the world, simply choose
+            stations by country, and filter down further by your favorite genre
+            or search for a specific station name.
           </Content>
 
           <RadioList>
@@ -78,7 +73,6 @@ const Home = () => {
   return null;
 };
 
-
 const MainOne = styled.div`
   display: flex;
   justify-content: center;
@@ -91,12 +85,7 @@ const Msg = styled.h3`
   }
 `;
 
-
-
-
-const Main = styled.div`
-
-`;
+const Main = styled.div``;
 const Content = styled.p`
   text-align: left;
   text-justify: inter-word;

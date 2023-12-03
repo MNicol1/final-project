@@ -27,15 +27,7 @@ const Radio = ({ item }) => {
       setCurrentItem(item);
     }
   };
-  // const renderAudioControl = () => {
-  //   if (isLoading && isCurrentRadioPlaying) {
-  //     return <FaSpinner className="spin-icon" style={{ fontSize: "20px" }} />;
-  //   } else if (isCurrentRadioPlaying) {
-  //     return <FaPause />;
-  //   } else {
-  //     return <FaPlay />;
-  //   }
-  // };
+
 
   const renderAudioControl = () => {
     if (sourceError === item.urlResolved) {

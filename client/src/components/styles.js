@@ -9,11 +9,12 @@ export const RadioContainer = styled.div`
   max-width: 100vw;
 
   @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-    padding: 15px 40px;
+    padding: 50px 40px;
   }
 
-  @media (max-width: 769px) {
+  @media (max-width: 767px) {
     padding-bottom: 20px;
+    padding-top: 5%;
   }
 
   @media (max-width: 380px) {
