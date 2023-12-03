@@ -5,6 +5,8 @@ import { FiSearch } from "react-icons/fi";
 import { AiOutlineClose } from "react-icons/ai";
 import { CountriesContext } from "./CountriesContext";
 
+import { BiMessageAltError } from "react-icons/bi";
+
 const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
   const [tempSearchTerm, setTempSearchTerm] = useState("");
 
@@ -17,7 +19,7 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
   // const [countries, setCountries] = useState();
   const [selectedCountry, setSelectedCountry] = useState(null);
 
-  const { countries } = useContext(CountriesContext);
+  const { countries, error } = useContext(CountriesContext);
 
   const filterCountries = (country) => {
     return (
@@ -80,25 +82,46 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
 
       <BigSpace />
 
-      {filteredCountries.length > 0
-        ? filteredCountries.map((country, index) => (
-            <Main key={index}>
-              <Country
-                to={`/countries/${country.name}`}
-                onClick={() => setSelectedCountry(country)}
-              >
-                {country.name}
-              </Country>
-            </Main>
-          ))
-        : searchTerm && (
-            <Error>No countries match your search. Please try again.</Error>
-          )}
+      {error ? ( // Check if there's an error and render the error message
+        <ErrorMessage>
+          <span>
+            <BiMessageAltError size={40} />
+          </span>
+          An error occurred on the server: Please refresh your browser, or try
+          again later.
+        </ErrorMessage>
+      ) : filteredCountries.length > 0 ? (
+        filteredCountries.map((country, index) => (
+          <Main key={index}>
+            <Country
+              to={`/countries/${country.name}`}
+              onClick={() => setSelectedCountry(country)}
+            >
+              {country.name}
+            </Country>
+          </Main>
+        ))
+      ) : searchTerm ? (
+        <Error>No countries match your search. Please try again.</Error>
+      ) : null}
     </Container>
   );
 };
 
 // STYLING
+
+const ErrorMessage = styled.div`
+  color: white;
+
+  position: fixed;
+
+  width: 100%;
+  padding-top: 10px;
+
+  @media (max-width: 768px) {
+    width: 80%;
+  }
+`;
 
 const Error = styled.div`
   margin: 0; // Resets any margin

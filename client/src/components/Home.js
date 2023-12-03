@@ -34,7 +34,8 @@ const Home = () => {
             <span>
               <BiMessageAltError size={40} />
             </span>
-            An error occurred: Please refresh your browser, or try again later.
+            An error occurred on the server: Please refresh your browser, or try
+            again later.
           </ErrorMessage>
         </RadioContainer>
       </Main>

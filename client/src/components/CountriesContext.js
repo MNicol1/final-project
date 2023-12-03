@@ -5,11 +5,17 @@ export const CountriesContext = createContext();
 
 export const CountriesProvider = ({ children }) => {
   const [countries, setCountries] = useState(null);
+  const [error, setError] = useState(null);
 
   //Changed url
   useEffect(() => {
     fetch("https://at1.api.radio-browser.info/json/countries")
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Unable to fetch countries data");
+        }
+        return response.json();
+      })
       .then((data) => {
         // Remove duplicates based on country name
         const uniqueCountries = Array.from(
@@ -18,11 +24,14 @@ export const CountriesProvider = ({ children }) => {
           return data.find((country) => country.name === name);
         });
         setCountries(uniqueCountries);
+      })
+      .catch((err) => {
+        setError(err.message); // Set the error message if there's an error
       });
   }, []);
 
   return (
-    <CountriesContext.Provider value={{ countries, setCountries }}>
+    <CountriesContext.Provider value={{ countries, error }}>
       {children}
     </CountriesContext.Provider>
   );
