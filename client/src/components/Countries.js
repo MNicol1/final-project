@@ -76,7 +76,7 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
         </SearchContainer>
 
         <Space>
-          <hr style={{ backgroundColor: "white" }} />
+          <Horizontal />
         </Space>
       </SearchWrapper>
 
@@ -109,6 +109,14 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
 };
 
 // STYLING
+
+const Horizontal = styled.hr`
+  box-shadow: 0px 2px 0px 0px white;
+  border: none;
+  height: 1px;
+  width: 100%;
+  margin: 0;
+`;
 
 const ErrorMessage = styled.div`
   color: white;
