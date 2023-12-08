@@ -37,23 +37,14 @@ const CountryPage = () => {
   const [filteredStations, setFilteredStations] = useState([]);
   const [hasSearched, setHasSearched] = useState(false);
 
-  // const [isProcessing, setIsProcessing] = useState(false);
-
   const [page, setPage] = useState(0);
   const stationsPerPage = 12;
-  const numberOfStationsVistited = page * stationsPerPage;
+  const numberOfStationsVisited = page * stationsPerPage;
 
-  const uniqueStations = stations.filter((station, index, self) => {
-    const nameMatch = index === self.findIndex((s) => s.name === station.name);
-    const urlMatch =
-      index === self.findIndex((s) => s.urlResolved === station.urlResolved);
-    return nameMatch && urlMatch;
-  });
-
-  const stationsToDisplay = nameSearchTerm ? filteredStations : uniqueStations;
+  const stationsToDisplay = hasSearched ? filteredStations : stations;
 
   const displayStations = stationsToDisplay
-    .slice(numberOfStationsVistited, numberOfStationsVistited + stationsPerPage)
+    .slice(numberOfStationsVisited, numberOfStationsVisited + stationsPerPage)
     .map((item) => {
       return <Radio item={item} key={item.id} />;
     });
@@ -62,9 +53,6 @@ const CountryPage = () => {
 
   const changePage = ({ selected }) => {
     setPage(selected);
-
-    // window.scrollTo(0, 0);
-    //   to manage scroll up or down at paginate
   };
 
   const handleSearch = () => {
@@ -77,19 +65,9 @@ const CountryPage = () => {
       ? searchResults.filter((station) => station.tags.includes(currentGenre))
       : searchResults;
 
-    // Remove duplicates from filteredResults
-    const uniqueStationsMap = {};
-    filteredResults.forEach((station) => {
-      const lowerCaseName = station.name.toLowerCase();
-      if (!uniqueStationsMap[lowerCaseName]) {
-        uniqueStationsMap[lowerCaseName] = station;
-      }
-    });
-    const uniqueStationsArray = Object.values(uniqueStationsMap);
-
+    setFilteredStations(filteredResults);
+    setHasSearched(true); // Indicate that a search has been performed
     setPage(0);
-    setFilteredStations(uniqueStationsArray);
-    setHasSearched(true);
   };
 
   useEffect(() => {
@@ -99,10 +77,26 @@ const CountryPage = () => {
     setHasSearched(false); // Reset hasSearched
   }, [currentGenre]);
 
-  // useEffect(() => {
-  //   setPage(0);
+  if (loading) {
+    return (
+      <Main>
+        <Msg>
+          <FaSpinner size={32} className="spin-icon" />
+        </Msg>
+      </Main>
+    );
+  }
 
-  // }, [currentGenre, hasSearched]);
+  if (error) {
+    return (
+      <ErrorMessage>
+        <span>
+          <BiMessageAltError size={40} />
+        </span>
+        An error occurred on the server end: Please refresh or try again later.
+      </ErrorMessage>
+    );
+  }
 
   if (loading) {
     return (
@@ -136,6 +130,7 @@ const CountryPage = () => {
             setPage(0);
             setNameSearchTerm("");
             setHasSearched(false);
+            setFilteredStations([]);
           }}
         />
 
@@ -145,7 +140,6 @@ const CountryPage = () => {
           value={nameSearchTerm}
           onChange={(e) => {
             setNameSearchTerm(e.target.value);
-            setHasSearched(false);
           }}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
@@ -163,13 +157,12 @@ const CountryPage = () => {
       <NCContainer>
         <BasicMenu />
 
-        {currentGenre && ( // Display only if a genre has been selected
+        {currentGenre && (
           <GenreInfo>
             <GenreTitle>
               {currentGenre.charAt(0).toUpperCase() + currentGenre.slice(1)}
             </GenreTitle>{" "}
-            {/* Capitalize the first letter */}
-            <TotalStations>({uniqueStations.length} results)</TotalStations>
+            <TotalStations>({stationsToDisplay.length} results)</TotalStations>
           </GenreInfo>
         )}
       </NCContainer>
@@ -183,24 +176,10 @@ const CountryPage = () => {
               </Msg2>
             </Main2>
           ) : (
-            stationsToDisplay
-              .slice(
-                numberOfStationsVistited,
-                numberOfStationsVistited + stationsPerPage
-              )
-              .map((item) => {
-                return <Radio item={item} key={item.id} />;
-              })
+            displayStations
           )
         ) : (
-          uniqueStations
-            .slice(
-              numberOfStationsVistited,
-              numberOfStationsVistited + stationsPerPage
-            )
-            .map((item) => {
-              return <Radio item={item} key={item.id} />;
-            })
+          displayStations
         )}
       </RadioList>
 

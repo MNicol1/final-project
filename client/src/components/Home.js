@@ -7,7 +7,7 @@ import { BiMessageAltError } from "react-icons/bi";
 import { FaSpinner } from "react-icons/fa";
 
 const Home = () => {
-  const { stations, error, loading } = useRadio({ country: "", limit: 41 });
+  const { stations, error, loading } = useRadio({ country: "", limit: 39 });
 
   if (loading) {
     return (
@@ -43,36 +43,73 @@ const Home = () => {
   }
 
   if (Array.isArray(stations) && stations.length > 0) {
-    const uniqueStations = stations.filter((station, index, self) => {
-      const nameMatch =
-        index === self.findIndex((s) => s.name === station.name);
-      const urlMatch =
-        index === self.findIndex((s) => s.urlResolved === station.urlResolved);
-      return nameMatch && urlMatch;
-    });
+    // Filter for HTTPS stations and limit to 8
+    const httpsStations = stations
+      .filter((station) => station.urlResolved.startsWith("https://"))
+      .slice(0, 8);
 
-    return (
-      <Main>
-        <RadioContainer>
-          <h3>Welcome!</h3>
-          <Content>
-            To tune in and listen to radio from around the world, simply choose
-            stations by country, and filter down further by your favorite genre
-            or search for a specific station name.
-          </Content>
-
-          <RadioList>
-            {uniqueStations.map((item) => {
-              return <Radio item={item} key={item.id} />;
-            })}
-          </RadioList>
-        </RadioContainer>
-      </Main>
-    );
+    if (httpsStations.length > 0) {
+      return (
+        <Main>
+          <RadioContainer>
+            <h3>Welcome!</h3>
+            <Content>
+              To tune in and listen to radio from around the world, simply
+              choose stations by country, and filter down further by your
+              favorite genre or search for a specific station name.
+            </Content>
+            <RadioList>
+              {httpsStations.map((item) => (
+                <Radio item={item} key={item.id} />
+              ))}
+            </RadioList>
+          </RadioContainer>
+        </Main>
+      );
+    } else {
+      // Handle case when no HTTPS stations are available
+      return (
+        <Main>
+          {/* Display a message or alternative content when no HTTPS stations are available */}
+        </Main>
+      );
+    }
   }
 
   return null;
 };
+
+//   if (Array.isArray(stations) && stations.length > 0) {
+//     const uniqueStations = stations.filter((station, index, self) => {
+//       const nameMatch =
+//         index === self.findIndex((s) => s.name === station.name);
+//       const urlMatch =
+//         index === self.findIndex((s) => s.urlResolved === station.urlResolved);
+//       return nameMatch && urlMatch;
+//     });
+
+//     return (
+//       <Main>
+//         <RadioContainer>
+// <h3>Welcome!</h3>
+// <Content>
+//   To tune in and listen to radio from around the world, simply choose
+//   stations by country, and filter down further by your favorite genre
+//   or search for a specific station name.
+// </Content>
+
+//           <RadioList>
+//             {uniqueStations.map((item) => {
+//               return <Radio item={item} key={item.id} />;
+//             })}
+//           </RadioList>
+//         </RadioContainer>
+//       </Main>
+//     );
+//   }
+
+//   return null;
+// };
 
 const MainOne = styled.div`
   display: flex;

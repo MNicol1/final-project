@@ -1,4 +1,4 @@
-// https filtered Version
+//filtering of duplicate station name and url version
 
 import { useEffect, useState } from "react";
 import { RadioBrowserApi } from "radio-browser-api";
@@ -10,13 +10,13 @@ const browserRadioApi = new RadioBrowserApi("My Radio App");
 
 browserRadioApi.setBaseUrl("https://at1.api.radio-browser.info");
 
-const useRadio = ({ country, limit = 4 }) => {
+const useRadio = ({ country, limit = 8 }) => {
   const [params] = useSearchParams();
   const genre = params.get("genre") ? [params.get("genre")] : [];
 
   const [stations, setStations] = useState([]);
-  const [loading, setLoading] = useState(true); // Initialize loading state as true
-  const [error, setError] = useState(null); // Initialize error state as null
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const setupApi = async () => {
     try {
@@ -27,11 +27,26 @@ const useRadio = ({ country, limit = 4 }) => {
       });
 
       // Filter out HTTP stations
-      const httpsOnlyStations = radioStations.filter((station) =>
-      station.urlResolved.startsWith("https://") && station.name && station.name.trim() !== ""
-    );
-      
-      return httpsOnlyStations;
+      const httpsOnlyStations = radioStations.filter(
+        (station) =>
+          station.urlResolved.startsWith("https://") &&
+          station.name &&
+          station.name.trim() !== ""
+      );
+
+      // First, filter out duplicate URLs
+      const uniqueUrlStations = httpsOnlyStations.filter(
+        (station, index, self) =>
+          index === self.findIndex((s) => s.urlResolved === station.urlResolved)
+      );
+
+      // Then, filter out duplicate names from the list of stations with unique URLs
+      const uniqueStations = uniqueUrlStations.filter(
+        (station, index, self) =>
+          index === self.findIndex((s) => s.name === station.name)
+      );
+
+      return uniqueStations;
     } catch (err) {
       setError(err.message || "An error occurred");
       return [];
@@ -39,10 +54,10 @@ const useRadio = ({ country, limit = 4 }) => {
   };
 
   useEffect(() => {
-    setLoading(true); // Set loading to true at the start of the effect
+    setLoading(true);
     setupApi().then((data) => {
       setStations(data);
-      setLoading(false); // Set loading to false once data is fetched
+      setLoading(false);
     });
   }, [country, params]);
 
@@ -50,6 +65,59 @@ const useRadio = ({ country, limit = 4 }) => {
 };
 
 export default useRadio;
+
+// // JUSt https filtered Version
+
+// import { useEffect, useState } from "react";
+// import { RadioBrowserApi } from "radio-browser-api";
+// import { useSearchParams } from "react-router-dom";
+
+// const browserRadioApi = new RadioBrowserApi("My Radio App");
+
+// //added baseurl
+
+// browserRadioApi.setBaseUrl("https://at1.api.radio-browser.info");
+
+// const useRadio = ({ country, limit = 8 }) => {
+//   const [params] = useSearchParams();
+//   const genre = params.get("genre") ? [params.get("genre")] : [];
+
+//   const [stations, setStations] = useState([]);
+//   const [loading, setLoading] = useState(true); // Initialize loading state as true
+//   const [error, setError] = useState(null); // Initialize error state as null
+
+//   const setupApi = async () => {
+//     try {
+//       const radioStations = await browserRadioApi.searchStations({
+//         country: country,
+//         tagList: genre,
+//         limit: limit,
+//       });
+
+//       // Filter out HTTP stations
+//       const httpsOnlyStations = radioStations.filter((station) =>
+//       station.urlResolved.startsWith("https://") && station.name && station.name.trim() !== ""
+//     );
+
+//       return httpsOnlyStations;
+//     } catch (err) {
+//       setError(err.message || "An error occurred");
+//       return [];
+//     }
+//   };
+
+//   useEffect(() => {
+//     setLoading(true); // Set loading to true at the start of the effect
+//     setupApi().then((data) => {
+//       setStations(data);
+//       setLoading(false); // Set loading to false once data is fetched
+//     });
+//   }, [country, params]);
+
+//   return { stations, loading, error };
+// };
+
+// export default useRadio;
 
 // V2
 
