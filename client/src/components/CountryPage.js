@@ -53,7 +53,12 @@ const CountryPage = () => {
 
   const changePage = ({ selected }) => {
     setPage(selected);
+
+      // to manage scroll up or down at paginate
+    window.scrollTo(0, 0);
+    
   };
+
 
   const handleSearch = () => {
     const searchResults = stations.filter((station) =>
