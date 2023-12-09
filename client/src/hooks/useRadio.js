@@ -1,4 +1,80 @@
-//filtering of duplicate station name and url version
+// filtering of duplicate station name and url version
+
+// import { useEffect, useState } from "react";
+// import { RadioBrowserApi } from "radio-browser-api";
+// import { useSearchParams } from "react-router-dom";
+
+// const browserRadioApi = new RadioBrowserApi("My Radio App");
+
+// //added baseurl
+
+// browserRadioApi.setBaseUrl("https://at1.api.radio-browser.info");
+
+// const useRadio = ({ country, limit = 8 }) => {
+//   const [params] = useSearchParams();
+//   const genre = params.get("genre") ? [params.get("genre")] : [];
+
+//   const [stations, setStations] = useState([]);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState(null);
+
+//   const setupApi = async () => {
+//     try {
+//       const radioStations = await browserRadioApi.searchStations({
+//         country: country,
+//         tagList: genre,
+//         limit: limit,
+//       });
+
+//       // Filter out HTTP stations
+//       const httpsOnlyStations = radioStations.filter(
+//         (station) =>
+//           station.urlResolved.startsWith("https://") &&
+//           station.name &&
+//           station.name.trim() !== ""
+//       );
+
+//       // First, filter out duplicate URLs
+//       const uniqueUrlMap = new Map();
+//       httpsOnlyStations.forEach(station => {
+//         if (!uniqueUrlMap.has(station.urlResolved)) {
+//           uniqueUrlMap.set(station.urlResolved, station);
+//         }
+//       });
+//       const uniqueUrlStations = Array.from(uniqueUrlMap.values());
+
+//       // Then, filter out duplicate names from the list of stations with unique URLs
+//       const uniqueNameMap = new Map();
+//       uniqueUrlStations.forEach(station => {
+//         const trimmedLowerName = station.name.trim().toLowerCase(); // Trim and convert to lowercase
+
+//         if (trimmedLowerName && !uniqueNameMap.has(trimmedLowerName)) {
+//           uniqueNameMap.set(trimmedLowerName, station); // Use the lowercase, trimmed name as the key
+//         }
+//       });
+//       const uniqueStations = Array.from(uniqueNameMap.values());
+
+//       return uniqueStations;
+//     } catch (err) {
+//       setError(err.message || "An error occurred");
+//       return [];
+//     }
+//   };
+
+//   useEffect(() => {
+//     setLoading(true);
+//     setupApi().then((data) => {
+//       setStations(data);
+//       setLoading(false);
+//     });
+//   }, [country, params]);
+
+//   return { stations, loading, error };
+// };
+
+// export default useRadio;
+
+// DONt FILTER HTTP VERSION :
 
 import { useEffect, useState } from "react";
 import { RadioBrowserApi } from "radio-browser-api";
@@ -26,25 +102,29 @@ const useRadio = ({ country, limit = 8 }) => {
         limit: limit,
       });
 
-      // Filter out HTTP stations
-      const httpsOnlyStations = radioStations.filter(
-        (station) =>
-          station.urlResolved.startsWith("https://") &&
-          station.name &&
-          station.name.trim() !== ""
-      );
+      // Filter out duplicate URLs
+      const uniqueUrlMap = new Map();
+      radioStations.forEach((station) => {
+        if (!uniqueUrlMap.has(station.urlResolved)) {
+          uniqueUrlMap.set(station.urlResolved, station);
+        }
+      });
+      const uniqueUrlStations = Array.from(uniqueUrlMap.values());
 
-      // First, filter out duplicate URLs
-      const uniqueUrlStations = httpsOnlyStations.filter(
-        (station, index, self) =>
-          index === self.findIndex((s) => s.urlResolved === station.urlResolved)
-      );
+      // Filter out duplicate names
 
-      // Then, filter out duplicate names from the list of stations with unique URLs
-      const uniqueStations = uniqueUrlStations.filter(
-        (station, index, self) =>
-          index === self.findIndex((s) => s.name === station.name)
-      );
+      // Filter out duplicate names and ignore empty or whitespace-only names
+      const uniqueNameMap = new Map();
+      uniqueUrlStations.forEach((station) => {
+        // Convert station name to lowercase for case-insensitive comparison
+        const stationNameLower = station.name.trim().toLowerCase();
+
+        // Check if the lowercase station name is not empty and not already in the map
+        if (stationNameLower && !uniqueNameMap.has(stationNameLower)) {
+          uniqueNameMap.set(stationNameLower, station);
+        }
+      });
+      const uniqueStations = Array.from(uniqueNameMap.values());
 
       return uniqueStations;
     } catch (err) {

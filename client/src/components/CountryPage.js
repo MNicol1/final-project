@@ -1,6 +1,6 @@
 import { useParams, useSearchParams } from "react-router-dom";
 import useRadio from "../hooks/useRadio";
-import { GiMusicalNotes } from "react-icons/gi";
+import {  GiMusicalNotes } from "react-icons/gi";
 import ReactPaginate from "react-paginate";
 import Radio from "./Radio";
 import { RadioContainer, RadioList } from "./styles";
@@ -33,6 +33,10 @@ const CountryPage = () => {
     limit: 5890,
   });
 
+ 
+
+  
+
   const [nameSearchTerm, setNameSearchTerm] = useState("");
   const [filteredStations, setFilteredStations] = useState([]);
   const [hasSearched, setHasSearched] = useState(false);
@@ -49,13 +53,19 @@ const CountryPage = () => {
       return <Radio item={item} key={item.id} />;
     });
 
+   
+
   const totalPages = Math.ceil(stationsToDisplay.length / stationsPerPage);
 
   const changePage = ({ selected }) => {
     setPage(selected);
 
       // to manage scroll up or down at paginate
-    window.scrollTo(0, 0);
+      window.scrollTo({
+        top: 1,
+        left: 0,
+        behavior: 'smooth'
+      });
     
   };
 
@@ -73,7 +83,10 @@ const CountryPage = () => {
     setFilteredStations(filteredResults);
     setHasSearched(true); // Indicate that a search has been performed
     setPage(0);
-  };
+
+    window.scrollTo(0,1)};
+
+
 
   useEffect(() => {
     setPage(0);
@@ -81,6 +94,15 @@ const CountryPage = () => {
     setFilteredStations([]); // Reset filtered stations
     setHasSearched(false); // Reset hasSearched
   }, [currentGenre]);
+
+
+  const handleBlur = () => {
+    // Logic to scroll to the top
+    window.scrollTo(0, 1);
+  };
+
+  
+
 
   if (loading) {
     return (
@@ -143,6 +165,7 @@ const CountryPage = () => {
           type="text"
           placeholder="Search station name..."
           value={nameSearchTerm}
+          onBlur={handleBlur}
           onChange={(e) => {
             setNameSearchTerm(e.target.value);
           }}
