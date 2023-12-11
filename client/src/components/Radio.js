@@ -99,8 +99,9 @@ const Container = styled.div`
 `;
 
 const StationName = styled.div`
-  height: 110px;
+  height: 100px;
   width: 220px;
+  overflow: hidden;
 `;
 const CountryName = styled.div`
   margin: 10px 0px;
