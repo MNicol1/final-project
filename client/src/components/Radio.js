@@ -28,7 +28,6 @@ const Radio = ({ item }) => {
     }
   };
 
-
   const renderAudioControl = () => {
     if (sourceError === item.urlResolved) {
       return <ErrorMsg>Error: No source found</ErrorMsg>;
@@ -70,32 +69,27 @@ const ErrorMsg = styled.div`
 `;
 
 const Container = styled.div`
-  border: 1px solid white;
   padding: 20px 25px;
-  transition: 400ms linear;
 
-  :hover {
-    transform: scale(1.1);
-    border: 2px solid #f8d6fe;
-    border-radius: 5%;
+  position: relative;
+  background-color: black;
+  /* border-radius: 7px; */
 
-    /* * this fixes the janky movement issue for full screen size ...  */
-    margin: -2px;
-  }
+  border: solid 1px rgb(151, 150, 150);
 
-  @media (max-width: 650px) {
-    transition: none;
+  box-shadow: 4px 4px 6px rgba(246, 219, 233, 0.4);
+
+  @media (min-width: 1020px) {
+    transition: 400ms linear;
     :hover {
-      transform: none;
-      border-radius: 0%;
-      border: 1px solid white;
-      margin: 0;
+      transform: scale(1.1);
+      border: solid 1px #f8d6fe;
+      /* border-radius: 5%; */
+      margin: -2px;
+
+      box-shadow: 5px 5px 8px rgba(212, 172, 193, 0.7);
     }
   }
-
-  /* @media (max-width: 380px) {
-    padding: 20px 30px;
-  } */
 `;
 
 const StationName = styled.div`
@@ -116,7 +110,13 @@ const State = styled.span`
 `;
 
 const Audio = styled.div`
-  /* margin-top: 20px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* @media (max-width: 380px) {
+ display: block;
+  } */
 `;
 
 const AudioButton = styled.button`
@@ -141,7 +141,7 @@ const AudioButton = styled.button`
 
   @media (max-width: 380px) {
     height: 35px;
-    width: 150px;
+    width: 70%;
   }
 `;
 
