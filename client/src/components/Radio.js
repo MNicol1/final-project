@@ -60,6 +60,8 @@ const Radio = ({ item }) => {
   );
 };
 
+
+
 const ErrorMsg = styled.div`
   font-size: 0.7em;
 
@@ -69,6 +71,8 @@ const ErrorMsg = styled.div`
 `;
 
 const Container = styled.div`
+
+transform: translateZ(0);
   padding: 20px 25px;
 
   position: relative;
@@ -80,14 +84,15 @@ const Container = styled.div`
   box-shadow: 4px 4px 6px rgba(246, 219, 233, 0.4);
 
   @media (min-width: 1020px) {
-    transition: 400ms linear;
+    transition: 350ms ease-in-out;
     :hover {
-      transform: scale(1.1);
-      border: solid 1px #f8d6fe;
+      border: solid 1.2px #f8d6fe; 
+      transform: translate(-7px, -7px);
+     
       /* border-radius: 5%; */
       margin: -2px;
 
-      box-shadow: 5px 5px 8px rgba(212, 172, 193, 0.7);
+      box-shadow: 9px 9px 11px rgba(212, 172, 193, 0.7);
     }
   }
 `;
@@ -96,6 +101,8 @@ const StationName = styled.div`
   height: 100px;
   width: 220px;
   overflow: hidden;
+ 
+  transform: translate3d(0, 0, 0);
 `;
 const CountryName = styled.div`
   margin: 10px 0px;
@@ -134,8 +141,8 @@ const AudioButton = styled.button`
 
   @media (min-width: 1069px) {
     :hover {
-      background-color: #f8d6fe;
-      transition: 0.3s ease-in-out;
+      background-color: #c3afc7;
+      transition: 0.2s ease-in-out;
     }
   }
 
@@ -144,5 +151,12 @@ const AudioButton = styled.button`
     width: 70%;
   }
 `;
+
+
+// const StyledFaPlay = styled(FaPlay)`
+//  ${AudioButton}:hover & {
+//   color: rgba(3, 1, 2, 0.7);
+//  }
+// `
 
 export default Radio;
