@@ -79,11 +79,13 @@ transform: translateZ(0);
   background-color: black;
   /* border-radius: 7px; */
 
-  border: solid 1px rgb(151, 150, 150);
+  border: solid 1.2px white;
 
-  box-shadow: 4px 4px 6px rgba(246, 219, 233, 0.4);
+  box-shadow: 7px 7px 10px rgba(246, 219, 233, 0.4);
 
   @media (min-width: 1020px) {
+    border: solid 1px rgb(151, 150, 150);
+    box-shadow: 4px 4px 6px rgba(246, 219, 233, 0.4);
     transition: 350ms ease-in-out;
     :hover {
       border: solid 1.2px #f8d6fe; 
