@@ -79,13 +79,15 @@ transform: translateZ(0);
   background-color: black;
   /* border-radius: 7px; */
 
-  border: solid 1.2px white;
 
-  box-shadow: 0px 0px 15px 5px rgba(246, 219, 233, 0.4);
+  border: double 2px white;
+ 
+
+  box-shadow: 0px 0px 5px 3px rgba(246, 219, 233, 0.4);
   
 
   @media (min-width: 1020px) {
-    border: solid 1px rgb(151, 150, 150);
+    border: ridge 1px rgb(151, 150, 150);
     box-shadow: 4px 4px 6px rgba(246, 219, 233, 0.4);
     transition: 350ms ease-in-out;
     :hover {
@@ -106,6 +108,14 @@ const StationName = styled.div`
   overflow: hidden;
  
   transform: translate3d(0, 0, 0);
+
+  @media (max-width: 768px) {
+    height: 110px;
+   
+  }
+
+
+
 `;
 const CountryName = styled.div`
   margin: 10px 0px;
@@ -151,7 +161,7 @@ const AudioButton = styled.button`
 
   @media (max-width: 380px) {
     height: 35px;
-    width: 70%;
+    width: 65%;
   }
 `;
 
