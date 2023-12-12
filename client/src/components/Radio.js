@@ -80,10 +80,10 @@ transform: translateZ(0);
   /* border-radius: 7px; */
 
 
-  border: double 2px white;
+  border: ridge 1px white;
  
 
-  box-shadow: 0px 0px 5px 3px rgba(246, 219, 233, 0.4);
+  box-shadow: 0px 0px 6px 4px rgba(246, 219, 233, 0.4);
   
 
   @media (min-width: 1025px) {
