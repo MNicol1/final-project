@@ -86,7 +86,7 @@ transform: translateZ(0);
   box-shadow: 0px 0px 5px 3px rgba(246, 219, 233, 0.4);
   
 
-  @media (min-width: 1020px) {
+  @media (min-width: 1025px) {
     border: ridge 1px rgb(151, 150, 150);
     box-shadow: 4px 4px 6px rgba(246, 219, 233, 0.4);
     transition: 350ms ease-in-out;
