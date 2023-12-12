@@ -81,7 +81,8 @@ transform: translateZ(0);
 
   border: solid 1.2px white;
 
-  box-shadow: 7px 7px 10px rgba(246, 219, 233, 0.4);
+  box-shadow: 0px 0px 15px 5px rgba(246, 219, 233, 0.4);
+  
 
   @media (min-width: 1020px) {
     border: solid 1px rgb(151, 150, 150);
