@@ -7,6 +7,8 @@ import { CountriesContext } from "./CountriesContext";
 
 import { BiMessageAltError } from "react-icons/bi";
 
+import { ImEarth } from "react-icons/im";
+
 const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
   const [tempSearchTerm, setTempSearchTerm] = useState("");
 
@@ -102,7 +104,7 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
           </Main>
         ))
       ) : searchTerm ? (
-        <Error>No countries match your search. Please try again.</Error>
+        <Error><ImEarth size={28} /> No countries match your search. Please try again.</Error>
       ) : null}
     </Container>
   );
@@ -135,19 +137,19 @@ const Error = styled.div`
   margin: 0; // Resets any margin
   padding: 10px 0;
   font-family: inherit;
-  font-size: 1.4em;
+  font-size: 1.3em;
   overflow-y: hidden;
   overflow-x: hidden;
   max-height: 50px; // Adjust as needed
 
   @media (max-width: 880px) {
-    font-size: 22px;
+    font-size: 18px;
     padding: 20px 0;
   }
 
   @media (max-width: 380px) {
-    font-size: 20px;
-    padding: 20px 0;
+    font-size: 18px;
+    padding: 25px 0;
   }
 `;
 
@@ -197,7 +199,7 @@ const SearchWrapper = styled.div`
 // `;
 
 const Space = styled.div`
-  padding-top: 15px;
+  padding-top: 25px;
 `;
 
 const Container = styled.div`
