@@ -8,18 +8,47 @@ import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 export default function BasicMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    document.body.classList.add("no-scroll");
   };
+
   const handleClose = () => {
     setAnchorEl(null);
+    document.body.classList.remove("no-scroll");
   };
+
+  // Clean up the class when the component unmounts
+  React.useEffect(() => {
+    return () => {
+      document.body.classList.remove("no-scroll");
+    };
+  }, []);
 
   const linkSx = {
     "&:hover": {
       backgroundColor: "#f8d6fe",
     },
   };
+
+  // before menu body scroll mobile issue
+  // export default function BasicMenu() {
+  //   const [anchorEl, setAnchorEl] = React.useState(null);
+  //   const open = Boolean(anchorEl);
+
+  //   const handleClick = (event) => {
+  //     setAnchorEl(event.currentTarget);
+  //   };
+  //   const handleClose = () => {
+  //     setAnchorEl(null);
+  //   };
+
+  //   const linkSx = {
+  //     "&:hover": {
+  //       backgroundColor: "#f8d6fe",
+  //     },
+  //   };
 
   return (
     <div>
@@ -53,7 +82,15 @@ export default function BasicMenu() {
         </span>
       </Button>
       <Menu
-        sx={{ maxHeight: 275 }}
+        sx={{
+          "@media (max-width: 380px)": {
+            maxHeight: "240px", // Applies when width is less than or equal to 380px
+          },
+          "@media (min-width: 381px) and (max-width: 769px)": {
+            maxHeight: "300px", // Applies when width is between 381px and 769px
+          },
+          maxHeight: "310px",
+        }}
         //  elevation={0}
 
         anchorOrigin={{

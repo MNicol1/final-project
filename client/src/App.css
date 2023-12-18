@@ -1,7 +1,5 @@
 .main-layout {
- 
   padding-top: min(15vh, 90px);
-
 }
 
 @media (max-width: 1026px) {
@@ -9,8 +7,6 @@
     padding-top: 7vh;
   }
 }
-
-
 
 @media (max-width: 766px) {
   .main-layout {
@@ -23,4 +19,11 @@
     padding-top: 20vh;
     padding-bottom: 0;
   }
+}
+
+/* For basicMenu  */
+.no-scroll {
+  overflow: hidden;
+  position: fixed; /* Optional, for better handling on some mobile browsers */
+  width: 100%; /* Optional, for better handling on some mobile browsers */
 }

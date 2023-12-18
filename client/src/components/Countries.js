@@ -59,6 +59,7 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
         <Heading>Browse by country:</Heading>
         <SearchContainer>
           <AiOutlineClose
+            title="Clear search"
             style={{ padding: "0 5px", cursor: "pointer" }}
             onClick={clearSearch}
             size={22}
@@ -66,6 +67,7 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
           />
 
           <Input
+            title="Search"
             ref={inputElement}
             type="text"
             autoComplete="off"
@@ -74,7 +76,7 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
             onChange={(e) => setTempSearchTerm(e.target.value)}
             onKeyDown={handleSearch}
           />
-          <Icon size={20} onClick={handleSearch} />
+          <Icon size={20} onClick={handleSearch} title="Search" />
         </SearchContainer>
 
         <Space>
@@ -104,7 +106,10 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
           </Main>
         ))
       ) : searchTerm ? (
-        <Error><ImEarth size={28} /> No countries match your search. Please try again.</Error>
+        <Error>
+          <ImEarth size={28} /> No countries match your search. Please try
+          again.
+        </Error>
       ) : null}
     </Container>
   );
@@ -173,7 +178,7 @@ const SearchWrapper = styled.div`
   left: 40px;
   right: 40px;
   /* height: 150px; */
-  padding-top: 40px;
+  padding-top: 20px;
   z-index: 2;
 
   background-color: transparent;
@@ -219,7 +224,7 @@ const Container = styled.div`
 
 const Main = styled.div`
   padding: 6px 0px;
-  transition: 300ms linear;
+  transition: 450ms linear;
 
   transform-origin: left;
   :hover {

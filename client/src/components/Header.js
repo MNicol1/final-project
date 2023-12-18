@@ -46,7 +46,6 @@ const HeaderContainer = styled.header`
   /* border-bottom: 2px solid white; */
   box-shadow: 0px 2px 0px 0px white;
 
-
   padding: 10px 40px;
   box-sizing: border-box;
   align-items: center;
@@ -59,7 +58,7 @@ const HeaderContainer = styled.header`
   top: 0; // added this
   left: 0; // added this
   background: black; // add background color to prevent content slip through
-  z-index: 1000; // make sure the header is always on top
+  z-index: 1001; // make sure the header is always on top
   @media (max-width: 880px) {
     display: block;
     width: 100%;
@@ -72,7 +71,6 @@ const HeaderContainer = styled.header`
   @media (max-width: 390px) {
     padding: 15px;
     box-shadow: 0px 1px 0px 0px white;
-
   }
 `;
 

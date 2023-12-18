@@ -1,0 +1,51 @@
+.autocomplete-dropdown {
+  color: black;
+  list-style-type: none;
+  padding: 0;
+  margin-top: 5px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-top: none;
+  border-radius: 4px;
+  /* box-shadow: 0px 1px 2px 2px rgba(246, 219, 233, 0.4); */
+  position: absolute;
+  width: 100%; /* Adjust width as per your input field */
+  z-index: 1000; /* Make sure it's above other elements */
+  left: 0;
+  top: 100%;
+
+  max-height: 300px; /* Maximum height after which scrollbar appears */
+  overflow-y: auto; /* Enable vertical scrollbar */
+}
+
+@media (min-width: 1024px) {
+  .autocomplete-dropdown {
+    width: 200%;
+  }
+}
+
+.suggestion-title {
+  margin-left: 10px;
+  font-size: 0.8rem;
+  font-style: italic;
+  padding: 2px 0px;
+}
+
+.autocomplete-dropdown li {
+  display: flex;
+  align-items: center;
+  padding: 10px 10px 10px 5px;
+  cursor: pointer;
+}
+
+.autocomplete-dropdown li:hover {
+  background-color: rgba(148, 115, 132, 0.4);
+}
+
+.icon-container {
+  margin-right: 2px;
+}
+
+.text-container {
+  flex-grow: 1; /* Ensures the text container takes up the remaining space */
+}

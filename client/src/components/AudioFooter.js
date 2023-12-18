@@ -180,7 +180,11 @@ const AudioFooter = () => {
           }}
         />
 
-        <button className="playpause-button" onClick={togglePlay}>
+        <button
+          className="playpause-button"
+          onClick={togglePlay}
+          title={isPlaying ? "Pause" : "Play"}
+        >
           {renderAudioControl()}
         </button>
 
@@ -212,6 +216,7 @@ const AudioFooter = () => {
             className="volume-button"
             style={{ visibility: isLoading ? "hidden" : "visible" }}
             onClick={toggleMute}
+            title="Toggle mute"
           >
             {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
           </button>

@@ -52,15 +52,16 @@ const Radio = ({ item }) => {
       </CountryName>
 
       <Audio>
-        <AudioButton onClick={handleTogglePlay}>
+        <AudioButton
+          onClick={handleTogglePlay}
+          title={isCurrentRadioPlaying ? "Pause" : "Play"}
+        >
           {renderAudioControl()}
         </AudioButton>
       </Audio>
     </Container>
   );
 };
-
-
 
 const ErrorMsg = styled.div`
   font-size: 0.7em;
@@ -71,29 +72,26 @@ const ErrorMsg = styled.div`
 `;
 
 const Container = styled.div`
-
-transform: translateZ(0);
+  transform: translateZ(0);
   padding: 20px 25px;
 
   position: relative;
   background-color: black;
   /* border-radius: 7px; */
 
-
   border: ridge 1px white;
- 
 
   box-shadow: 0px 0px 6px 4px rgba(246, 219, 233, 0.4);
-  
 
   @media (min-width: 1025px) {
-    border: ridge 1px rgb(151, 150, 150);
+    border: solid 1px rgb(151, 150, 150);
     box-shadow: 4px 4px 6px rgba(246, 219, 233, 0.4);
     transition: 350ms ease-in-out;
+
     :hover {
-      border: solid 1.2px #f8d6fe; 
+      border: solid 1.2px;
       transform: translate(-7px, -7px);
-     
+
       /* border-radius: 5%; */
       margin: -2px;
 
@@ -106,16 +104,12 @@ const StationName = styled.div`
   height: 100px;
   width: 220px;
   overflow: hidden;
- 
+
   transform: translate3d(0, 0, 0);
 
   @media (max-width: 768px) {
     height: 110px;
-   
   }
-
-
-
 `;
 const CountryName = styled.div`
   margin: 10px 0px;
@@ -164,7 +158,6 @@ const AudioButton = styled.button`
     width: 65%;
   }
 `;
-
 
 // const StyledFaPlay = styled(FaPlay)`
 //  ${AudioButton}:hover & {

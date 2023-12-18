@@ -1,12 +1,13 @@
 import { useParams, useSearchParams } from "react-router-dom";
 import useRadio from "../hooks/useRadio";
-import {  GiMusicalNotes } from "react-icons/gi";
+import { GiMusicalNotes } from "react-icons/gi";
 import ReactPaginate from "react-paginate";
 import Radio from "./Radio";
 import { RadioContainer, RadioList } from "./styles";
 import styled from "styled-components";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./pagination.css";
+import "./suggestion.css";
 
 import { FaSpinner } from "react-icons/fa";
 
@@ -33,9 +34,7 @@ const CountryPage = () => {
     limit: 5890,
   });
 
- 
-
-  
+  const [suggestions, setSuggestions] = useState([]);
 
   const [nameSearchTerm, setNameSearchTerm] = useState("");
   const [filteredStations, setFilteredStations] = useState([]);
@@ -53,22 +52,18 @@ const CountryPage = () => {
       return <Radio item={item} key={item.id} />;
     });
 
-   
-
   const totalPages = Math.ceil(stationsToDisplay.length / stationsPerPage);
 
   const changePage = ({ selected }) => {
     setPage(selected);
 
-      // to manage scroll up or down at paginate
-      window.scrollTo({
-        top: 1,
-        left: 0,
-        behavior: 'smooth'
-      });
-    
+    // to manage scroll up or down at paginate
+    window.scrollTo({
+      top: 1,
+      left: 0,
+      behavior: "smooth",
+    });
   };
-
 
   const handleSearch = () => {
     const searchResults = stations.filter((station) =>
@@ -84,9 +79,26 @@ const CountryPage = () => {
     setHasSearched(true); // Indicate that a search has been performed
     setPage(0);
 
-    window.scrollTo(0,1)};
+    window.scrollTo(0, 1);
+  };
 
+  const handleInputChange = (e) => {
+    const userInput = e.target.value;
+    setNameSearchTerm(userInput);
 
+    if (userInput.length > 1) {
+      const filteredSuggestions = stations
+        .filter((station) =>
+          station.name.toLowerCase().includes(userInput.toLowerCase())
+        )
+        .map((station) => station.name)
+        .slice(0, 10); // Limit the number of suggestions
+
+      setSuggestions(filteredSuggestions);
+    } else {
+      setSuggestions([]);
+    }
+  };
 
   useEffect(() => {
     setPage(0);
@@ -95,14 +107,30 @@ const CountryPage = () => {
     setHasSearched(false); // Reset hasSearched
   }, [currentGenre]);
 
-
   const handleBlur = () => {
     // Logic to scroll to the top
     window.scrollTo(0, 1);
   };
 
-  
+  const dropdownRef = useRef(null);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setSuggestions([]); // Close the dropdown
+      }
+    };
+
+    // Bind the event listeners
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
+
+    return () => {
+      // Unbind the event listeners on clean up
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, []);
 
   if (loading) {
     return (
@@ -152,6 +180,7 @@ const CountryPage = () => {
 
       <SearchBarContainer>
         <Close
+          title="Clear search"
           size={20}
           onClick={() => {
             setPage(0);
@@ -162,13 +191,12 @@ const CountryPage = () => {
         />
 
         <SearchInput
+          title="Search"
           type="text"
           placeholder="Search station name..."
           value={nameSearchTerm}
           onBlur={handleBlur}
-          onChange={(e) => {
-            setNameSearchTerm(e.target.value);
-          }}
+          onChange={handleInputChange}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               e.preventDefault();
@@ -178,7 +206,37 @@ const CountryPage = () => {
           }}
         />
 
-        <Icon size={20} onClick={handleSearch} />
+        {suggestions.length > 0 && (
+          <ul className="autocomplete-dropdown" ref={dropdownRef}>
+            <div className="suggestion-title">suggestions</div>
+            {suggestions.map((suggestion, index) => (
+              <li
+                key={index}
+                onClick={() => {
+                  setNameSearchTerm(suggestion);
+                  setSuggestions([]);
+
+                  const exactMatchStation = stations.filter(
+                    (station) =>
+                      station.name.toLowerCase() === suggestion.toLowerCase()
+                  );
+
+                  setFilteredStations(exactMatchStation);
+                  setHasSearched(true);
+                  setPage(0);
+                }}
+              >
+                <div className="icon-container">
+                  {" "}
+                  <Icon style={{ color: "black" }} />
+                </div>
+                <div className="text-container"> {suggestion}</div>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <Icon size={20} onClick={handleSearch} title="Search" />
       </SearchBarContainer>
 
       <hr style={{ backgroundColor: "white" }} />
@@ -261,11 +319,13 @@ const Close = styled(AiOutlineClose)`
   width: 22px;
   cursor: pointer;
   color: black;
-  padding: 0 5px;
+  padding-left: 5px;
+  padding-right: 2px;
 `;
 
 const SearchBarContainer = styled.div`
-  border: 2px solid black;
+  /* border: 2px solid black; */
+  position: relative;
   border-radius: 30px;
   height: 20px;
   width: 300px;
@@ -275,7 +335,7 @@ const SearchBarContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  /* overflow: hidden; */
   margin: 5px 0px 20px 0px;
 
   @media (max-width: 410px) {

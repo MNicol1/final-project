@@ -27,7 +27,8 @@ export const RadioList = styled.div`
   grid-column-gap: 20px;
   grid-row-gap: 30px;
   margin-top: 40px;
-  /* position: absolute; */
+  grid-auto-rows: minmax(265px, auto);
+  align-items: center;
 
   @media (max-width: 1200px) {
     grid-template-columns: repeat(3, 1fr);
