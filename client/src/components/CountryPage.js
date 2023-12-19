@@ -208,7 +208,7 @@ const CountryPage = () => {
 
         {suggestions.length > 0 && (
           <ul className="autocomplete-dropdown" ref={dropdownRef}>
-            <div className="suggestion-title">suggestions</div>
+            <div className="suggestion-title">suggestions...</div>
             {suggestions.map((suggestion, index) => (
               <li
                 key={index}

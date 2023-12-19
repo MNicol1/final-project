@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { FiSearch } from "react-icons/fi";
@@ -8,6 +8,7 @@ import { CountriesContext } from "./CountriesContext";
 import { BiMessageAltError } from "react-icons/bi";
 
 import { ImEarth } from "react-icons/im";
+import "./suggestion.css";
 
 const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
   const [tempSearchTerm, setTempSearchTerm] = useState("");
@@ -20,6 +21,8 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
 
   // const [countries, setCountries] = useState();
   const [selectedCountry, setSelectedCountry] = useState(null);
+
+  const [suggestions, setSuggestions] = useState([]);
 
   const { countries, error } = useContext(CountriesContext);
 
@@ -42,10 +45,49 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
     if (e.key === "Enter" || e.type === "click") {
       const trimmedSearchTerm = tempSearchTerm.trim();
       setSearchTerm(trimmedSearchTerm);
+      setSuggestions([]);
       e.target.blur(); // Closes the keyboard on mobile devices
       window.scrollTo(0, 0); // Scroll to the top of the page
     }
   };
+
+  const handleInputChange = (e) => {
+    const userInput = e.target.value;
+    setTempSearchTerm(userInput);
+
+    if (userInput.length > 1) {
+      const filteredSuggestions = countries
+        .filter((country) =>
+          country.name.toLowerCase().includes(userInput.toLowerCase())
+        )
+        .map((country) => country.name)
+        .slice(0, 10); // Limit the number of suggestions
+
+      setSuggestions(filteredSuggestions);
+    } else {
+      setSuggestions([]);
+    }
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setSuggestions([]); // Close the dropdown
+      }
+    };
+
+    // Bind the event listeners
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
+
+    return () => {
+      // Unbind the event listeners on clean up
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, []);
+
+  const dropdownRef = useRef(null);
 
   const clearSearch = () => {
     setSearchTerm("");
@@ -60,7 +102,7 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
         <SearchContainer>
           <AiOutlineClose
             title="Clear search"
-            style={{ padding: "0 5px", cursor: "pointer" }}
+            style={{ padding: "0 2px 0 5px", cursor: "pointer" }}
             onClick={clearSearch}
             size={22}
             color="black"
@@ -73,10 +115,31 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
             autoComplete="off"
             name="search"
             placeholder="Search..."
-            onChange={(e) => setTempSearchTerm(e.target.value)}
+            onChange={handleInputChange}
             onKeyDown={handleSearch}
           />
           <Icon size={20} onClick={handleSearch} title="Search" />
+          {suggestions.length > 0 && (
+            <ul className="autocomplete-dropdown" ref={dropdownRef}>
+              <div className="suggestion-title">suggestions...</div>
+              {suggestions.map((suggestion, index) => (
+                <li
+                  key={index}
+                  onClick={() => {
+                    setTempSearchTerm(suggestion);
+                    setSearchTerm(suggestion);
+                    setSuggestions([]);
+                  }}
+                >
+                  <div className="icon-container">
+                    {" "}
+                    <Icon style={{ color: "black" }} />
+                  </div>
+                  <div className="text-container"> {suggestion}</div>
+                </li>
+              ))}
+            </ul>
+          )}
         </SearchContainer>
 
         <Space>
@@ -283,7 +346,8 @@ const SearchContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  /* overflow: hidden; */
+  position: relative;
 
   @media (max-width: 410px) {
     width: 90%;
