@@ -5,6 +5,8 @@ import { FiSearch } from "react-icons/fi";
 import { AiOutlineClose } from "react-icons/ai";
 import { CountriesContext } from "./CountriesContext";
 
+import { useNavigate } from "react-router-dom";
+
 import { BiMessageAltError } from "react-icons/bi";
 
 import { ImEarth } from "react-icons/im";
@@ -18,6 +20,8 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
   useEffect(() => {
     window.scrollTo(0, -30);
   }, []);
+
+  const navigate = useNavigate();
 
   // const [countries, setCountries] = useState();
   const [selectedCountry, setSelectedCountry] = useState(null);
@@ -126,9 +130,16 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
                 <li
                   key={index}
                   onClick={() => {
-                    setTempSearchTerm(suggestion);
-                    setSearchTerm(suggestion);
-                    setSuggestions([]);
+                    const countryObject = countries.find(
+                      (country) => country.name === suggestion
+                    );
+                    if (countryObject) {
+                      setTempSearchTerm(suggestion);
+                      setSearchTerm(suggestion);
+                      setSuggestions([]);
+                      setSelectedCountry(countryObject);
+                      navigate(`/countries/${encodeURIComponent(suggestion)}`);
+                    }
                   }}
                 >
                   <div className="icon-container">
