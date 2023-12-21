@@ -1,4 +1,4 @@
-import { useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import useRadio from "../hooks/useRadio";
 import { GiMusicalNotes } from "react-icons/gi";
 import ReactPaginate from "react-paginate";
@@ -25,6 +25,8 @@ const CountryPage = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const navigate = useNavigate();
+
   const { country } = useParams();
   const [params] = useSearchParams();
   const currentGenre = params.get("genre");
@@ -40,19 +42,36 @@ const CountryPage = () => {
   const [filteredStations, setFilteredStations] = useState([]);
   const [hasSearched, setHasSearched] = useState(false);
 
+  const [searchResults, setSearchResults] = useState([]);
+
   const [page, setPage] = useState(0);
   const stationsPerPage = 12;
   const numberOfStationsVisited = page * stationsPerPage;
 
-  const stationsToDisplay = hasSearched ? filteredStations : stations;
+  useEffect(() => {
+    if (currentGenre) {
+      const filtered = stations.filter((station) =>
+        station.tags
+          ?.map((tag) => tag.toLowerCase())
+          .includes(currentGenre.toLowerCase())
+      );
+      setFilteredStations(filtered);
+      setSearchResults([]); // Clear search results on genre change
+      setHasSearched(false);
+    } else {
+      setFilteredStations(stations); // Display all stations if no genre is selected
+    }
 
-  const displayStations = stationsToDisplay
-    .slice(numberOfStationsVisited, numberOfStationsVisited + stationsPerPage)
-    .map((item) => {
-      return <Radio item={item} key={item.id} />;
-    });
+    setPage(0); // Reset page number when genre changes
+    setNameSearchTerm(""); // Clear search term when genre changes
+  }, [currentGenre, stations]);
 
-  const totalPages = Math.ceil(stationsToDisplay.length / stationsPerPage);
+  const stationsToDisplay = hasSearched ? searchResults : filteredStations;
+
+  const totalPages = Math.max(
+    1,
+    Math.ceil(stationsToDisplay.length / stationsPerPage)
+  );
 
   const changePage = ({ selected }) => {
     setPage(selected);
@@ -66,20 +85,19 @@ const CountryPage = () => {
   };
 
   const handleSearch = () => {
-    const searchResults = stations.filter((station) =>
+    const results = stations.filter((station) =>
       station.name.toLowerCase().includes(nameSearchTerm.toLowerCase())
     );
 
-    // If a genre is selected, filter search results by genre
-    const filteredResults = currentGenre
-      ? searchResults.filter((station) => station.tags.includes(currentGenre))
-      : searchResults;
-
-    setFilteredStations(filteredResults);
-    setHasSearched(true); // Indicate that a search has been performed
+    setSearchResults(results);
+    setFilteredStations([]); // Clear genre filtering on search
+    setHasSearched(true);
     setPage(0);
 
     window.scrollTo(0, 1);
+
+    navigate(`?search=${encodeURIComponent(nameSearchTerm)}`);
+    // Optionally, you might want to clear the genre in the URL here as well
   };
 
   const handleInputChange = (e) => {
@@ -100,12 +118,16 @@ const CountryPage = () => {
     }
   };
 
-  useEffect(() => {
+  const handleSearchWithSuggestion = (suggestion) => {
+    const exactMatchStation = stations.filter(
+      (station) => station.name.toLowerCase() === suggestion.toLowerCase()
+    );
+    navigate(`/countries/${country}`);
+    setSearchResults(exactMatchStation);
+    setHasSearched(true);
     setPage(0);
-    setNameSearchTerm(""); // Reset the search term
-    setFilteredStations([]); // Reset filtered stations
-    setHasSearched(false); // Reset hasSearched
-  }, [currentGenre]);
+    window.scrollTo(0, 1);
+  };
 
   const handleBlur = () => {
     // Logic to scroll to the top
@@ -183,10 +205,12 @@ const CountryPage = () => {
           title="Clear search"
           size={20}
           onClick={() => {
-            setPage(0);
-            setNameSearchTerm("");
-            setHasSearched(false);
-            setFilteredStations([]);
+            setPage(0); // Reset pagination to the first page
+            setNameSearchTerm(""); // Clear the search term
+            setHasSearched(false); // Reset the search status
+            setSearchResults([]); // Clear search results
+            setFilteredStations(stations); // Show all stations
+            navigate(`/countries/${country}`); // Navigate to the country page without any genre or search parameters
           }}
         />
 
@@ -208,22 +232,14 @@ const CountryPage = () => {
 
         {suggestions.length > 0 && (
           <ul className="autocomplete-dropdown" ref={dropdownRef}>
-            <div className="suggestion-title">suggestions...</div>
+            <div className="suggestion-title">suggestions</div>
             {suggestions.map((suggestion, index) => (
               <li
                 key={index}
                 onClick={() => {
                   setNameSearchTerm(suggestion);
                   setSuggestions([]);
-
-                  const exactMatchStation = stations.filter(
-                    (station) =>
-                      station.name.toLowerCase() === suggestion.toLowerCase()
-                  );
-
-                  setFilteredStations(exactMatchStation);
-                  setHasSearched(true);
-                  setPage(0);
+                  handleSearchWithSuggestion(suggestion); // Call a new function to handle the suggestion click
                 }}
               >
                 <div className="icon-container">
@@ -247,28 +263,28 @@ const CountryPage = () => {
           <GenreInfo>
             <GenreTitle>
               {currentGenre.charAt(0).toUpperCase() + currentGenre.slice(1)}
-            </GenreTitle>{" "}
-            <TotalStations>({stationsToDisplay.length} results)</TotalStations>
+            </GenreTitle>
+            <TotalStations>({filteredStations.length} results)</TotalStations>
           </GenreInfo>
         )}
       </NCContainer>
 
       <RadioList>
-        {hasSearched ? (
-          stationsToDisplay.length === 0 ? (
-            <Main2>
-              <Msg2>
-                <GiMusicalNotes size={22} /> No stations found
-              </Msg2>
-            </Main2>
-          ) : (
-            displayStations
-          )
+        {stationsToDisplay.length > 0 ? (
+          stationsToDisplay
+            .slice(
+              numberOfStationsVisited,
+              numberOfStationsVisited + stationsPerPage
+            )
+            .map((station) => <Radio item={station} key={station.id} />)
         ) : (
-          displayStations
+          <Main2>
+            <Msg2>
+              <GiMusicalNotes size={22} /> No stations found
+            </Msg2>
+          </Main2>
         )}
       </RadioList>
-
       <Page>
         <ReactPaginate
           forcePage={page}

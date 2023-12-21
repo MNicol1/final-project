@@ -212,17 +212,25 @@ export default function BasicMenu() {
           sx={linkSx}
           component={Link}
           onClick={handleClose}
-          to="?genre=80s"
+          to="?genre=community radio"
         >
-          80s
+          Community radio
         </MenuItem>
         <MenuItem
           sx={linkSx}
           component={Link}
           onClick={handleClose}
-          to="?genre=90s"
+          to="?genre=university radio"
         >
-          90s
+          University radio
+        </MenuItem>
+        <MenuItem
+          sx={linkSx}
+          component={Link}
+          onClick={handleClose}
+          to="?genre=news"
+        >
+          News
         </MenuItem>
       </Menu>
     </div>

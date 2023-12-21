@@ -125,7 +125,7 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
           <Icon size={20} onClick={handleSearch} title="Search" />
           {suggestions.length > 0 && (
             <ul className="autocomplete-dropdown" ref={dropdownRef}>
-              <div className="suggestion-title">suggestions...</div>
+              <div className="suggestion-title">suggestions</div>
               {suggestions.map((suggestion, index) => (
                 <li
                   key={index}

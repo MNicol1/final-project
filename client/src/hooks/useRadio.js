@@ -1,3 +1,154 @@
+// Current Cache solution
+
+import { useEffect, useState } from "react";
+import { RadioBrowserApi } from "radio-browser-api";
+
+const stationsCache = {}; // Cache object to store stations data
+const cacheDuration = 12 * 60 * 60 * 1000;
+
+const browserRadioApi = new RadioBrowserApi("My Radio App");
+browserRadioApi.setBaseUrl("https://at1.api.radio-browser.info");
+
+const useRadio = ({ country, limit = 8 }) => {
+  const [stations, setStations] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Fetch and filter stations data
+  const fetchStationsForCountry = async (country) => {
+    try {
+      const radioStations = await browserRadioApi.searchStations({
+        country: country,
+        limit: limit,
+      });
+
+      // Filter out duplicate URLs and names
+      const uniqueUrlMap = new Map();
+      const uniqueNameMap = new Map();
+
+      radioStations.forEach((station) => {
+        if (!uniqueUrlMap.has(station.urlResolved)) {
+          uniqueUrlMap.set(station.urlResolved, station);
+          const trimmedLowerName = station.name.trim().toLowerCase();
+          if (trimmedLowerName && !uniqueNameMap.has(trimmedLowerName)) {
+            uniqueNameMap.set(trimmedLowerName, station);
+          }
+        }
+      });
+
+      return Array.from(uniqueNameMap.values());
+    } catch (err) {
+      throw new Error(
+        err.message || "An error occurred while fetching stations"
+      );
+    }
+  };
+
+  const isCacheValid = (cacheEntry) => {
+    return cacheEntry && Date.now() - cacheEntry.timestamp < cacheDuration;
+  };
+
+  useEffect(() => {
+    setLoading(true);
+    const cachedData = stationsCache[country];
+
+    if (isCacheValid(cachedData)) {
+      // Use cached data if it's still valid
+      setStations(cachedData.data);
+      setLoading(false);
+    } else {
+      // Fetch new data if cache is invalid or does not exist
+      fetchStationsForCountry(country)
+        .then((fetchedStations) => {
+          stationsCache[country] = {
+            data: fetchedStations,
+            timestamp: Date.now(),
+          };
+          setStations(fetchedStations);
+          setLoading(false);
+        })
+        .catch((error) => {
+          setError(error.message);
+          setLoading(false);
+        });
+    }
+  }, [country]);
+
+  return { stations, loading, error };
+};
+export default useRadio;
+
+// Context API
+
+// import { useEffect, useState } from "react";
+// import { RadioBrowserApi } from "radio-browser-api";
+// import { useSearchParams } from "react-router-dom";
+// import { useStations } from '../components/StationsContext'; // Adjust the import path as necessary
+
+// const browserRadioApi = new RadioBrowserApi("My Radio App");
+// browserRadioApi.setBaseUrl("https://at1.api.radio-browser.info");
+
+// const useRadio = ({ country, limit = 8 }) => {
+//   const [params] = useSearchParams();
+//   const genre = params.get("genre") ? [params.get("genre")] : [];
+
+//   const { stationsData, updateStationsData } = useStations();
+
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState(null);
+
+//   const setupApi = async () => {
+//     try {
+//       const radioStations = await browserRadioApi.searchStations({
+//         country: country,
+//         tagList: genre,
+//         limit: limit,
+//       });
+
+//       // Filter out duplicate URLs
+//       const uniqueUrlMap = new Map();
+//       radioStations.forEach(station => {
+//         if (!uniqueUrlMap.has(station.urlResolved)) {
+//           uniqueUrlMap.set(station.urlResolved, station);
+//         }
+//       });
+//       const uniqueUrlStations = Array.from(uniqueUrlMap.values());
+
+//       // Filter out duplicate names
+//       const uniqueNameMap = new Map();
+//       uniqueUrlStations.forEach(station => {
+//         const trimmedLowerName = station.name.trim().toLowerCase();
+//         if (trimmedLowerName && !uniqueNameMap.has(trimmedLowerName)) {
+//           uniqueNameMap.set(trimmedLowerName, station);
+//         }
+//       });
+//       return Array.from(uniqueNameMap.values());
+//     } catch (err) {
+//       setError(err.message || "An error occurred");
+//       return [];
+//     }
+//   };
+
+//   useEffect(() => {
+//     if (stationsData[country]) {
+//       setLoading(false);
+//     } else {
+//       setLoading(true);
+//       setupApi().then((data) => {
+//         updateStationsData(country, data);
+//         setLoading(false);
+//       }).catch((err) => {
+//         setError(err.message || "An error occurred");
+//         setLoading(false);
+//       });
+//     }
+//   }, [country, stationsData, updateStationsData]);
+
+//   return { stations: stationsData[country] || [], loading, error };
+// };
+
+// export default useRadio;
+
 // filtering of duplicate station name and url version
 
 // import { useEffect, useState } from "react";
@@ -74,98 +225,95 @@
 
 // export default useRadio;
 
-
-
-
 // DON"T FILER HTTP WITH CACHE - for country fetch  with CACHE INVALIDATION  TIMESTAMP
 
-import { useEffect, useState } from "react";
-import { RadioBrowserApi } from "radio-browser-api";
-import { useSearchParams } from "react-router-dom";
-import radioDataCache from "../components/radioDataCache";
+// import { useEffect, useState } from "react";
+// import { RadioBrowserApi } from "radio-browser-api";
+// import { useSearchParams } from "react-router-dom";
+// import radioDataCache from "../components/radioDataCache";
 
-const browserRadioApi = new RadioBrowserApi("My Radio App");
+// const browserRadioApi = new RadioBrowserApi("My Radio App");
 
-//added baseurl
+// //added baseurl
 
-browserRadioApi.setBaseUrl("https://at1.api.radio-browser.info");
+// browserRadioApi.setBaseUrl("https://at1.api.radio-browser.info");
 
-const cacheDuration = 12 * 60 * 60 * 1000;
+// const cacheDuration = 12 * 60 * 60 * 1000;
 
-const useRadio = ({ country, limit = 8 }) => {
-  const [params] = useSearchParams();
-  const genre = params.get("genre") ? [params.get("genre")] : [];
+// const useRadio = ({ country, limit = 8 }) => {
+//   const [params] = useSearchParams();
+//   const genre = params.get("genre") ? [params.get("genre")] : [];
 
-  const [stations, setStations] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+//   const [stations, setStations] = useState([]);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState(null);
 
-  const setupApi = async () => {
-    try {
-      const radioStations = await browserRadioApi.searchStations({
-        country: country,
-        tagList: genre,
-        limit: limit,
-      });
+//   const setupApi = async () => {
+//     try {
+//       const radioStations = await browserRadioApi.searchStations({
+//         country: country,
+//         tagList: genre,
+//         limit: limit,
+//       });
 
-      // Filter out duplicate URLs
-      const uniqueUrlMap = new Map();
-      radioStations.forEach((station) => {
-        if (!uniqueUrlMap.has(station.urlResolved)) {
-          uniqueUrlMap.set(station.urlResolved, station);
-        }
-      });
-      const uniqueUrlStations = Array.from(uniqueUrlMap.values());
+//       // Filter out duplicate URLs
+//       const uniqueUrlMap = new Map();
+//       radioStations.forEach((station) => {
+//         if (!uniqueUrlMap.has(station.urlResolved)) {
+//           uniqueUrlMap.set(station.urlResolved, station);
+//         }
+//       });
+//       const uniqueUrlStations = Array.from(uniqueUrlMap.values());
 
-      // Filter out duplicate names
+//       // Filter out duplicate names
 
-      // Filter out duplicate names and ignore empty or whitespace-only names
-      const uniqueNameMap = new Map();
-      uniqueUrlStations.forEach((station) => {
-        // Convert station name to lowercase for case-insensitive comparison
-        const stationNameLower = station.name.trim().toLowerCase();
+//       // Filter out duplicate names and ignore empty or whitespace-only names
+//       const uniqueNameMap = new Map();
+//       uniqueUrlStations.forEach((station) => {
+//         // Convert station name to lowercase for case-insensitive comparison
+//         const stationNameLower = station.name.trim().toLowerCase();
 
-        // Check if the lowercase station name is not empty and not already in the map
-        if (stationNameLower && !uniqueNameMap.has(stationNameLower)) {
-          uniqueNameMap.set(stationNameLower, station);
-        }
-      });
-      const uniqueStations = Array.from(uniqueNameMap.values());
+//         // Check if the lowercase station name is not empty and not already in the map
+//         if (stationNameLower && !uniqueNameMap.has(stationNameLower)) {
+//           uniqueNameMap.set(stationNameLower, station);
+//         }
+//       });
+//       const uniqueStations = Array.from(uniqueNameMap.values());
 
-      return uniqueStations;
-    } catch (err) {
-      setError(err.message || "An error occurred");
-      return [];
-    }
-  };
+//       return uniqueStations;
+//     } catch (err) {
+//       setError(err.message || "An error occurred");
+//       return [];
+//     }
+//   };
 
-  useEffect(() => {
-    const currentTime = new Date().getTime();
-    const cachedData = radioDataCache[country];
+//   useEffect(() => {
+//     const currentTime = new Date().getTime();
+//     const cachedData = radioDataCache[country];
 
-    if (cachedData && currentTime - cachedData.timestamp < cacheDuration) {
-      // Use cached data if within validity period
-      setStations(cachedData.stations);
-      setLoading(false);
-    } else {
-      // Fetch new data
-      setLoading(true);
-      setupApi()
-        .then((data) => {
-          radioDataCache[country] = { stations: data, timestamp: currentTime };
-          setStations(data);
-          setLoading(false);
-        })
-        .catch((error) => {
-          // ... error handling ...
-        });
-    }
-  }, [country, params]);
+//     if (cachedData && currentTime - cachedData.timestamp < cacheDuration) {
+//       // Use cached data if within validity period
+//       setStations(cachedData.stations);
+//       setLoading(false);
+//     } else {
+//       // Fetch new data
+//       setLoading(true);
+//       setupApi()
+//         .then((data) => {
+//           radioDataCache[country] = { stations: data, timestamp: currentTime };
+//           setStations(data);
+//           setLoading(false);
+//         })
+//         .catch((error) => {
+//           // ... error handling ...
+//         });
+//     }
+//   }, [country, params]);
 
-  return { stations, loading, error };
-};
+//   return { stations, loading, error };
+// };
 
-export default useRadio;
+// export default useRadio;
 
 // DONt FILTER HTTP VERSION :
 
