@@ -184,14 +184,14 @@ export default function BasicMenu() {
         >
           Country
         </MenuItem>
-        <MenuItem
+        {/* <MenuItem
           sx={linkSx}
           component={Link}
           onClick={handleClose}
           to="?genre=electronic"
         >
           Electronic
-        </MenuItem>
+        </MenuItem> */}
         <MenuItem
           sx={linkSx}
           component={Link}
@@ -208,22 +208,22 @@ export default function BasicMenu() {
         >
           Chillout
         </MenuItem>
-        <MenuItem
+        {/* <MenuItem
           sx={linkSx}
           component={Link}
           onClick={handleClose}
           to="?genre=community radio"
         >
           Community radio
-        </MenuItem>
-        <MenuItem
+        </MenuItem> */}
+        {/* <MenuItem
           sx={linkSx}
           component={Link}
           onClick={handleClose}
           to="?genre=university radio"
         >
           University radio
-        </MenuItem>
+        </MenuItem> */}
         <MenuItem
           sx={linkSx}
           component={Link}
