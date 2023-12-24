@@ -202,7 +202,7 @@ const CountryPage = () => {
 
       <SearchBarContainer>
         <Close
-          title="Clear search"
+          title="Clear"
           size={20}
           onClick={() => {
             setPage(0); // Reset pagination to the first page
