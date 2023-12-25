@@ -42,45 +42,51 @@ const Radio = ({ item }) => {
     }
   };
 
-  const openMapInNewTab = () => {
-    const bboxPadding = 20; // Increase this value to zoom out more
-    const bbox = `${item.geoLong - bboxPadding},${item.geoLat - bboxPadding},${
-      item.geoLong + bboxPadding
-    },${item.geoLat + bboxPadding}`;
+//   const openMapInNewTab = () => {
+//     const bboxPadding = 20; // Increase this value to zoom out more
+//     const bbox = `${item.geoLong - bboxPadding},${item.geoLat - bboxPadding},${
+//       item.geoLong + bboxPadding
+//     },${item.geoLat + bboxPadding}`;
 
-    const mapHtml = `
-    <style>
-    body, html {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        width: 100%;
-        overflow: hidden;
-    }
-    .map-container {
-        position: fixed; /* Changed to fixed */
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: 100%;
-        height: 100%;
-    }
-    .map-container iframe {
-        width: 100%;
-        height: 100%;
-        border: none; /* Remove border */
-    }
-</style>
-        <div class="map-container">
-            <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&marker=${item.geoLat},${item.geoLong}&layers=ND" style="border:0" loading="lazy" allowfullscreen></iframe>
-        </div>
-    `;
+//     const mapHtml = `
+//     <style>
+//     body, html {
+//         margin: 0;
+//         padding: 0;
+//         height: 100%;
+//         width: 100%;
+//         overflow: hidden;
+//     }
+//     .map-container {
+//         position: fixed; /* Changed to fixed */
+//         top: 0;
+//         left: 0;
+//         right: 0;
+//         bottom: 0;
+//         width: 100%;
+//         height: 100%;
+//     }
+//     .map-container iframe {
+//         width: 100%;
+//         height: 100%;
+//         border: none; /* Remove border */
+//     }
+// </style>
+//         <div class="map-container">
+//             <iframe src="https://www.osmap.us/export/embed.html?bbox=${bbox}&marker=${item.geoLat},${item.geoLong}&layers=ND" style="border:0" loading="lazy" allowfullscreen></iframe>
+//         </div>
+//     `;
 
-    const mapWindow = window.open();
-    mapWindow.document.write(mapHtml);
-    mapWindow.document.title = "Map View"; // Optionally set the title of the new window
-  };
+//     const mapWindow = window.open();
+//     mapWindow.document.write(mapHtml);
+//     mapWindow.document.title = "Map View"; // Optionally set the title of the new window
+//   };
+
+
+const openMapInNewTab = () => {
+  const mapUrl = `https://www.openstreetmap.org/?mlat=${item.geoLat}&mlon=${item.geoLong}#map=3/${item.geoLat}/${item.geoLong}`;
+  window.open(mapUrl, '_blank');
+};
 
   const hasValidCoordinates =
     item && Number.isFinite(item.geoLat) && Number.isFinite(item.geoLong);
