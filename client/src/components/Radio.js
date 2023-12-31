@@ -200,6 +200,7 @@ const CountryName = styled.div`
   padding-bottom: 12px;
   height: 45px;
   transform: translateZ(0);
+  font-size: 0.9em;
 `;
 
 const State = styled.span`
