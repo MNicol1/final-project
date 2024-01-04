@@ -226,6 +226,7 @@ const CountryPage = () => {
               e.preventDefault();
               handleSearch();
               e.target.blur(); // this will make the keyboard close
+              setSuggestions([]);
             }
           }}
         />
