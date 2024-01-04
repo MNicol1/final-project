@@ -160,7 +160,8 @@ const Container = styled.div`
   padding: 20px 25px;
 
   position: relative;
-  background-color: black;
+  background: linear-gradient(to bottom, black, rgb(33, 33, 33));
+  /* background-color: black; */
   /* border-radius: 7px; */
 
   border: ridge 1px white;
