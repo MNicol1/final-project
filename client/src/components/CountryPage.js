@@ -118,6 +118,8 @@ const CountryPage = () => {
     }
   };
 
+  const inputRef = useRef(null);
+
   const handleSearchWithSuggestion = (suggestion) => {
     const exactMatchStation = stations.filter(
       (station) => station.name.toLowerCase() === suggestion.toLowerCase()
@@ -215,6 +217,7 @@ const CountryPage = () => {
         />
 
         <SearchInput
+          ref={inputRef}
           title="Search"
           type="text"
           placeholder="Search station name..."
@@ -237,10 +240,19 @@ const CountryPage = () => {
             {suggestions.map((suggestion, index) => (
               <li
                 key={index}
+                onTouchStart={() => {
+                  if (inputRef.current) {
+                    inputRef.current.blur(); // Explicitly blur the input
+                  }
+                }}
                 onClick={() => {
+                  console.log(
+                    "Suggestion clicked, current ref:",
+                    inputRef.current
+                  );
                   setNameSearchTerm(suggestion);
                   setSuggestions([]);
-                  handleSearchWithSuggestion(suggestion); // Call a new function to handle the suggestion click
+                  handleSearchWithSuggestion(suggestion);
                 }}
               >
                 <div className="icon-container">
