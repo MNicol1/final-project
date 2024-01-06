@@ -129,11 +129,11 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
               {suggestions.map((suggestion, index) => (
                 <li
                   key={index}
-                  onTouchStart={() => {
-                    if (inputElement.current) {
-                      inputElement.current.blur(); // Explicitly blur the input
-                    }
-                  }}
+                  // onTouchStart={() => {
+                  //   if (inputElement.current) {
+                  //     inputElement.current.blur(); // Explicitly blur the input
+                  //   }
+                  // }}
                   onClick={() => {
                     const countryObject = countries.find(
                       (country) => country.name === suggestion

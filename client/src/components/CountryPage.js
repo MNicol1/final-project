@@ -156,6 +156,8 @@ const CountryPage = () => {
     };
   }, []);
 
+  
+
   if (loading) {
     return (
       <Main>
@@ -240,11 +242,11 @@ const CountryPage = () => {
             {suggestions.map((suggestion, index) => (
               <li
                 key={index}
-                onTouchStart={() => {
-                  if (inputRef.current) {
-                    inputRef.current.blur(); // Explicitly blur the input
-                  }
-                }}
+                // onTouchStart={() => {
+                //   if (inputRef.current) {
+                //     inputRef.current.blur(); // Explicitly blur the input
+                //   }
+                // }}
                 onClick={() => {
                   console.log(
                     "Suggestion clicked, current ref:",
