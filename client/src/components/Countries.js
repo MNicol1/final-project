@@ -45,6 +45,33 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
       })
     : [];
 
+    const dropdownRef = useRef(null);
+
+
+    useEffect(() => {
+      if (suggestions.length > 0) {
+          document.body.style.overflow = 'hidden';
+      } else {
+          document.body.style.overflow = '';
+      }
+  }, [suggestions]);
+
+  useEffect(() => {
+    const dropdown = dropdownRef.current;
+    if (dropdown) {
+        const handleTouchMove = (e) => {
+            e.stopPropagation();
+        };
+
+        dropdown.addEventListener('touchmove', handleTouchMove, { passive: false });
+
+        return () => {
+            dropdown.removeEventListener('touchmove', handleTouchMove);
+        };
+    }
+}, []);
+
+
   const handleSearch = (e) => {
     if (e.key === "Enter" || e.type === "click") {
       const trimmedSearchTerm = tempSearchTerm.trim();
@@ -65,7 +92,7 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
           country.name.toLowerCase().includes(userInput.toLowerCase())
         )
         .map((country) => country.name)
-        .slice(0, 10); // Limit the number of suggestions
+        .slice(0, 7); // Limit the number of suggestions
 
       setSuggestions(filteredSuggestions);
     } else {
@@ -91,13 +118,15 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
     };
   }, []);
 
-  const dropdownRef = useRef(null);
+ 
 
   const clearSearch = () => {
     setSearchTerm("");
     setTempSearchTerm("");
     inputElement.current.value = "";
   };
+
+  
 
   return (
     <Container>
