@@ -172,7 +172,7 @@ const Container = styled.div`
       transform: translate(-7px, -7px);
 
       /* border-radius: 5%; */
-      margin: -2px;
+      /* margin: -2px; */
 
       box-shadow: 9px 9px 11px rgba(212, 172, 193, 0.7);
     }

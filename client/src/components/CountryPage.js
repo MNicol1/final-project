@@ -33,7 +33,7 @@ const CountryPage = () => {
 
   const { stations, loading, error } = useRadio({
     country: country,
-    limit: 6000,
+    limit: 6050,
   });
 
   const [suggestions, setSuggestions] = useState([]);
