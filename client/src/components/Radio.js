@@ -153,7 +153,7 @@ const Container = styled.div`
   padding: 20px 25px;
 
   position: relative;
-  background: linear-gradient(to bottom, black, rgb(37, 37, 56));
+  background: linear-gradient(to bottom, black, rgb(37, 37, 46));
   /* background-color: black; */
   /* border-radius: 7px; */
 
