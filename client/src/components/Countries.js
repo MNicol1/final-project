@@ -48,28 +48,28 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
     const dropdownRef = useRef(null);
 
 
-    useEffect(() => {
-      if (suggestions.length > 0) {
-          document.body.style.overflow = 'hidden';
-      } else {
-          document.body.style.overflow = '';
-      }
-  }, [suggestions]);
+  //   useEffect(() => {
+  //     if (suggestions.length > 0) {
+  //         document.body.style.overflow = 'hidden';
+  //     } else {
+  //         document.body.style.overflow = '';
+  //     }
+  // }, [suggestions]);
 
-  useEffect(() => {
-    const dropdown = dropdownRef.current;
-    if (dropdown) {
-        const handleTouchMove = (e) => {
-            e.stopPropagation();
-        };
+//   useEffect(() => {
+//     const dropdown = dropdownRef.current;
+//     if (dropdown) {
+//         const handleTouchMove = (e) => {
+//             e.stopPropagation();
+//         };
 
-        dropdown.addEventListener('touchmove', handleTouchMove, { passive: false });
+//         dropdown.addEventListener('touchmove', handleTouchMove, { passive: false });
 
-        return () => {
-            dropdown.removeEventListener('touchmove', handleTouchMove);
-        };
-    }
-}, []);
+//         return () => {
+//             dropdown.removeEventListener('touchmove', handleTouchMove);
+//         };
+//     }
+// }, []);
 
 
   const handleSearch = (e) => {
