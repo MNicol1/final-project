@@ -21,7 +21,7 @@ export const AudioProvider = ({ children }) => {
 
   const [recentPlays, setRecentPlays] = useState(() => {
     // Load initial state from sessionStorage or localStorage
-    const saved = sessionStorage.getItem("recentPlays");
+    const saved = localStorage.getItem("recentPlays");
     return saved ? JSON.parse(saved) : [];
   });
 
@@ -79,7 +79,7 @@ export const AudioProvider = ({ children }) => {
 
   useEffect(() => {
     // Save recent plays to sessionStorage
-    sessionStorage.setItem("recentPlays", JSON.stringify(recentPlays));
+    localStorage.setItem("recentPlays", JSON.stringify(recentPlays));
   }, [recentPlays]);
 
   const clearRecentPlays = () => {
