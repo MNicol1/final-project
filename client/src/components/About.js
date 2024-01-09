@@ -14,8 +14,8 @@ const About = () => {
         <p>
           WWR emerged as a student-designed project from the Concordia
           University Web Development Bootcamp in the spring of 2022, with love
-          for modern, accessible, ad-free design and all things music. WWR gives
-          a special thanks to the open source community-driven radio-browser.
+          for accessible, ad-free design and all things music. WWR gives a
+          special thanks to the open source community-driven radio-browser.
         </p>
         <p>
           This site allows users to experience the myriad radio waves that

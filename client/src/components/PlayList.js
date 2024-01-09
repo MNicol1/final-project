@@ -3,15 +3,20 @@ import Radio from "./Radio";
 import { useAudio } from "./AudioContext";
 import { RadioContainer, RadioList } from "./styles";
 import styled from "styled-components";
+import { useEffect } from "react";
 
 const PlayList = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const { recentPlays, clearRecentPlays, removeRecentPlay } = useAudio();
 
   return (
     <div>
       {recentPlays && recentPlays.length > 0 ? (
         <RadioContainer>
-          <YourPlays>Your recent plays:</YourPlays>
+          <YourPlays>Recent plays:</YourPlays>
 
           {/* <hr style={{ backgroundColor: "white" }} /> */}
           <ClearAll title="Clear list" onClick={clearRecentPlays}>
@@ -31,7 +36,7 @@ const PlayList = () => {
         </RadioContainer>
       ) : (
         <RadioContainer>
-          <YourPlays>Your recent plays:</YourPlays>
+          <YourPlays>Recent plays:</YourPlays>
           <hr style={{ backgroundColor: "white" }} />{" "}
           <NoRecentPlaysDiv>
             No recent plays available. Please select and play stations to

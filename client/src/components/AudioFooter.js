@@ -4,7 +4,7 @@ import { useAudio } from "./AudioContext";
 import "./AudioFooter.css";
 import { FaVolumeUp, FaVolumeMute, FaSpinner } from "react-icons/fa";
 
-import { RiPauseFill, RiPlayFill } from "react-icons/ri";
+import { RiStopFill, RiPlayFill } from "react-icons/ri";
 
 const AudioFooter = () => {
   const {
@@ -41,10 +41,11 @@ const AudioFooter = () => {
 
   useEffect(() => {
     if (isPlaying && currentURL) {
+      audioRef.current.src = currentURL; // Set the source to reload the stream
       audioRef.current.play().catch((error) => {
         console.warn("Play was interrupted:", error);
       });
-    } else {
+    } else if (audioRef.current) {
       audioRef.current.pause();
     }
   }, [isPlaying, currentURL]);
@@ -122,7 +123,7 @@ const AudioFooter = () => {
     if (isLoading) {
       return <FaSpinner className="spin-icon" />;
     } else if (isPlaying) {
-      return <RiPauseFill />;
+      return <RiStopFill />;
     } else {
       return <RiPlayFill />;
     }
@@ -173,10 +174,11 @@ const AudioFooter = () => {
           onWaiting={() => setIsLoading(true)}
           // onStalled={() => setIsLoading(true)}
           onError={() => {
-            setIsLoading(false);
-            setIsPlaying(false);
-            // Update your context with an error state
-            setSourceError(currentURL); // Or use some unique identifier if not the URL
+            if (currentURL) {
+              setIsLoading(false);
+              setIsPlaying(false);
+              setSourceError(currentURL); // Set error only if there's a current URL
+            }
           }}
         />
 

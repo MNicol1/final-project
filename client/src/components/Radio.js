@@ -4,10 +4,10 @@ import { GoRadioTower } from "react-icons/go";
 import "./Radio.css";
 import { useAudio } from "./AudioContext";
 
-import { FaPlay, FaPause, FaSpinner } from "react-icons/fa";
+import { FaPlay, FaStop, FaSpinner } from "react-icons/fa";
 
 import { BsGeoAlt } from "react-icons/bs";
-import { AiOutlineCloseSquare } from "react-icons/ai";
+
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
 const Radio = ({ item, isRecentPlay, onRemove }) => {
@@ -38,7 +38,7 @@ const Radio = ({ item, isRecentPlay, onRemove }) => {
     } else if (isLoading && isCurrentRadioPlaying) {
       return <FaSpinner className="spin-icon" style={{ fontSize: "20px" }} />;
     } else if (isCurrentRadioPlaying) {
-      return <FaPause />;
+      return <FaStop />;
     } else {
       return <FaPlay />;
     }

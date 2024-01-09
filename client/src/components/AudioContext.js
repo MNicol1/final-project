@@ -34,6 +34,11 @@ export const AudioProvider = ({ children }) => {
     const audioElement = document.createElement("audio");
     audioElement.src = url;
 
+    if (audioElement.src !== url) {
+      audioElement.src = url;
+      audioElement.load(); // Load the new source
+    }
+
     audioElement.oncanplay = () => {
       // Audio is playable; update recentPlays
       if (item && item.urlResolved) {
