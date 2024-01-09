@@ -26,9 +26,9 @@ const Home = () => {
           <h3>Welcome!</h3>
           <Content>
             To tune in and listen to radio from around the world, simply choose
-            stations by country, filter down further by your favorite genre or
-            search for a specific station name. Also create a list of favorites
-            based on your recent plays.
+            stations by country, filter down further by genre or search for a
+            specific station name. Also create a list of favorites based on your
+            recent plays.
           </Content>
 
           <ErrorMessage>
@@ -56,9 +56,9 @@ const Home = () => {
             <h3>Welcome!</h3>
             <Content>
               To tune in and listen to radio from around the world, simply
-              choose stations by country, filter down further by your favorite
-              genre or search for a specific station name. Also create a list of
-              favorites based on your recent plays.
+              choose stations by country, filter down further by genre or search
+              for a specific station name. Also create a list of favorites based
+              on your recent plays.
             </Content>
             <RadioList>
               {httpsStations.map((item) => (

@@ -20,10 +20,10 @@ const About = () => {
         <p>
           This site allows users to experience the myriad radio waves that
           surround the globe. Freely browse radio stations by country, filter
-          stations by your favorite music genre or search for specific radio
-          station names. Also create a favorites list based on recent plays.
-          Some stations provide geolocation coordinates, allowing you to view
-          the station's location on an integrated map. Happy listening!
+          stations by music genre or search for specific radio station names.
+          Also create a favorites list based on recent plays. Some stations
+          provide geolocation coordinates, allowing you to view the station's
+          location on an integrated map. Happy listening!
         </p>
         <Icons>
           <GiMusicalNotes size={28} /> <ImEarth size={28} />
