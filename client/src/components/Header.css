@@ -3,6 +3,7 @@
 .links {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-shrink: 0;
   padding-top: 10px;
 }
@@ -70,6 +71,7 @@
   .link:hover,
   .link-active {
     color: #f8d6fe;
+    margin: 0 30px;
   }
 
   .link {

@@ -6,11 +6,14 @@ import Header from "./components/Header";
 import Home from "./components/Home";
 import About from "./components/About";
 
+
 import { useRef, useState } from "react";
 import AudioFooter from "./components/AudioFooter";
 
 import "./App.css";
 import { useAudio } from "./components/AudioContext";
+
+import PlayList from "./components/PlayList";
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -28,6 +31,10 @@ const App = () => {
           <Route path="/" element={<Home />} />
 
           <Route path="/about" element={<About />} />
+
+          <Route path="/playlist" element={<PlayList />} />
+
+
 
           <Route
             path="/countries"

@@ -3,9 +3,7 @@ import { GiMusicalNotes } from "react-icons/gi";
 import { ImEarth } from "react-icons/im";
 import { useEffect } from "react";
 
-
 const About = () => {
-
   useEffect(() => {
     window.scrollTo(0, -30);
   }, []);
@@ -14,14 +12,18 @@ const About = () => {
     <Container>
       <Main>
         <p>
-          WWR is a student-designed project that emerged out of the Concordia
-          University Web Development Bootcamp, in the spring of 2022. WWR gives
-          thanks to the open source community-driven radio-browser.
+          WWR emerged as a student-designed project from the Concordia
+          University Web Development Bootcamp in the spring of 2022, with love
+          for modern, accessible, ad-free design and all things music. WWR gives
+          a special thanks to the open source community-driven radio-browser.
         </p>
         <p>
           This site allows users to experience the myriad radio waves that
           surround the globe. Freely browse radio stations by country, filter
-          stations by your favorite music genre or search for specific radio station names. Happy listening!
+          stations by your favorite music genre or search for specific radio
+          station names. Also create a favorites list based on recent plays.
+          Some stations provide geolocation coordinates, allowing you to view
+          the station's location on an integrated map. Happy listening!
         </p>
         <Icons>
           <GiMusicalNotes size={28} /> <ImEarth size={28} />

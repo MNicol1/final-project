@@ -7,8 +7,10 @@ import { useAudio } from "./AudioContext";
 import { FaPlay, FaPause, FaSpinner } from "react-icons/fa";
 
 import { BsGeoAlt } from "react-icons/bs";
+import { AiOutlineCloseSquare } from "react-icons/ai";
+import { IoIosCloseCircleOutline } from "react-icons/io";
 
-const Radio = ({ item }) => {
+const Radio = ({ item, isRecentPlay, onRemove }) => {
   const {
     playAudio,
     pauseAudio,
@@ -25,8 +27,8 @@ const Radio = ({ item }) => {
     if (isCurrentRadioPlaying) {
       pauseAudio();
     } else {
-      playAudio(item.urlResolved);
       setCurrentItem(item);
+      playAudio(item.urlResolved, item);
     }
   };
 
@@ -42,46 +44,6 @@ const Radio = ({ item }) => {
     }
   };
 
-  //   const openMapInNewTab = () => {
-  //     const bboxPadding = 20; // Increase this value to zoom out more
-  //     const bbox = `${item.geoLong - bboxPadding},${item.geoLat - bboxPadding},${
-  //       item.geoLong + bboxPadding
-  //     },${item.geoLat + bboxPadding}`;
-
-  //     const mapHtml = `
-  //     <style>
-  //     body, html {
-  //         margin: 0;
-  //         padding: 0;
-  //         height: 100%;
-  //         width: 100%;
-  //         overflow: hidden;
-  //     }
-  //     .map-container {
-  //         position: fixed; /* Changed to fixed */
-  //         top: 0;
-  //         left: 0;
-  //         right: 0;
-  //         bottom: 0;
-  //         width: 100%;
-  //         height: 100%;
-  //     }
-  //     .map-container iframe {
-  //         width: 100%;
-  //         height: 100%;
-  //         border: none; /* Remove border */
-  //     }
-  // </style>
-  //         <div class="map-container">
-  //             <iframe src="https://www.osmap.us/export/embed.html?bbox=${bbox}&marker=${item.geoLat},${item.geoLong}&layers=ND" style="border:0" loading="lazy" allowfullscreen></iframe>
-  //         </div>
-  //     `;
-
-  //     const mapWindow = window.open();
-  //     mapWindow.document.write(mapHtml);
-  //     mapWindow.document.title = "Map View"; // Optionally set the title of the new window
-  //   };
-
   const openMapInNewTab = () => {
     const mapUrl = `https://www.openstreetmap.org/?mlat=${item.geoLat}&mlon=${item.geoLong}#map=3/${item.geoLat}/${item.geoLong}`;
     window.open(mapUrl, "_blank");
@@ -92,6 +54,9 @@ const Radio = ({ item }) => {
 
   return (
     <Container>
+      {isRecentPlay && (
+        <RemoveIcon title="Remove" size={26} onClick={onRemove} />
+      )}
       <StationName>
         <GoRadioTower size={20} /> {item.name}
       </StationName>
@@ -118,6 +83,21 @@ const Radio = ({ item }) => {
     </Container>
   );
 };
+
+const RemoveIcon = styled(IoIosCloseCircleOutline)`
+  position: absolute;
+  top: 10px; // Adjust as needed
+  right: 10px; // Adjust as needed
+  cursor: pointer;
+
+  @media (min-width: 1025px) {
+    font-size: 0.8em;
+    :hover {
+      /* text-decoration-line: underline; */
+      color: grey;
+    }
+  }
+`;
 
 const Map = styled.div`
   cursor: pointer;

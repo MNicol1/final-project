@@ -109,11 +109,11 @@ const AudioFooter = () => {
 
   const togglePlay = () => {
     if (isPlaying) {
-      pauseAudio(); // Use the method from AudioContext
+      pauseAudio();
     } else {
-      // If you want to play the last played station when hitting play in footer
-      if (currentURL) {
-        playAudio(currentURL);
+      // If there is a current URL and currentItem, play it
+      if (currentURL && currentItem) {
+        playAudio(currentURL, currentItem);
       }
     }
   };

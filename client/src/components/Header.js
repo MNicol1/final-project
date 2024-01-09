@@ -29,6 +29,12 @@ const Header = ({ setSearchTerm, inputElement }) => {
           >
             Countries
           </NavLink>
+          <NavLink
+            className={({ isActive }) => (isActive ? "link-active" : "link")}
+            to="/playlist"
+          >
+            Playlist
+          </NavLink>
 
           <NavLink
             className={({ isActive }) => (isActive ? "link-active" : "link")}
