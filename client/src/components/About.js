@@ -3,6 +3,8 @@ import { GiMusicalNotes } from "react-icons/gi";
 import { ImEarth } from "react-icons/im";
 import { useEffect } from "react";
 
+import { FaRegCopyright } from "react-icons/fa";
+
 const About = () => {
   useEffect(() => {
     window.scrollTo(0, -30);
@@ -28,10 +30,22 @@ const About = () => {
         <Icons>
           <GiMusicalNotes size={28} /> <ImEarth size={28} />
         </Icons>
+        <Copy>
+        <FaRegCopyright /> 2022
+        </Copy>
+        
       </Main>
+      
     </Container>
   );
 };
+
+const Copy = styled.div`
+position: absolute;
+bottom: 10px;
+font-size: 0.8em;
+
+`
 
 const Container = styled.div`
   padding: 40px 200px;
@@ -50,17 +64,18 @@ const Container = styled.div`
     padding-bottom: 80px;
   }
 
-  /* @media (width: 880px) {
-    display: inline-block;
-    padding: 30px 100px;
-    margin-top: 20px;
 
-} */
 `;
 const Icons = styled.div`
-  margin-top: 30px;
+  margin: 30px 0;
+
+
+  @media (max-width: 380px) {
+   margin: 30px 0 55px 0;
+  }
 `;
 const Main = styled.div`
+  position: relative;
   text-align: left;
   border: 1px solid white;
   padding-bottom: 100px;
@@ -69,7 +84,7 @@ const Main = styled.div`
   padding-top: 25px;
 
   @media (max-width: 680px) {
-    padding-bottom: 45px;
+    padding-bottom: 55px;
   }
 
   @media (max-width: 380px) {
