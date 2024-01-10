@@ -77,6 +77,10 @@ const YourPlays = styled.h2`
     padding-top: 10px;
     font-size: 1.4em;
   }
+
+  @media (min-width: 1024px) {
+    margin-block-start: 10px;
+  }
 `;
 
 const NoRecentPlaysDiv = styled.div`

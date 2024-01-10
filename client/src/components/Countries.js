@@ -45,8 +45,7 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
       })
     : [];
 
-    const dropdownRef = useRef(null);
-
+  const dropdownRef = useRef(null);
 
   //   useEffect(() => {
   //     if (suggestions.length > 0) {
@@ -56,21 +55,20 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
   //     }
   // }, [suggestions]);
 
-//   useEffect(() => {
-//     const dropdown = dropdownRef.current;
-//     if (dropdown) {
-//         const handleTouchMove = (e) => {
-//             e.stopPropagation();
-//         };
+  //   useEffect(() => {
+  //     const dropdown = dropdownRef.current;
+  //     if (dropdown) {
+  //         const handleTouchMove = (e) => {
+  //             e.stopPropagation();
+  //         };
 
-//         dropdown.addEventListener('touchmove', handleTouchMove, { passive: false });
+  //         dropdown.addEventListener('touchmove', handleTouchMove, { passive: false });
 
-//         return () => {
-//             dropdown.removeEventListener('touchmove', handleTouchMove);
-//         };
-//     }
-// }, []);
-
+  //         return () => {
+  //             dropdown.removeEventListener('touchmove', handleTouchMove);
+  //         };
+  //     }
+  // }, []);
 
   const handleSearch = (e) => {
     if (e.key === "Enter" || e.type === "click") {
@@ -118,15 +116,11 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
     };
   }, []);
 
- 
-
   const clearSearch = () => {
     setSearchTerm("");
     setTempSearchTerm("");
     inputElement.current.value = "";
   };
-
-  
 
   return (
     <Container>
@@ -354,6 +348,10 @@ const Main = styled.div`
 
 const Heading = styled.h2`
   font-size: 1.7em;
+
+  @media (min-width: 1024px) {
+    margin-block-start: 15px;
+  }
 
   @media (max-width: 880px) {
     font-size: 1.8em;

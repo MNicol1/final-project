@@ -28,28 +28,25 @@ const About = () => {
           location on an integrated map. Happy listening!
         </p>
         <Icons>
-          <GiMusicalNotes size={28} /> <ImEarth size={28} />
+          <GiMusicalNotes size={26} /> <ImEarth size={26} />
         </Icons>
         <Copy>
-        <FaRegCopyright /> 2022
+          <FaRegCopyright /> 2022
         </Copy>
-        
       </Main>
-      
     </Container>
   );
 };
 
 const Copy = styled.div`
-position: absolute;
-bottom: 10px;
-font-size: 0.8em;
-
-`
+  position: absolute;
+  bottom: 10px;
+  font-size: 0.8em;
+`;
 
 const Container = styled.div`
-  padding: 40px 200px;
-  margin-top: 29px;
+  padding: 40px 250px;
+  margin-top: 5px;
   @media (max-width: 800px) {
     display: inline-block;
     padding: 30px 15px;
@@ -63,22 +60,19 @@ const Container = styled.div`
     margin-top: 20px;
     padding-bottom: 80px;
   }
-
-
 `;
 const Icons = styled.div`
   margin: 30px 0;
 
-
   @media (max-width: 380px) {
-   margin: 30px 0 55px 0;
+    margin: 30px 0 55px 0;
   }
 `;
 const Main = styled.div`
   position: relative;
   text-align: left;
   border: 1px solid white;
-  padding-bottom: 100px;
+  padding-bottom: 75px;
   padding-left: 25px;
   padding-right: 25px;
   padding-top: 25px;

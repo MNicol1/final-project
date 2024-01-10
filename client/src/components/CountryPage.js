@@ -156,8 +156,6 @@ const CountryPage = () => {
     };
   }, []);
 
-  
-
   if (loading) {
     return (
       <Main>
@@ -412,7 +410,8 @@ const GenreTitle = styled.span``;
 const TotalStations = styled.span``;
 
 const Name = styled.h3`
-  @media (min-width: 1000px) {
+  @media (min-width: 1024px) {
+    margin-block-start: 10px;
     font-size: 23px;
   }
 
