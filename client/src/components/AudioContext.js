@@ -25,7 +25,8 @@ export const AudioProvider = ({ children }) => {
     return saved ? JSON.parse(saved) : [];
   });
 
-  const playAudio = (url, item) => {
+  const playAudio = (url, item, fromPlayList = false) => {
+    console.log("Playing audio from PlayList:", fromPlayList);
     setCurrentlyPlayingURL(url);
     setIsPlaying(true);
     setIsLoading(true);
@@ -41,7 +42,7 @@ export const AudioProvider = ({ children }) => {
 
     audioElement.oncanplay = () => {
       // Audio is playable; update recentPlays
-      if (item && item.urlResolved) {
+      if (!fromPlayList && item && item.urlResolved) {
         setRecentPlays((prevPlays) => {
           const existingPlayIndex = prevPlays.findIndex(
             (play) => play.url === item.urlResolved

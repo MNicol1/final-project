@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { RadioBrowserApi } from "radio-browser-api";
 
 const stationsCache = {}; // Cache object to store stations data
-const cacheDuration = 12 * 60 * 60 * 1000;
+const cacheDuration = 48 * 60 * 60 * 1000;
 
 const browserRadioApi = new RadioBrowserApi("My Radio App");
 browserRadioApi.setBaseUrl("https://at1.api.radio-browser.info");
