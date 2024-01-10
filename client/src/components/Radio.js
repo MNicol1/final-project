@@ -28,11 +28,7 @@ const Radio = ({ item, isRecentPlay, onRemove }) => {
       pauseAudio();
     } else {
       setCurrentItem(item);
-      if (isRecentPlay) {
-        playAudio(item.urlResolved, item, true); // Set fromPlayList to true
-      } else {
-        playAudio(item.urlResolved, item); // Normal behavior outside PlayList
-      }
+      playAudio(item.urlResolved, item);
     }
   };
 
