@@ -35,7 +35,7 @@ const About = () => {
           to a myriad of radio waves that surround the globe. There is no
           guarantee of the data's accuracy at all times. All related stations
           data is public domain and provided by the community-driven effort{" "}
-          <AnchorLink href="https://www.radio-browser.info/">
+          <AnchorLink target="_blank" href="https://www.radio-browser.info/">
             radio-browser
           </AnchorLink>
           . Happy listening!
