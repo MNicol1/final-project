@@ -142,7 +142,7 @@ const Container = styled.div`
   box-shadow: 0px 0px 6px 4px rgba(246, 219, 233, 0.4);
 
   @media (min-width: 1025px) {
-    background: linear-gradient(to bottom, black, rgb(26, 26, 37));
+    background: linear-gradient(to bottom, black, rgb(26, 26, 44));
     border: solid 1px rgb(151, 150, 150);
     box-shadow: 4px 4px 6px rgba(246, 219, 233, 0.4);
     transition: 250ms ease-in-out;
