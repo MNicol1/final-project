@@ -20,20 +20,21 @@ const About = () => {
           music. WWR gives a big special thanks to the community-driven
           radio-browser.
         </p>
-        <p>
+        {/* <p>
           This site allows users to experience the myriad radio waves that
           surround the globe. Freely browse radio stations by country, filter
           stations by music genre or search for specific radio station names.
           Also create a favorites list based on recent plays. Some stations
           provide geolocation coordinates, allowing you to view the station's
           location on an integrated map.
-        </p>
+        </p> */}
         <p>
           This is a free to use site for non-commercial, personal and
           educational purposes only, for the listening enjoyment of streamed
-          radio broadcasts. There is no guarantee to the accuracy of any of the
-          data at all times. All related stations data is public domain and
-          provided by the community-driven effort{" "}
+          radio broadcasts. Users of this site may freely browse and have access
+          to a myriad of radio waves that surround the globe. There is no
+          guarantee of the data's accuracy at all times. All related stations
+          data is public domain and provided by the community-driven effort{" "}
           <AnchorLink href="https://www.radio-browser.info/">
             radio-browser
           </AnchorLink>
@@ -88,7 +89,7 @@ const Main = styled.div`
   position: relative;
   text-align: left;
   border: 1px solid white;
-  padding-bottom: 25px;
+  padding-bottom: 45px;
   padding-left: 25px;
   padding-right: 25px;
   padding-top: 25px;

@@ -55,8 +55,8 @@ const Home = () => {
           <RadioContainer>
             <h3>Welcome!</h3>
             <Content>
-              To tune in and listen to radio from around the world, simply
-              choose stations by country, filter down further by genre or search
+              To tune in and listen to radio broadcasts from around the world,
+              browse stations by country, filter down further by genre or search
               for a specific station name. Also create a list of favorites based
               on your recent plays.
             </Content>
