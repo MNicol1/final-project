@@ -27,3 +27,7 @@
   position: fixed; /* Optional, for better handling on some mobile browsers */
   width: 100%; /* Optional, for better handling on some mobile browsers */
 }
+
+/* .leaflet-control-attribution {
+  display: block !important;
+} */

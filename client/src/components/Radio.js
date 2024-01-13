@@ -44,8 +44,11 @@ const Radio = ({ item, isRecentPlay, onRemove }) => {
     }
   };
 
+  //For MAP
   const openMapInNewTab = () => {
-    const mapUrl = `https://www.openstreetmap.org/?mlat=${item.geoLat}&mlon=${item.geoLong}#map=3/${item.geoLat}/${item.geoLong}`;
+    if (!hasValidCoordinates) return;
+
+    const mapUrl = `${window.location.origin}/#map?lat=${item.geoLat}&lng=${item.geoLong}`;
     window.open(mapUrl, "_blank");
   };
 
