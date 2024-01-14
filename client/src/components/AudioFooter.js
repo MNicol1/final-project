@@ -137,13 +137,25 @@ const AudioFooter = () => {
     }
   }, [isLoading, currentItem]);
 
-  const handleSliderClick = (e) => {
-    const rect = e.target.getBoundingClientRect();
-    const y = e.clientY - rect.top; // y position within the element.
-    const volumeLevel = 1 - y / rect.height;
-    audioRef.current.volume = volumeLevel;
-    setVolume(volumeLevel);
-  };
+  //Disabled this Volume slider click functionality for better UX
+
+  // const handleSliderClick = (e) => {
+  //   const rect = e.target.getBoundingClientRect();
+  //   const y = e.clientY - rect.top; // y position within the element.
+  //   const volumeLevel = 1 - y / rect.height;
+  //   audioRef.current.volume = volumeLevel;
+  //   setVolume(volumeLevel);
+
+  //   // Update the slider fill
+  //   const fillPercentage = `${volumeLevel * 100}%`;
+  //   sliderRef.current.style.setProperty("--fill-percentage", fillPercentage);
+
+  //   // Update the knob's position
+  //   const knob = document.querySelector('.volume-thumb'); // Replace with your knob selector
+  //   if (knob) {
+  //     knob.style.bottom = fillPercentage;
+  //   }
+  // };
 
   useEffect(() => {
     if (isAudioFooterVisible) {
@@ -235,7 +247,7 @@ const AudioFooter = () => {
         <div
           className="volume-slider"
           ref={sliderRef}
-          onClick={handleSliderClick}
+          // onClick={handleSliderClick}
         >
           <div
             className="volume-thumb"
