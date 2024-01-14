@@ -78,7 +78,7 @@ const Radio = ({ item, isRecentPlay, onRemove }) => {
       <Audio>
         <AudioButton
           onClick={handleTogglePlay}
-          title={isCurrentRadioPlaying ? "Pause" : "Play"}
+          title={isCurrentRadioPlaying ? "Stop" : "Play"}
         >
           {renderAudioControl()}
         </AudioButton>

@@ -48,7 +48,34 @@ const CountryPage = () => {
   const stationsPerPage = 12;
   const numberOfStationsVisited = page * stationsPerPage;
 
+  //Implementation of navigate back by url search paramas
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
   useEffect(() => {
+    const searchTermFromURL = searchParams.get("search");
+    let pageFromURL = parseInt(searchParams.get("page"), 10);
+
+    // Convert to zero-based index for internal use
+    pageFromURL = !isNaN(pageFromURL) ? pageFromURL - 1 : 0;
+
+    setNameSearchTerm(searchTermFromURL);
+    setPage(pageFromURL);
+
+    if (searchTermFromURL) {
+      const results = stations.filter((station) =>
+        station.name.toLowerCase().includes(searchTermFromURL.toLowerCase())
+      );
+      setSearchResults(results);
+      setHasSearched(true);
+    }
+  }, [searchParams, stations]);
+
+  //genre handling (with url search params )
+
+  useEffect(() => {
+    const searchTermFromURL = searchParams.get("search");
+
     if (currentGenre) {
       const filtered = stations.filter((station) =>
         station.tags
@@ -58,13 +85,22 @@ const CountryPage = () => {
       setFilteredStations(filtered);
       setSearchResults([]); // Clear search results on genre change
       setHasSearched(false);
+
+      // Only reset the page if it's a new genre and there's no page info in URL
+      if (!searchParams.get("page")) {
+        setPage(0);
+      }
     } else {
       setFilteredStations(stations); // Display all stations if no genre is selected
+      if (!searchParams.get("page")) {
+        setPage(0);
+      }
     }
 
-    setPage(0); // Reset page number when genre changes
-    setNameSearchTerm(""); // Clear search term when genre changes
-  }, [currentGenre, stations]);
+    if (!searchTermFromURL) {
+      setNameSearchTerm(""); // Clear search term when genre changes and no search term in URL
+    }
+  }, [currentGenre, stations, searchParams]);
 
   const stationsToDisplay = hasSearched ? searchResults : filteredStations;
 
@@ -75,6 +111,7 @@ const CountryPage = () => {
 
   const changePage = ({ selected }) => {
     setPage(selected);
+    setSearchParams({ search: nameSearchTerm, page: selected + 1 });
 
     // to manage scroll up or down at paginate
     window.scrollTo({
@@ -96,7 +133,8 @@ const CountryPage = () => {
 
     window.scrollTo(0, 1);
 
-    navigate(`?search=${encodeURIComponent(nameSearchTerm)}`);
+    // navigate(`?search=${encodeURIComponent(nameSearchTerm)}`);
+    setSearchParams({ search: nameSearchTerm });
     // Optionally, you might want to clear the genre in the URL here as well
   };
 
@@ -300,7 +338,8 @@ const CountryPage = () => {
       </RadioList>
       <Page>
         <ReactPaginate
-          forcePage={page}
+          //modified force page to remove error, it normally is just {page}
+          forcePage={Math.min(page, totalPages - 1)}
           breakLabel="..."
           previousLabel={"<"}
           nextLabel={">"}

@@ -185,7 +185,7 @@ const AudioFooter = () => {
         <button
           className="playpause-button"
           onClick={togglePlay}
-          title={isPlaying ? "Pause" : "Play"}
+          title={isPlaying ? "Stop" : "Play"}
         >
           {renderAudioControl()}
         </button>
