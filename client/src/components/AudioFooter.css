@@ -77,7 +77,7 @@
   left: 50%; /* Center the slider within the container */
   transform: translateX(-50%);
   bottom: 10px; /* Offset by the bottom padding */
-  cursor: pointer;
+  
 }
 
 .volume-slider::before {
@@ -88,6 +88,7 @@
   width: 100%;
   height: var(--fill-percentage); /* Dynamic height based on volume */
   background-color: #f8d6fe; /* Color of the filled portion of the slider */
+
 }
 
 .volume-thumb {
