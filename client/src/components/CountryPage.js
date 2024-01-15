@@ -170,7 +170,7 @@ const CountryPage = () => {
   };
 
   const handleBlur = () => {
-    // Logic to scroll to the top
+    // Logic to scroll to the top of page
     window.scrollTo(0, 1);
   };
 

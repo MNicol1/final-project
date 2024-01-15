@@ -44,7 +44,7 @@ const Radio = ({ item, isRecentPlay, onRemove }) => {
     }
   };
 
-  //For MAP
+  //For MAP functionality
   const openMapInNewTab = () => {
     if (!hasValidCoordinates) return;
 

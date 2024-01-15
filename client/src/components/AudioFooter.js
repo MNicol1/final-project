@@ -181,7 +181,7 @@ const AudioFooter = () => {
           onPause={() => setIsPlaying(false)}
           onCanPlay={() => {
             setIsLoading(false);
-            setSourceError(null); // Reset the error state when the audio is ready to play.
+            setSourceError(null); // Reset the error state when the audio is ready to play
           }}
           onWaiting={() => setIsLoading(true)}
           // onStalled={() => setIsLoading(true)}

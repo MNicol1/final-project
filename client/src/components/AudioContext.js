@@ -40,7 +40,7 @@ export const AudioProvider = ({ children }) => {
     }
 
     audioElement.oncanplay = () => {
-      // Audio is playable; update recentPlays
+      // update recentPlays
       if (item && item.urlResolved) {
         setRecentPlays((prevPlays) => {
           const existingPlayIndex = prevPlays.findIndex(
