@@ -331,7 +331,7 @@ const CountryPage = () => {
         ) : (
           <Main2>
             <Msg2>
-              <GiMusicalNotes size={22} /> No stations found
+              <GiMusicalNotes size={22} /> No stations match your search, please try again.
             </Msg2>
           </Main2>
         )}
@@ -474,15 +474,21 @@ const Msg = styled.h3`
 const Main2 = styled.div`
   grid-column: 1 / -1; // This spans the entire width of the grid
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   flex-direction: column;
   height: 25vh;
+  font-size: 18px;
 `;
 
 const Msg2 = styled.h3`
-  @media (max-width: 1200px) {
-    font-size: 14px;
+
+text-align: center;
+  @media (max-width: 650px) {
+    font-size: 17px;
+    height: 0;
+    padding: 0 8px;
+   
   }
 `;
 
