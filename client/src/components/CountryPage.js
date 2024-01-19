@@ -111,9 +111,13 @@ const CountryPage = () => {
 
   const changePage = ({ selected }) => {
     setPage(selected);
-    setSearchParams({ search: nameSearchTerm, page: selected + 1 });
 
-    // to manage scroll up or down at paginate
+    // Check if a genre is selected and include it in the URL parameters
+    const urlParams = currentGenre
+      ? { genre: currentGenre, page: selected + 1 }
+      : { search: nameSearchTerm, page: selected + 1 };
+    setSearchParams(urlParams);
+
     window.scrollTo({
       top: 1,
       left: 0,
@@ -331,7 +335,8 @@ const CountryPage = () => {
         ) : (
           <Main2>
             <Msg2>
-              <GiMusicalNotes size={22} /> No stations match your search, please try again.
+              <GiMusicalNotes size={22} /> No stations match your search, please
+              try again.
             </Msg2>
           </Main2>
         )}
@@ -482,13 +487,11 @@ const Main2 = styled.div`
 `;
 
 const Msg2 = styled.h3`
-
-text-align: center;
+  text-align: center;
   @media (max-width: 650px) {
     font-size: 17px;
     height: 0;
     padding: 0 8px;
-   
   }
 `;
 
