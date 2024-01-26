@@ -10,6 +10,8 @@
     "@emotion/styled": "^11.10.0",
     "@mui/material": "^5.10.1",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
+    "@react-three/drei": "^9.96.4",
+    "@react-three/fiber": "^8.15.15",
     "@svgr/webpack": "^8.1.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
@@ -32,6 +34,7 @@
     "resolve-url-loader": "^5.0.0",
     "styled": "^1.0.0",
     "styled-components": "^5.3.5",
+    "three": "^0.160.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

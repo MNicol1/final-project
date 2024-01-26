@@ -1,162 +1,141 @@
-import useRadio from "../hooks/useRadio";
-import { RadioContainer, RadioList } from "./styles";
-import Radio from "./Radio";
-import styled from "styled-components";
-
-import { BiMessageAltError } from "react-icons/bi";
-import { FaSpinner } from "react-icons/fa";
+import styled, { keyframes } from "styled-components";
+import React, { Suspense } from "react";
+const SphereComponent = React.lazy(() => import("./SphereComponent"));
 
 const Home = () => {
-  const { stations, error, loading } = useRadio({ country: "", limit: 39 });
+  const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <path d="M0 10 L20 0 L20 10" stroke="white" stroke-width="1" fill="none"/>
+</svg>
 
-  if (loading) {
-    return (
-      <MainOne>
-        <Msg>
-          <FaSpinner size={32} className="spin-icon" />
-        </Msg>
-      </MainOne>
-    );
-  }
 
-  if (error) {
-    return (
-      <Main>
-        <RadioContainer>
-          <h3>Welcome!</h3>
-          <Content>
-            To tune in and listen to radio from around the world, simply choose
-            stations by country, filter down further by genre or search for a
-            specific station name. Also create a list of favorites based on your
-            recent plays.
-          </Content>
+`;
 
-          <ErrorMessage>
-            <span>
-              <BiMessageAltError size={40} />
-            </span>
-            An error occurred on the server: Please refresh your browser, or try
-            again later.
-          </ErrorMessage>
-        </RadioContainer>
-      </Main>
-    );
-  }
+  // Function to encode SVG
+  const encodeSVG = (svg) => {
+    return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+  };
 
-  if (Array.isArray(stations) && stations.length > 0) {
-    // Filter for HTTPS stations and limit to 8
-    const httpsStations = stations
-      .filter((station) => station.urlResolved.startsWith("https://"))
-      .slice(0, 8);
+  // Encode SVG to Data URI
+  const svgDataUri = encodeSVG(svgContent);
 
-    if (httpsStations.length > 0) {
-      return (
-        <Main>
-          <RadioContainer>
-            <h3>Welcome!</h3>
-            <Content>
-              To tune in and listen to radio broadcasts from around the world,
-              browse stations by country, filter down further by genre or search
-              for a specific station name. Also create a list of favorites based
-              on your recent plays.
-            </Content>
-            <RadioList>
-              {httpsStations.map((item) => (
-                <Radio item={item} key={item.id} />
-              ))}
-            </RadioList>
-          </RadioContainer>
-        </Main>
-      );
-    } else {
-      // Handle case when no HTTPS stations are available
-      return (
-        <Main>
-          {/* Display a message or alternative content when no HTTPS stations are available */}
-        </Main>
-      );
-    }
-  }
-
-  return null;
+  return (
+    <Main>
+      <ContentWrapper>
+        <Title>Welcome!</Title>
+        <Content>
+          To tune in and listen to radio broadcasts from around the world,
+          browse stations by country, filter down further by genre or search for
+          a specific station name. Also create a list of favorites based on your
+          recent plays.
+        </Content>
+        <Wave svgDataUri={svgDataUri}></Wave>
+      </ContentWrapper>
+      <SphereWrapper>
+        <Suspense fallback={<div className="spinner"></div>}>
+          <SphereComponent />
+        </Suspense>
+      </SphereWrapper>
+    </Main>
+  );
 };
 
-//   if (Array.isArray(stations) && stations.length > 0) {
-//     const uniqueStations = stations.filter((station, index, self) => {
-//       const nameMatch =
-//         index === self.findIndex((s) => s.name === station.name);
-//       const urlMatch =
-//         index === self.findIndex((s) => s.urlResolved === station.urlResolved);
-//       return nameMatch && urlMatch;
-//     });
-
-//     return (
-//       <Main>
-//         <RadioContainer>
-// <h3>Welcome!</h3>
-// <Content>
-//   To tune in and listen to radio from around the world, simply choose
-//   stations by country, and filter down further by your favorite genre
-//   or search for a specific station name.
-// </Content>
-
-//           <RadioList>
-//             {uniqueStations.map((item) => {
-//               return <Radio item={item} key={item.id} />;
-//             })}
-//           </RadioList>
-//         </RadioContainer>
-//       </Main>
-//     );
-//   }
-
-//   return null;
-// };
-
-const MainOne = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-const Msg = styled.h3`
-  margin-top: 150px;
-
-  @media (max-width: 1200px) {
-    font-size: 14px;
+const fillIn = keyframes`
+  from {
+    width: 0;
+  }
+  to {
+    width: 50%;
   }
 `;
 
-const Main = styled.div``;
+const Wave = styled.div`
+  position: relative;
+  padding: 10px; /* Adjust as needed */
 
+  color: white; /* Text color */
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    height: 10px; /* Height of the zig-zag pattern */
+    background-image: url("${(props) => props.svgDataUri}");
+    background-repeat: repeat-x;
+    animation: ${fillIn} 2s forwards;
+  }
+`;
+
+const Title = styled.div`
+  font-size: 1.4em;
+  /* border-bottom: 1px solid white; */
+`;
 const Content = styled.p`
   text-align: left;
   text-justify: inter-word;
+  font-size: 1.1em;
 `;
 
-const ErrorMessage = styled.div`
-  color: white;
-  padding: 100px;
+const Main = styled.div`
   display: flex;
-  text-align: center;
-  justify-content: center;
-  border-top: 1px solid white;
+  justify-content: space-between;
+  align-items: center;
+  height: 85vh; // Adjust the height as needed
+  position: relative; // Added for relative positioning
+  background: linear-gradient(to right, black, rgb(28, 28, 38));
 
-  @media (max-width: 768px) {
-    padding: 70px 5px;
+  @media (max-width: 1025px) {
+    padding-top: 7%;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+    background: linear-gradient(to right, black 1%, rgb(70, 70, 90));
+  }
+`;
+
+const ContentWrapper = styled.div`
+  margin-top: -220px;
+  max-width: 45%;
+  margin-left: 40px;
+  z-index: 1; // Make sure content is above the SphereComponent
+
+  @media (max-width: 1025px) {
+    position: absolute; // Overlay on top of the SphereComponent
+    top: 2; // Adjust top position as needed
+    left: 2%; // Start from a bit from the left
+    transform: translate(0, 0); // Remove centering
+    max-width: 95%; // Adjust width as needed to make it wider
+    width: auto; // Adjust width as per content
+    margin: 0;
+    padding: 20px; // Add padding for better readability
+    font-size: 0.9em;
+    color: white; // Ensure text is readable over the background
+    text-align: left; // Align text to left if preferred
+  }
+`;
+
+const SphereWrapper = styled.div`
+  flex: 2;
+  width: 55%;
+  height: 100%;
+  margin-right: 15px;
+  position: relative; // This is important for absolute positioning of children
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 1025px) {
+    height: 100%; // Or 'auto' depending on desired aspect ratio
+    padding: 0px 5px;
+    width: 100%;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden; // To handle any overflow issues
   }
 `;
 
 export default Home;
-
-// CHANGE FOR ERROR HANDLING
-
-// const Home = () => {
-//   const stations = useRadio({ country: "", limit: 9 });
-
-//   if (stations) {
-//     const uniqueStations = stations.filter((station, index, self) => {
-//       const nameMatch =
-//         index === self.findIndex((s) => s.name === station.name);
-//       const urlMatch =
-//         index === self.findIndex((s) => s.urlResolved === station.urlResolved);
-//       return nameMatch && urlMatch;
-//     });
