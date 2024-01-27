@@ -1,6 +1,7 @@
 import styled, { keyframes } from "styled-components";
-import React, { Suspense } from "react";
-const SphereComponent = React.lazy(() => import("./SphereComponent"));
+// import React, { Suspense } from "react";
+// const SphereComponent = React.lazy(() => import("./SphereComponent"));
+import SphereComponent from "./SphereComponent"
 
 const Home = () => {
   const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
@@ -31,9 +32,9 @@ const Home = () => {
         <Wave svgDataUri={svgDataUri}></Wave>
       </ContentWrapper>
       <SphereWrapper>
-        <Suspense fallback={null}>
+      
           <SphereComponent />
-        </Suspense>
+      
       </SphereWrapper>
     </Main>
   );
