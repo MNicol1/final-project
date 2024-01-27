@@ -24,14 +24,14 @@ const Home = () => {
         <Title>Welcome!</Title>
         <Content>
           To tune in and listen to radio broadcasts from around the world,
-          browse stations by country, filter down further by genre or search for
-          a specific station name. Also create a list of favorites based on your
-          recent plays.
+          select a country to browse stations, filter down further by genre or
+          search for a specific station name. Also create a list of favorites
+          based on your recent plays.
         </Content>
         <Wave svgDataUri={svgDataUri}></Wave>
       </ContentWrapper>
       <SphereWrapper>
-        <Suspense fallback={<div className="spinner"></div>}>
+        <Suspense fallback={null}>
           <SphereComponent />
         </Suspense>
       </SphereWrapper>
