@@ -17,7 +17,9 @@ const PlayList = () => {
     favorites,
     clearFavorites,
   } = useAudio();
-  const [activeTab, setActiveTab] = useState("favorites"); // State to manage active tab
+
+  
+  const [activeTab, setActiveTab] = useState("favorites"); 
 
   const renderList = (plays, isFavoriteList, addToFavorites) => (
     <RadioList>
