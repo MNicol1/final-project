@@ -4,13 +4,22 @@ import { GoRadioTower } from "react-icons/go";
 import "./Radio.css";
 import { useAudio } from "./AudioContext";
 
-import { FaPlay, FaStop, FaSpinner } from "react-icons/fa";
+import { FaPlay, FaStop, FaSpinner, FaStar, FaRegStar } from "react-icons/fa";
+
+import { IoIosStarOutline, IoIosStar } from "react-icons/io";
 
 import { BsGeoAlt } from "react-icons/bs";
 
 import { IoIosCloseCircleOutline } from "react-icons/io";
+import { MdPlaylistAdd, MdPlaylistAddCheck } from "react-icons/md";
 
-const Radio = ({ item, isRecentPlay, onRemove }) => {
+const Radio = ({
+  item,
+  isRecentPlay,
+  onRemove,
+  isInFavoritesList,
+  removeFromRecentPlays,
+}) => {
   const {
     playAudio,
     pauseAudio,
@@ -19,7 +28,22 @@ const Radio = ({ item, isRecentPlay, onRemove }) => {
     isLoading,
     setCurrentItem,
     sourceError,
+    favorites,
+    addToFavorites,
+    removeFromFavorites,
   } = useAudio();
+
+  const isFavorite = favorites.some((fav) => fav.url === item.urlResolved);
+
+  // const showRemoveIcon = isRecentPlay || isInFavoritesList;
+
+  const toggleFavorite = () => {
+    if (isFavorite) {
+      removeFromFavorites(item.urlResolved);
+    } else {
+      addToFavorites(item);
+    }
+  };
 
   const isCurrentRadioPlaying = currentURL === item.urlResolved && isPlaying;
 
@@ -55,11 +79,35 @@ const Radio = ({ item, isRecentPlay, onRemove }) => {
   const hasValidCoordinates =
     item && Number.isFinite(item.geoLat) && Number.isFinite(item.geoLong);
 
+  const showFavoriteIcon = !isRecentPlay && !isInFavoritesList;
+
+  const handleAddToFavorites = () => {
+    addToFavorites(item);
+    removeFromRecentPlays(item.urlResolved);
+  };
+
   return (
     <Container>
-      {isRecentPlay && (
-        <RemoveIcon title="Remove" size={26} onClick={onRemove} />
+      {isInFavoritesList && (
+        <RemoveIcon title="Remove" size={24} onClick={onRemove} />
       )}
+
+      {/* Favorite icon */}
+      {!isInFavoritesList && (
+        <Favorite onClick={toggleFavorite}>
+          {isFavorite ? (
+            <MdPlaylistAddCheck size={24} />
+          ) : (
+            <MdPlaylistAdd size={24} />
+          )}
+          {/* {isFavorite ? <IoIosStar size={18} /> : <IoIosStarOutline size={18} /> } */}
+        </Favorite>
+      )}
+
+      {isRecentPlay && (
+        <button onClick={handleAddToFavorites}>Add to Favorites</button>
+      )}
+
       <StationName>
         <GoRadioTower size={20} /> {item.name}
       </StationName>
@@ -87,16 +135,36 @@ const Radio = ({ item, isRecentPlay, onRemove }) => {
   );
 };
 
+const Favorite = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 1px;
+  cursor: pointer;
+  background: none;
+  color: inherit;
+  border: none;
+  /* padding: 2px;            */
+  margin: 0;
+
+  outline: inherit;
+
+  @media (min-width: 1025px) {
+    font-size: 0.8em;
+    :hover {
+      color: grey;
+    }
+  }
+`;
+
 const RemoveIcon = styled(IoIosCloseCircleOutline)`
   position: absolute;
-  top: 10px; // Adjust as needed
-  right: 10px; // Adjust as needed
+  top: 10px;
+  right: 10px;
   cursor: pointer;
 
   @media (min-width: 1025px) {
     font-size: 0.8em;
     :hover {
-      /* text-decoration-line: underline; */
       color: grey;
     }
   }

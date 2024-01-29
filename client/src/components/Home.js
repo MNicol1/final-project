@@ -1,7 +1,7 @@
 import styled, { keyframes } from "styled-components";
 // import React, { Suspense } from "react";
 // const SphereComponent = React.lazy(() => import("./SphereComponent"));
-import SphereComponent from "./SphereComponent"
+import SphereComponent from "./SphereComponent";
 
 const Home = () => {
   const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
@@ -25,16 +25,14 @@ const Home = () => {
         <Title>Welcome!</Title>
         <Content>
           To tune in and listen to radio broadcasts from around the world,
-          select a country to browse stations, filter down further by genre or
-          search for a specific station name. Also create a list of favorites
-          based on your recent plays.
+          simply select any country to start browsing stations. Further filter
+          by genre or search for a specific station name. Additionally, create a
+          list of favorites.
         </Content>
         <Wave svgDataUri={svgDataUri}></Wave>
       </ContentWrapper>
       <SphereWrapper>
-      
-          <SphereComponent />
-      
+        <SphereComponent />
       </SphereWrapper>
     </Main>
   );

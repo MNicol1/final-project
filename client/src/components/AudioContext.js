@@ -21,7 +21,12 @@ export const AudioProvider = ({ children }) => {
 
   const [recentPlays, setRecentPlays] = useState(() => {
     // Load initial state from sessionStorage or localStorage
-    const saved = localStorage.getItem("recentPlays");
+    const saved = sessionStorage.getItem("recentPlays");
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  const [favorites, setFavorites] = useState(() => {
+    const saved = localStorage.getItem("favorites");
     return saved ? JSON.parse(saved) : [];
   });
 
@@ -40,27 +45,25 @@ export const AudioProvider = ({ children }) => {
     }
 
     audioElement.oncanplay = () => {
+      //this prevents station from going to recentplays lists if favorite list and add this to if statement below :  !isFavorite &&
+      // const isFavorite = favorites.some(fav => fav.urlResolved === item.urlResolved);
+
       // update recentPlays
       if (item && item.urlResolved) {
         setRecentPlays((prevPlays) => {
-          const existingPlayIndex = prevPlays.findIndex(
-            (play) => play.url === item.urlResolved
+          const updatedPlays = prevPlays.filter(
+            (play) => play.url !== item.urlResolved
           );
-
-          if (existingPlayIndex === -1) {
-            const newPlay = {
-              url: item.urlResolved,
-              urlResolved: item.urlResolved,
-              name: item.name,
-              country: item.country,
-              state: item.state,
-              geoLat: item.geoLat,
-              geoLong: item.geoLong,
-            };
-            return [newPlay, ...prevPlays];
-          } else {
-            return prevPlays;
-          }
+          const newPlay = {
+            url: item.urlResolved,
+            urlResolved: item.urlResolved,
+            name: item.name,
+            country: item.country,
+            state: item.state,
+            geoLat: item.geoLat,
+            geoLong: item.geoLong,
+          };
+          return [newPlay, ...updatedPlays];
         });
       }
     };
@@ -81,7 +84,7 @@ export const AudioProvider = ({ children }) => {
 
   useEffect(() => {
     // Save recent plays to sessionStorage
-    localStorage.setItem("recentPlays", JSON.stringify(recentPlays));
+    sessionStorage.setItem("recentPlays", JSON.stringify(recentPlays));
   }, [recentPlays]);
 
   const clearRecentPlays = () => {
@@ -95,6 +98,38 @@ export const AudioProvider = ({ children }) => {
     );
     // Update sessionStorage in useEffect or here directly
   };
+
+  const addToFavorites = (item) => {
+    setFavorites((prevFavorites) => {
+      const exists = prevFavorites.some(
+        (fav) => fav.urlResolved === item.urlResolved
+      );
+      if (!exists) {
+        const newItem = {
+          ...item,
+          url: item.urlResolved, // Ensure the key is based on urlResolved
+          // Copy other necessary properties from item
+        };
+        return [newItem, ...prevFavorites];
+      }
+      return prevFavorites;
+    });
+  };
+
+  const removeFromFavorites = (urlToRemove) => {
+    setFavorites((prevFavorites) =>
+      prevFavorites.filter((fav) => fav.url !== urlToRemove)
+    );
+  };
+
+  const clearFavorites = () => {
+    setFavorites([]);
+    localStorage.removeItem("favorites");
+  };
+
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
 
   return (
     <AudioContext.Provider
@@ -116,6 +151,10 @@ export const AudioProvider = ({ children }) => {
         setRecentPlays,
         clearRecentPlays,
         removeRecentPlay,
+        favorites,
+        addToFavorites,
+        removeFromFavorites,
+        clearFavorites,
       }}
     >
       {children}
