@@ -97,9 +97,7 @@ const TabContainer = styled.div`
   display: flex;
   justify-content: flex-start;
 
-  @media (max-width: 680px) {
-    padding: 35px 0;
-  }
+
 `;
 
 const ClearAll = styled.button`
