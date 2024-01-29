@@ -35,7 +35,7 @@ const PlayList = () => {
   );
 
   return (
-    <div>
+    <>
       <RadioContainer>
         <TabContainer>
           <YourPlays
@@ -79,7 +79,7 @@ const PlayList = () => {
               renderList(recentPlays, false)
             ) : (
               <NoRecentPlaysDiv>
-                No recent plays history available. Once you start playing
+                No recent history available. Once you start playing
                 stations a list will be created here, with the most recently
                 played station at the top.
               </NoRecentPlaysDiv>
@@ -87,7 +87,7 @@ const PlayList = () => {
           </>
         )}
       </RadioContainer>
-    </div>
+    </>
   );
 };
 
@@ -96,7 +96,7 @@ const TabContainer = styled.div`
   justify-content: flex-start;
 
   @media (max-width: 680px) {
-    padding: 15px 0;
+    padding: 35px 0;
   }
 `;
 
@@ -135,7 +135,6 @@ const YourPlays = styled.h2`
 
   &::after {
     content: "";
-    position: absolute;
     position: absolute;
     bottom: -1px;
     height: 1px;

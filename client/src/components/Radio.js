@@ -12,6 +12,8 @@ import { BsGeoAlt } from "react-icons/bs";
 
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { MdPlaylistAdd, MdPlaylistAddCheck } from "react-icons/md";
+import { useEffect } from "react";
+
 
 const Radio = ({
   item,
@@ -20,6 +22,8 @@ const Radio = ({
   isInFavoritesList,
   removeFromRecentPlays,
 }) => {
+
+
   const {
     playAudio,
     pauseAudio,
@@ -32,6 +36,7 @@ const Radio = ({
     addToFavorites,
     removeFromFavorites,
   } = useAudio();
+
 
   const isFavorite = favorites.some((fav) => fav.url === item.urlResolved);
 
