@@ -66,7 +66,7 @@ const PlayList = () => {
             ) : (
               <NoRecentPlaysDiv>
                 No favorites added. Click on the 'add to list' icon to mark your
-                favorites!
+                favorites.
               </NoRecentPlaysDiv>
             )}
           </>
@@ -81,8 +81,8 @@ const PlayList = () => {
               renderList(recentPlays, false)
             ) : (
               <NoRecentPlaysDiv>
-                No recent history available. Once stations are played a list
-                will be created, with the most recently played station at the
+                No recent history available. Once stations are played, a list
+                will be created with the most recently played stations at the
                 top.
               </NoRecentPlaysDiv>
             )}
@@ -96,8 +96,6 @@ const PlayList = () => {
 const TabContainer = styled.div`
   display: flex;
   justify-content: flex-start;
-
-
 `;
 
 const ClearAll = styled.button`
@@ -124,6 +122,7 @@ const YourPlays = styled.h2`
   cursor: pointer;
   color: ${(props) => (props.active ? "white" : "rgb(132, 132, 132)")};
   border-top: ${(props) => (props.active ? "1.5px solid #ccc" : "none")};
+  
   border-left: ${(props) =>
     props.active && props.title === "Play History"
       ? "1.5px solid #ccc"
@@ -185,8 +184,13 @@ const YourPlays = styled.h2`
 
 const NoRecentPlaysDiv = styled.div`
   text-align: center;
-  padding-top: 10%;
+ padding-top: 20%;
+
   font-size: 1.2em;
+
+  @media (min-width: 1024px) {
+    padding: 10% 22% 0 22%;
+  }
 
   @media (max-width: 680px) {
     font-size: 1.1em;
