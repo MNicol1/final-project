@@ -79,9 +79,9 @@ const PlayList = () => {
               renderList(recentPlays, false)
             ) : (
               <NoRecentPlaysDiv>
-                No recent history available. Once you start playing
-                stations a list will be created here, with the most recently
-                played station at the top.
+                No recent history available. Once stations are played a list
+                will be created, with the most recently played station at the
+                top.
               </NoRecentPlaysDiv>
             )}
           </>
