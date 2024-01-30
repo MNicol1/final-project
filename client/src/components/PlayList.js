@@ -129,11 +129,18 @@ const YourPlays = styled.h2`
   border-right: ${(props) =>
     props.active && props.title === "Favorites" ? "1.5px solid #ccc" : "none"};
 
-  @media (min-width: 1024px) {
+  @media (min-width: 768px) {
     &[title="Play History"] {
       /* Apply the extended border only when active */
       border-top: ${(props) => (props.active ? "1.5px solid white" : "none")};
-      width: ${(props) => (props.active ? "77vw" : "auto")};
+      width: ${(props) => (props.active ? "67vw" : "auto")};
+    }
+  }
+
+  @media (max-width: 680px) {
+    &[title="Play History"] {
+      border-top: ${(props) => (props.active ? "1.5px solid white" : "none")};
+      width: ${(props) => (props.active ? "43vw" : "auto")};
     }
   }
 
@@ -148,22 +155,22 @@ const YourPlays = styled.h2`
 
   &[title="Favorites"]::after {
     left: 100%;
-    width: 80vw;
+    width: 69vw;
   }
 
   &[title="Play History"]::after {
     right: 100%;
-    width: 165px;
+    width: 143px;
   }
 
   @media (max-width: 680px) {
     &[title="Favorites"]::after {
       left: 100%;
-      width: 50vw;
+      width: 51vw;
     }
     &[title="Play History"]::after {
       right: 100%;
-      width: 80%;
+      width: 119px;
     }
   }
 

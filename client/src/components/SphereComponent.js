@@ -2,14 +2,27 @@ import { useRef, useState, useCallback, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 
-const AnimatedSphere = () => {
+const AnimatedSphere = ({ mouse }) => {
   const meshRef = useRef();
 
   const baseRotationSpeedY = 0.002;
+  const continuousRotationY = useRef(0);
 
   useFrame(() => {
     // Rotate the sphere continuously
-    meshRef.current.rotation.y += baseRotationSpeedY;
+
+    continuousRotationY.current += baseRotationSpeedY;
+
+    // Calculate tilt rotation based on mouse movement
+    const maxRotation = Math.PI / 50; // Maximum tilt angle
+    const xRotation =
+      ((mouse.y - window.innerHeight / 2) / window.innerHeight) * maxRotation;
+    const yRotation =
+      ((mouse.x - window.innerWidth / 2) / window.innerWidth) * maxRotation;
+
+    // Apply tilt rotation and continuous rotation separately
+    meshRef.current.rotation.x = xRotation;
+    meshRef.current.rotation.y = continuousRotationY.current + yRotation;
   });
 
   const onPointerOver = (event) => {
@@ -44,6 +57,23 @@ const AnimatedSphere = () => {
 };
 
 const SphereComponent = () => {
+  const [mouse, setMouse] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (event) => {
+      // Exclude certain areas like fixed header
+      if (event.clientX > 50 && event.clientY > 120) {
+        setMouse({ x: event.clientX, y: event.clientY });
+      }
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
+
   const isMobile = () => {
     return /Mobi|Android/i.test(navigator.userAgent);
   };
@@ -56,7 +86,7 @@ const SphereComponent = () => {
         castShadow
         receiveShadow
       />
-      <AnimatedSphere />
+      <AnimatedSphere mouse={mouse} />
       {!isMobile() && <OrbitControls />}
     </Canvas>
   );
