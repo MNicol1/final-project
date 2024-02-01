@@ -2,7 +2,8 @@ import { useState, useRef, useEffect } from "react";
 
 import { useAudio } from "./AudioContext";
 import "./AudioFooter.css";
-import { FaVolumeUp, FaVolumeMute, FaSpinner } from "react-icons/fa";
+import { FaVolumeUp, FaVolumeMute } from "react-icons/fa";
+import { ImSpinner2 } from "react-icons/im";
 
 import { RiStopFill, RiPlayFill } from "react-icons/ri";
 
@@ -121,7 +122,7 @@ const AudioFooter = () => {
 
   const renderAudioControl = () => {
     if (isLoading) {
-      return <FaSpinner className="spin-icon" />;
+      return <ImSpinner2 className="spin-icon" />;
     } else if (isPlaying) {
       return <RiStopFill />;
     } else {

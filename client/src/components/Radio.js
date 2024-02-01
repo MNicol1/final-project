@@ -4,16 +4,14 @@ import { GoRadioTower } from "react-icons/go";
 import "./Radio.css";
 import { useAudio } from "./AudioContext";
 
-import { FaPlay, FaStop, FaSpinner, FaStar, FaRegStar } from "react-icons/fa";
-
-import { IoIosStarOutline, IoIosStar } from "react-icons/io";
+import { FaPlay, FaStop } from "react-icons/fa";
 
 import { BsGeoAlt } from "react-icons/bs";
 
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { MdPlaylistAdd, MdPlaylistAddCheck } from "react-icons/md";
-import { useEffect } from "react";
 
+import { ImSpinner2 } from "react-icons/im";
 
 const Radio = ({
   item,
@@ -22,8 +20,6 @@ const Radio = ({
   isInFavoritesList,
   removeFromRecentPlays,
 }) => {
-
-
   const {
     playAudio,
     pauseAudio,
@@ -36,7 +32,6 @@ const Radio = ({
     addToFavorites,
     removeFromFavorites,
   } = useAudio();
-
 
   const isFavorite = favorites.some((fav) => fav.url === item.urlResolved);
 
@@ -65,7 +60,7 @@ const Radio = ({
     if (sourceError === item.urlResolved) {
       return <ErrorMsg>Error: No source found</ErrorMsg>;
     } else if (isLoading && isCurrentRadioPlaying) {
-      return <FaSpinner className="spin-icon" style={{ fontSize: "20px" }} />;
+      return <ImSpinner2 className="spin-icon" style={{ fontSize: "20px" }} />;
     } else if (isCurrentRadioPlaying) {
       return <FaStop />;
     } else {

@@ -20,25 +20,32 @@ html {
   text-size-adjust: none;          /* Modern browsers */
 }
 
-/* @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+.spin-icon-two {
+  animation: spins 1s infinite linear;
 }
 
-.spinner {
-  border: 5px solid rgba(255, 255, 255, 0.3); 
-  border-top: 5px solid #fff; 
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  position: absolute;  
-  top: 50%;         
-  left: 50%;          
-  transform: translate(-50%, -50%); 
-  animation: spin 2s linear infinite;
-} */
+@keyframes spins {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 
 
+@media only screen and (max-width: 767px) {
+    .spin-icon-two {
+        font-size: 42px; 
+    }
+}
+
+/* Desktop styles */
+@media only screen and (min-width: 769px) {
+    .spin-icon-two {
+        font-size: 68px; 
+    }
+}
 
 `;

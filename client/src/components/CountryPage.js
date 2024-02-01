@@ -9,7 +9,7 @@ import { useState, useEffect, useRef } from "react";
 import "./pagination.css";
 import "./suggestion.css";
 
-import { FaSpinner } from "react-icons/fa";
+import { ImSpinner2 } from "react-icons/im";
 
 import { BiMessageAltError } from "react-icons/bi";
 
@@ -202,7 +202,7 @@ const CountryPage = () => {
     return (
       <Main>
         <Msg>
-          <FaSpinner size={32} className="spin-icon" />
+          <ImSpinner2 className="spin-icon-two" />
         </Msg>
       </Main>
     );
@@ -223,7 +223,7 @@ const CountryPage = () => {
     return (
       <Main>
         <Msg>
-          <FaSpinner size={32} className="spin-icon" />
+          <ImSpinner2 className="spin-icon" />
         </Msg>
       </Main>
     );
