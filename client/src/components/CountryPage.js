@@ -467,10 +467,10 @@ const Name = styled.h3`
 const Main = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center; /* This aligns the child vertically */
+  height: 85vh;
 `;
 const Msg = styled.h3`
-  margin-top: 150px;
-
   @media (max-width: 1200px) {
     font-size: 14px;
   }

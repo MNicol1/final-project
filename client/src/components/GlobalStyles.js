@@ -37,7 +37,7 @@ html {
 
 @media only screen and (max-width: 767px) {
     .spin-icon-two {
-        font-size: 42px; 
+        font-size: 54px; 
     }
 }
 
