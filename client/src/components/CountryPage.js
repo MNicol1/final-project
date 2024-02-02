@@ -469,7 +469,12 @@ const Main = styled.div`
   justify-content: center;
   align-items: center; /* This aligns the child vertically */
   height: 85vh;
+
+  @media (max-width: 768px) {
+    height: 70vh;
+  }
 `;
+
 const Msg = styled.h3`
   @media (max-width: 1200px) {
     font-size: 14px;
