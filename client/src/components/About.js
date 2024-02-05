@@ -15,7 +15,7 @@ const About = () => {
         <p>
           WWR emerged as a student-designed project from the Concordia
           University Web Development Bootcamp in the spring of 2022, with love
-          for accessible user experience (UX), ad-free design and all things
+          for accessible user experience, ad-free design and all things
           music. WWR gives a big special thanks to the community-driven
           radio-browser.
         </p>
