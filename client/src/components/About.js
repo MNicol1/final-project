@@ -3,7 +3,6 @@ import { GiMusicalNotes } from "react-icons/gi";
 import { ImEarth } from "react-icons/im";
 import { useEffect } from "react";
 
-import { FaRegCopyright } from "react-icons/fa";
 
 const About = () => {
   useEffect(() => {
@@ -25,9 +24,7 @@ const About = () => {
           This is a free to use site for non-commercial, personal and
           educational purposes only, for the listening enjoyment of streamed
           radio broadcasts. Users of this site may freely browse and have access
-          to the myriad radio waves that surround the globe. Some stations
-          provide geolocation coordinates, allowing you to view a station's
-          location on an integrated map.{" "}
+          to the myriad radio waves that surround the globe.{" "}
         </p>
 
         <p>

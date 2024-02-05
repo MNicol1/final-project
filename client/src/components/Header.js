@@ -24,7 +24,6 @@ const Header = ({ setSearchTerm, inputElement }) => {
             onClick={() => {
               setSearchTerm("");
             }}
-            end
             to="/countries"
           >
             Countries
