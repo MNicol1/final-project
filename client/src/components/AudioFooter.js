@@ -32,12 +32,23 @@ const AudioFooter = () => {
 
   const [isVolumeHovered, setIsVolumeHovered] = useState(false);
 
+
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  useEffect(() => {
+    setIsTouchDevice(('ontouchstart' in window) || (navigator.maxTouchPoints > 0));
+  }, []);
+
   const handleVolumeEnter = () => {
-    setIsVolumeHovered(true);
+    if (!isTouchDevice) {
+      setIsVolumeHovered(true);
+    }
   };
 
   const handleVolumeLeave = () => {
-    setIsVolumeHovered(false);
+    if (!isTouchDevice) {
+      setIsVolumeHovered(false);
+    }
   };
 
   useEffect(() => {
