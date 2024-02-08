@@ -37,14 +37,14 @@ html {
 
 @media only screen and (max-width: 767px) {
     .spin-icon-two {
-        font-size: 52px; 
+        font-size: 44px; 
     }
 }
 
 /* Desktop styles */
 @media only screen and (min-width: 769px) {
     .spin-icon-two {
-        font-size: 68px; 
+        font-size: 62px; 
     }
 }
 
