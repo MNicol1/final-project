@@ -2,8 +2,13 @@ import styled, { keyframes } from "styled-components";
 // import React, { Suspense } from "react";
 // const SphereComponent = React.lazy(() => import("./SphereComponent"));
 import SphereComponent from "./SphereComponent";
+import { useEffect } from "react";
 
 const Home = () => {
+  useEffect(() => {
+    window.scrollTo(0, -30);
+  }, []);
+
   const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
   <path d="M0 10 L20 0 L20 10" stroke="white" stroke-width="1" fill="none"/>
 </svg>
