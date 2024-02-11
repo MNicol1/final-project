@@ -259,6 +259,8 @@ const CountryPage = () => {
         />
 
         <SearchInput
+          id="searchStations"
+          name="searchStations"
           ref={inputRef}
           title="Search"
           type="text"
@@ -288,7 +290,6 @@ const CountryPage = () => {
                 //   }
                 // }}
                 onClick={() => {
-          
                   setNameSearchTerm(suggestion);
                   setSuggestions([]);
                   handleSearchWithSuggestion(suggestion);

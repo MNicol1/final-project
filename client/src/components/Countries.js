@@ -141,6 +141,7 @@ const Countries = ({ searchTerm, setSearchTerm, inputElement }) => {
             type="text"
             autoComplete="off"
             name="search"
+            id="search"
             placeholder="Search..."
             onChange={handleInputChange}
             onKeyDown={handleSearch}
