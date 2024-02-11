@@ -288,10 +288,7 @@ const CountryPage = () => {
                 //   }
                 // }}
                 onClick={() => {
-                  console.log(
-                    "Suggestion clicked, current ref:",
-                    inputRef.current
-                  );
+          
                   setNameSearchTerm(suggestion);
                   setSuggestions([]);
                   handleSearchWithSuggestion(suggestion);
