@@ -118,7 +118,7 @@ const YourPlays = styled.h2`
   position: relative;
   padding: 10px 15px;
   font-size: 1.6em;
-  cursor: pointer;
+
   color: ${(props) => (props.active ? "white" : "rgb(132, 132, 132)")};
   border-top: ${(props) => (props.active ? "1.5px solid #ccc" : "none")};
 
@@ -177,6 +177,7 @@ const YourPlays = styled.h2`
   @media (min-width: 1025px) {
     span:hover {
       color: #f8d6fe;
+      cursor: pointer;
     }
   }
 
