@@ -44,14 +44,14 @@ const PlayList = () => {
             active={activeTab === "favorites"}
             title="Favorites"
           >
-            Favorites
+          <span>Favorites</span>  
           </YourPlays>
           <YourPlays
             onClick={() => setActiveTab("recentPlays")}
             active={activeTab === "recentPlays"}
             title="Play History"
           >
-            Play History
+           <span>Play History</span> 
           </YourPlays>
         </TabContainer>
 
@@ -175,7 +175,7 @@ const YourPlays = styled.h2`
   }
 
   @media (min-width: 1025px) {
-    :hover {
+    span:hover {
       color: #f8d6fe;
     }
   }
