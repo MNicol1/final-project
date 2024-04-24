@@ -94,7 +94,7 @@ const Radio = ({
 
       {/* Favorite icon */}
       {!isInFavoritesList && (
-        <Favorite onClick={toggleFavorite}>
+        <Favorite title="Add/Remove"  onClick={toggleFavorite}>
           {isFavorite ? (
             <MdPlaylistAddCheck size={24} />
           ) : (
