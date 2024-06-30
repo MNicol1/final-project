@@ -3,7 +3,6 @@ import { GiMusicalNotes } from "react-icons/gi";
 import { ImEarth } from "react-icons/im";
 import { useEffect } from "react";
 
-
 const About = () => {
   useEffect(() => {
     window.scrollTo(0, -30);
@@ -14,9 +13,9 @@ const About = () => {
       <Main>
         <p>
           WWR emerged as a student-designed project from the Concordia
-          University Web Development Bootcamp in the spring of 2022, with love
-          for accessible user experience, ad-free design and all things
-          music. WWR gives a big special thanks to the community-driven
+          University Full Stack Web Development program in the spring of 2022,
+          with love for accessible user experience, mobile-first design and all
+          things music. WWR gives a big special thanks to the community-driven
           radio-browser.
         </p>
 

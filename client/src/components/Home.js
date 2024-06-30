@@ -29,10 +29,10 @@ const Home = () => {
       <ContentWrapper>
         <Title>Welcome!</Title>
         <Content>
-          To tune in and listen to radio broadcasts from around the world,
-          simply select any country to start browsing stations. Further filter
-          by genre or search for a specific station name. Additionally, create a
-          list of favorites.
+          To tune in and listen to radio broadcasts from across the world,
+          simply select a country to start browsing stations. You can also
+          create a playlist of your favorite or most recently played stations.
+          Happy listening!
         </Content>
         <Wave svgDataUri={svgDataUri}></Wave>
       </ContentWrapper>
