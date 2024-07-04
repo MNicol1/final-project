@@ -32,11 +32,32 @@ const AudioFooter = () => {
 
   const [isVolumeHovered, setIsVolumeHovered] = useState(false);
 
-
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
+  const updateMetadata = (title, artist) => {
+    if ("mediaSession" in navigator) {
+      navigator.mediaSession.metadata = new window.MediaMetadata({
+        title: title,
+        artist: artist,
+        album: "Radio Stream",
+        artwork: [
+          {
+            src: "/android-chrome-192x192.png",
+            sizes: "192x192",
+            type: "image/png",
+          },
+          {
+            src: "/android-chrome-512x512.png",
+            sizes: "512x512",
+            type: "image/png",
+          },
+        ],
+      });
+    }
+  };
+
   useEffect(() => {
-    setIsTouchDevice(('ontouchstart' in window) || (navigator.maxTouchPoints > 0));
+    setIsTouchDevice("ontouchstart" in window || navigator.maxTouchPoints > 0);
   }, []);
 
   const handleVolumeEnter = () => {
@@ -57,6 +78,11 @@ const AudioFooter = () => {
       audioRef.current.play().catch((error) => {
         console.warn("Play was interrupted:", error);
       });
+
+      updateMetadata(
+        "World Wave Radio",
+        currentItem?.name.trim() || "Unknown Station"
+      );
     } else if (audioRef.current) {
       audioRef.current.pause();
     }
@@ -149,25 +175,15 @@ const AudioFooter = () => {
     }
   }, [isLoading, currentItem]);
 
-  //Disabled this Volume slider click functionality for better UX
-
-  // const handleSliderClick = (e) => {
-  //   const rect = e.target.getBoundingClientRect();
-  //   const y = e.clientY - rect.top; // y position within the element.
-  //   const volumeLevel = 1 - y / rect.height;
-  //   audioRef.current.volume = volumeLevel;
-  //   setVolume(volumeLevel);
-
-  //   // Update the slider fill
-  //   const fillPercentage = `${volumeLevel * 100}%`;
-  //   sliderRef.current.style.setProperty("--fill-percentage", fillPercentage);
-
-  //   // Update the knob's position
-  //   const knob = document.querySelector('.volume-thumb'); // Replace with your knob selector
-  //   if (knob) {
-  //     knob.style.bottom = fillPercentage;
-  //   }
-  // };
+  useEffect(() => {
+    // Update media session metadata when displayedItem changes
+    if (displayedItem) {
+      updateMetadata(
+        "World Wave Radio",
+        currentItem?.name.trim() || "Unknown Station"
+      );
+    }
+  }, [displayedItem]);
 
   useEffect(() => {
     if (isAudioFooterVisible) {
