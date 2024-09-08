@@ -14,9 +14,9 @@ const About = () => {
         <p>
           WWR emerged as a student-designed project from the Concordia
           University Full Stack Web Development program in the spring of 2022,
-          with love for accessible user experience, mobile-first design and all
-          things music. WWR gives a big special thanks to the community-driven
-          radio-browser.
+          with love for an intuitive and smooth user interface and experience,
+          mobile-first design, and all things music. WWR gives a special
+          thanks to the community-driven Radio-Browser.
         </p>
 
         <p>
