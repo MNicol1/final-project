@@ -6,8 +6,8 @@ import { RadioBrowserApi } from "radio-browser-api";
 const stationsCache = {}; // Cache object to store stations data
 const cacheDuration = 48 * 60 * 60 * 1000;
 
-const browserRadioApi = new RadioBrowserApi("My Radio App");
-browserRadioApi.setBaseUrl("https://nl1.api.radio-browser.info");
+const browserRadioApi = new RadioBrowserApi("WorldWaveRadio/1.0");
+browserRadioApi.setBaseUrl("https://fi1.api.radio-browser.info");
 
 const useRadio = ({ country, limit = 8 }) => {
   const [stations, setStations] = useState([]);
