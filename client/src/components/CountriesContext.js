@@ -9,7 +9,7 @@ export const CountriesProvider = ({ children }) => {
 
   //Changed url
   useEffect(() => {
-    fetch("https://fi1.api.radio-browser.info/json/countries")
+    fetch("https://de2.api.radio-browser.info/json/countries")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Unable to fetch countries data");
